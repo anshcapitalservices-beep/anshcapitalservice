@@ -20,10 +20,16 @@ from firebase_admin import credentials, firestore as fb_firestore
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
 
-# MongoDB connection (kept for legacy status endpoints)
-mongo_url = os.environ['MONGO_URL']
-client = AsyncIOMotorClient(mongo_url)
-db = client[os.environ['DB_NAME']]
+# MongoDB connection (kept for legacy status endpoints, optional on Vercel)
+mongo_url = os.environ.get('MONGO_URL', 'mongodb://localhost:27017')
+db_name = os.environ.get('DB_NAME', 'test_database')
+client = None
+db = None
+try:
+    client = AsyncIOMotorClient(mongo_url, serverSelectionTimeoutMS=5000)
+    db = client[db_name]
+except Exception as _mongo_err:
+    logging.getLogger(__name__).warning("MongoDB connection skipped: %s", _mongo_err)
 
 # Firebase / Firestore connection (used for the Blog)
 FIREBASE_CRED_PATH = os.environ.get('FIREBASE_CRED_PATH', str(ROOT_DIR / 'firebase_service_account.json'))
