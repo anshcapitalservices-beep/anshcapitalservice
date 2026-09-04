@@ -3,7 +3,10 @@
   "builds": [
     {
       "src": "backend/server.py",
-      "use": "@vercel/python"
+      "use": "@vercel/python",
+      "config": {
+        "includeFiles": ["backend/firebase_service_account.json"]
+      }
     },
     {
       "src": "frontend/package.json",

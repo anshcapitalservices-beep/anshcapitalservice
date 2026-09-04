@@ -43,13 +43,51 @@ if AsyncIOMotorClient is not None:
 
 # Firebase / Firestore connection (used for the Blog)
 FIREBASE_CRED_PATH = os.environ.get('FIREBASE_CRED_PATH', str(ROOT_DIR / 'firebase_service_account.json'))
+
+EMBEDDED_FIREBASE_CRED = {
+    "type": "service_account",
+    "project_id": "ansh-capital",
+    "private_key_id": "2501329311470bc7bf9531d3bd29499ebda6f84b",
+    "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC5NfVcDwyhM9KH\nLwknBhYtydMkTFk0m55YYGV1rYxqBw8oBmsCevr/BOx9W71L4+qigPoKHYt3LA+6\nvgV1Km0YDq7MY5oj30JeoJUQdoVqOrj0DugCPv2ucLzLhYJ/jTjkpwVioUZCIvkc\naKud/mZzM2+M5wYhqGdUp2BoFDMKUwPFxcqiVH6DpTi72HMecN+HeZHyWdGhqgy1\nfbzhoo2+MUrZzPDwET2u2V7SSPhmv0BXpizQ7a3vTuJvLmC7Vc0IHnaTgQb7ZzW6\nMwnNDMjTFUCmQPQ6MflCMvNm73MeiMWRgqtrFHCma+Z7aNIcDoUfjyhN4XHR0v7p\niIaa2bv/AgMBAAECggEARQ5Q1wvHbj2HxB6t/25eC6GCR7jt09coIZSDj+5u+cN7\nC7Xk5U5cUoSP9qeje23V+NQ1JltgukTj8oFSQJ7agUtMMmn6uWBPez/NhI9kbDjL\n6De8msXIyWdAhXPYtd0+dsatk9pE+3jVwBloz6ZgpZhqgbNLznXfXSlxIS1S4Ihz\nHEl4OkDRKIlJbNAGUZ3KhEJF9OzAWI+E/QLKbnmBGHzqMBUU30i8TSMDLPiQREgv\nxrsL4WCKZJz4PJu26+ipTlnXh8w4UXpYqhsgC/sxMnPhCC3CpNgNNA81Tmls/+LZ\nM9iNY6UCKHd7qcof8FRHTfW/H58UZwATTA0FnMrpkQKBgQDw9H6DTIx1gjVk43Fp\nP8CQCX8zakJvShDX4+508ztu+w0W983pAH7pckeKuGRSLvfXnRfsUA4fQndaNYiO\nird9tSpxqYxHst9B2ae5TTSS9rVwMflwTwdHSdhKFqzOSxzwHfcMMOrbx8wi7XRa\nm9jrpt358BezPZNqmm8JXA/YkQKBgQDExm3aax3Oxe+O4zb/NWA4lv405/nTsf8z\nSz9MXC1ImGLvOYUS5qT593aEoaFVu7tRi4M1YMt8lJ3Gw6KRWWRuCor7gSVaG+49\nMqVeOPqGRaxjOvAl2+UoEjzHRR23A+B9R1DgoARBbz8MU7vSqGkwnpncAvGU0ZVn\nyvHkMJ0TjwKBgDPicduUACrNfvHah/FB6RUa9mj72JJeQII8cnx8Y6/iH09yzMP/\nd1SNZxpX2kJYGsYy7ZPVKTVR+qFSJbWL6TcIa7tN5wcJXUmwtI0SMt/yf99I441r\ndwXCwPAzMcK6KeEKksftQKVSwIJE32kjZfJYXDQVnwTZnYS2/HHngQIBAoGBAJcV\nP91XJ1DOuyt7m4uB4PoyPMZEYpY+8ZHhsZ0gnQhDMJs7D8i+XGcssMwPCb+4348x\nzjFau4JQ3X9yUEzHVQwEfkezFgnErjxAuaXJm9kif8TEyQRYfO8yaYYatEED8gZe\njmOZmQrgroj5dZm+At34uGuruu8nqE5EDUvGY6RTAoGABva4gSyRfEBaCoC2w0mz\nyBrFlmmoidd6n2Z4AZpoEo0Od556x3clsYgZUhFVfFqed+hVULFi6MEjlzamwGTy\n/rXvQ5z/+hVP0+ldoJWsAeYohX2ilyKkIAxGO9PxqQEGB3TXZzdX30Yw+iCEFa0d\npGiMavwqjsHnx0gQoh4LkGo=\n-----END PRIVATE KEY-----\n",
+    "client_email": "firebase-adminsdk-fbsvc@ansh-capital.iam.gserviceaccount.com",
+    "client_id": "110679736225335398912",
+    "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+    "token_uri": "https://oauth2.googleapis.com/token",
+    "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+    "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-fbsvc%40ansh-capital.iam.gserviceaccount.com",
+    "universe_domain": "googleapis.com"
+}
+
 fs = None
+fb_init_error = None
 if firebase_admin is not None:
     try:
+        cred = None
+        # 1. Check environment variable
+        if os.environ.get("FIREBASE_SERVICE_ACCOUNT_JSON"):
+            try:
+                import json
+                cred = credentials.Certificate(json.loads(os.environ["FIREBASE_SERVICE_ACCOUNT_JSON"]))
+            except Exception as _e:
+                logging.getLogger(__name__).warning("Failed parsing FIREBASE_SERVICE_ACCOUNT_JSON: %s", _e)
+        
+        # 2. Check file path if it exists
+        if cred is None and Path(FIREBASE_CRED_PATH).exists():
+            try:
+                cred = credentials.Certificate(FIREBASE_CRED_PATH)
+            except Exception as _e:
+                logging.getLogger(__name__).warning("Failed reading %s: %s", FIREBASE_CRED_PATH, _e)
+
+        # 3. Fallback to embedded credentials
+        if cred is None:
+            cred = credentials.Certificate(EMBEDDED_FIREBASE_CRED)
+
         if not firebase_admin._apps:
-            firebase_admin.initialize_app(credentials.Certificate(FIREBASE_CRED_PATH))
+            firebase_admin.initialize_app(cred)
         fs = fb_firestore.client()
+        logging.getLogger(__name__).info("Firestore connected successfully")
     except Exception as _fb_err:
+        fb_init_error = str(_fb_err)
         logging.getLogger(__name__).error("Firebase init failed: %s", _fb_err)
 
 # Create the main app without a prefix
@@ -74,6 +112,14 @@ class StatusCheckCreate(BaseModel):
 @api_router.get("/")
 async def root():
     return {"message": "Hello World"}
+
+@api_router.get("/health")
+async def health():
+    return {
+        "status": "ok",
+        "firebase_connected": fs is not None,
+        "firebase_error": fb_init_error
+    }
 
 @api_router.post("/status", response_model=StatusCheck)
 async def create_status_check(input: StatusCheckCreate):
@@ -155,6 +201,8 @@ BLOG_COLLECTION = "blog_posts"
 
 
 def _blog_col():
+    if fs is None:
+        raise HTTPException(status_code=500, detail=f"Database unavailable: {fb_init_error or 'Firestore not initialized'}")
     return fs.collection(BLOG_COLLECTION)
 
 
