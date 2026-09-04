@@ -1,7 +1,6 @@
 from fastapi import FastAPI, APIRouter, UploadFile, File, Header, HTTPException, Query, Depends
 from dotenv import load_dotenv
 from starlette.middleware.cors import CORSMiddleware
-from motor.motor_asyncio import AsyncIOMotorClient
 import os
 import logging
 import base64
@@ -13,33 +12,45 @@ from typing import List, Optional
 import uuid
 from datetime import datetime, timezone
 
-import firebase_admin
-from firebase_admin import credentials, firestore as fb_firestore
+try:
+    from motor.motor_asyncio import AsyncIOMotorClient
+except ImportError:
+    AsyncIOMotorClient = None
+
+try:
+    import firebase_admin
+    from firebase_admin import credentials, firestore as fb_firestore
+except ImportError:
+    firebase_admin = None
+    credentials = None
+    fb_firestore = None
 
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
 
-# MongoDB connection (kept for legacy status endpoints, optional on Vercel)
+# MongoDB connection (optional - not required for blog/admin features)
 mongo_url = os.environ.get('MONGO_URL', 'mongodb://localhost:27017')
 db_name = os.environ.get('DB_NAME', 'test_database')
 client = None
 db = None
-try:
-    client = AsyncIOMotorClient(mongo_url, serverSelectionTimeoutMS=5000)
-    db = client[db_name]
-except Exception as _mongo_err:
-    logging.getLogger(__name__).warning("MongoDB connection skipped: %s", _mongo_err)
+if AsyncIOMotorClient is not None:
+    try:
+        client = AsyncIOMotorClient(mongo_url, serverSelectionTimeoutMS=3000)
+        db = client[db_name]
+    except Exception as _mongo_err:
+        logging.getLogger(__name__).warning("MongoDB connection skipped: %s", _mongo_err)
 
 # Firebase / Firestore connection (used for the Blog)
 FIREBASE_CRED_PATH = os.environ.get('FIREBASE_CRED_PATH', str(ROOT_DIR / 'firebase_service_account.json'))
 fs = None
-try:
-    if not firebase_admin._apps:
-        firebase_admin.initialize_app(credentials.Certificate(FIREBASE_CRED_PATH))
-    fs = fb_firestore.client()
-except Exception as _fb_err:
-    logging.getLogger(__name__).error("Firebase init failed: %s", _fb_err)
+if firebase_admin is not None:
+    try:
+        if not firebase_admin._apps:
+            firebase_admin.initialize_app(credentials.Certificate(FIREBASE_CRED_PATH))
+        fs = fb_firestore.client()
+    except Exception as _fb_err:
+        logging.getLogger(__name__).error("Firebase init failed: %s", _fb_err)
 
 # Create the main app without a prefix
 app = FastAPI()
