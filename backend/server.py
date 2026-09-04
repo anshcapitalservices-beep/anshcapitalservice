@@ -89,8 +89,8 @@ async def get_status_checks():
     return status_checks
 
 # ==================== BLOG ====================
-ADMIN_PASSWORD = os.environ.get('ADMIN_PASSWORD', 'admin123')
-ADMIN_TOKEN = os.environ.get('ADMIN_TOKEN', 'ansh-secret-token')
+ADMIN_PASSWORD = os.environ.get('ADMIN_PASSWORD', 'ansh@admin2025')
+ADMIN_TOKEN = os.environ.get('ADMIN_TOKEN', 'ansh-secret-token-8f3a1c9d2e4b')
 
 
 def slugify(text: str) -> str:
