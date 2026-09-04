@@ -96,11 +96,52 @@ const Admin = () => {
     setMode("edit");
   };
 
+  const compressImage = (file, maxWidth = 1280, quality = 0.8) => {
+    return new Promise((resolve) => {
+      if (!file.type.startsWith("image/")) {
+        return resolve(file);
+      }
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = (event) => {
+        const img = new window.Image();
+        img.src = event.target.result;
+        img.onload = () => {
+          const elem = document.createElement("canvas");
+          let width = img.width;
+          let height = img.height;
+          if (width > maxWidth) {
+            height = (height * maxWidth) / width;
+            width = maxWidth;
+          }
+          elem.width = width;
+          elem.height = height;
+          const ctx = elem.getContext("2d");
+          ctx.drawImage(img, 0, 0, width, height);
+          elem.toBlob(
+            (blob) => {
+              if (blob) {
+                resolve(new File([blob], file.name.replace(/\.[^/.]+$/, ".jpg"), { type: "image/jpeg" }));
+              } else {
+                resolve(file);
+              }
+            },
+            "image/jpeg",
+            quality
+          );
+        };
+        img.onerror = () => resolve(file);
+      };
+      reader.onerror = () => resolve(file);
+    });
+  };
+
   const handleUpload = async (e) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
+    const rawFile = e.target.files?.[0];
+    if (!rawFile) return;
     setUploading(true);
     try {
+      const file = await compressImage(rawFile);
       const res = await blogApi.upload(file);
       setForm((f) => ({ ...f, image: res.data.url }));
       toast.success("Image uploaded");
@@ -116,7 +157,9 @@ const Admin = () => {
       toast.error("Session expired. Please log in again.");
       logout();
     } else {
-      toast.error(fallback);
+      const detail = err?.response?.data?.detail;
+      const msg = typeof detail === "string" ? detail : (err?.message || fallback);
+      toast.error(msg);
     }
   };
 
