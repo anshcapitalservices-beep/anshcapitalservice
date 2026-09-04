@@ -1,0 +1,55 @@
+import React, { useEffect } from "react";
+import { Outlet, useLocation } from "react-router-dom";
+import TopBar from "./TopBar";
+import Navbar from "./Navbar";
+import Footer from "./Footer";
+import CtaSection from "./CtaSection";
+import FloatingButtons from "./FloatingButtons";
+
+const Layout = () => {
+  const { pathname, hash } = useLocation();
+
+  useEffect(() => {
+    const titles = {
+      "/": "ANSH Capital Services",
+      "/about": "About Us | ANSH Capital Services",
+      "/services": "Services | ANSH Capital Services",
+      "/products": "Investment Products | ANSH Capital Services",
+      "/why-choose-us": "Why Choose Us | ANSH Capital Services",
+      "/testimonials": "Testimonials | ANSH Capital Services",
+      "/blog": "Financial Insights & Blog | ANSH Capital Services",
+      "/faq": "FAQ | ANSH Capital Services",
+      "/contact": "Contact Us | ANSH Capital Services",
+    };
+    if (titles[pathname]) {
+      document.title = titles[pathname];
+    } else if (!pathname.startsWith("/blog/")) {
+      document.title = "ANSH Capital Services";
+    }
+
+    if (hash) {
+      const id = hash.replace("#", "");
+      const el = document.getElementById(id);
+      if (el) {
+        setTimeout(() => el.scrollIntoView({ behavior: "smooth", block: "start" }), 100);
+        return;
+      }
+    }
+    window.scrollTo(0, 0);
+  }, [pathname, hash]);
+
+  return (
+    <div className="min-h-screen flex flex-col bg-white">
+      <TopBar />
+      <Navbar />
+      <main className="flex-1">
+        <Outlet />
+      </main>
+      <CtaSection />
+      <Footer />
+      <FloatingButtons />
+    </div>
+  );
+};
+
+export default Layout;

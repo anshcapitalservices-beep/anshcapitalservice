@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+  <!-- Shield background -->
+  <path d="M50 8 C75 8, 85 18, 85 45 C85 70, 68 85, 50 92 C32 85, 15 70, 15 45 C15 18, 25 8, 50 8 Z" fill="#ffffff" stroke="#061a3b" stroke-width="5.5" stroke-linejoin="round"/>
+  
+  <!-- Navy "A" Structure -->
+  <path d="M50 16 L28 72 L38 72 L45 54 L55 54 L62 72 L72 72 Z" fill="#061a3b"/>
+  <!-- Inner A cutout -->
+  <polygon points="50,30 43,47 57,47" fill="#ffffff"/>
+
+  <!-- Golden Swoop Arrow -->
+  <path d="M18 57 C22 66, 32 66, 42 59 C54 50, 67 36, 76 22 L72 20 L87 18 L83 34 L78 30 C70 42, 57 56, 43 64 C32 71, 20 70, 18 57 Z" fill="#c28b38"/>
+</svg>
