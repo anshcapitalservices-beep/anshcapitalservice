@@ -4,7 +4,6 @@ import TopBar from "./TopBar";
 import Navbar from "./Navbar";
 import TickerBar from "./TickerBar";
 import Footer from "./Footer";
-import CtaSection from "./CtaSection";
 import FloatingButtons from "./FloatingButtons";
 
 const Layout = () => {
@@ -47,7 +46,6 @@ const Layout = () => {
       <main className="flex-1">
         <Outlet />
       </main>
-      <CtaSection />
       <Footer />
       <FloatingButtons />
     </div>
