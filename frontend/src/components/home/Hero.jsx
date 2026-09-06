@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 import { hero } from "../../mock/mock";
 import Reveal from "../Reveal";
+import TypewriterText from "../TypewriterText";
 import heroRightFaded from "../../assets/hero_right_faded.png";
 
 const Hero = () => {
@@ -86,11 +87,11 @@ const Hero = () => {
                   <Users className="h-6 w-6 text-[#d89626]" />
                 </div>
                 <div>
-                  <div className="font-display text-2xl font-extrabold text-[#0b1f3a]">
-                    16+
+                  <div className="font-display text-2xl font-extrabold text-[#0b1f3a] min-h-[32px] flex items-center">
+                    <TypewriterText text="16+" speed={80} delay={150} />
                   </div>
-                  <div className="text-xs text-slate-500 font-medium">
-                    Years of Experience
+                  <div className="text-xs text-slate-500 font-medium min-h-[18px] flex items-center">
+                    <TypewriterText text="Years of Experience" speed={35} delay={350} />
                   </div>
                 </div>
               </div>
@@ -101,11 +102,11 @@ const Hero = () => {
                   <ShieldCheck className="h-6 w-6 text-[#d89626]" />
                 </div>
                 <div>
-                  <div className="font-display text-2xl font-extrabold text-[#0b1f3a]">
-                    1000+
+                  <div className="font-display text-2xl font-extrabold text-[#0b1f3a] min-h-[32px] flex items-center">
+                    <TypewriterText text="1000+" speed={80} delay={300} />
                   </div>
-                  <div className="text-xs text-slate-500 font-medium">
-                    Happy Clients
+                  <div className="text-xs text-slate-500 font-medium min-h-[18px] flex items-center">
+                    <TypewriterText text="Happy Clients" speed={35} delay={550} />
                   </div>
                 </div>
               </div>
@@ -116,11 +117,11 @@ const Hero = () => {
                   <Layers className="h-6 w-6 text-[#d89626]" />
                 </div>
                 <div>
-                  <div className="font-display text-2xl font-extrabold text-[#0b1f3a]">
-                    15K+
+                  <div className="font-display text-2xl font-extrabold text-[#0b1f3a] min-h-[32px] flex items-center">
+                    <TypewriterText text="15K+" speed={80} delay={450} />
                   </div>
-                  <div className="text-xs text-slate-500 font-medium">
-                    Plans Managed
+                  <div className="text-xs text-slate-500 font-medium min-h-[18px] flex items-center">
+                    <TypewriterText text="Plans Managed" speed={35} delay={700} />
                   </div>
                 </div>
               </div>
@@ -131,11 +132,11 @@ const Hero = () => {
                   <Award className="h-6 w-6 text-[#d89626]" />
                 </div>
                 <div>
-                  <div className="font-display text-2xl font-extrabold text-[#0b1f3a]">
-                    AI Trusted
+                  <div className="font-display text-2xl font-extrabold text-[#0b1f3a] min-h-[32px] flex items-center">
+                    <TypewriterText text="AI Trusted" speed={80} delay={600} />
                   </div>
-                  <div className="text-xs text-slate-500 font-medium">
-                    Advice & Support
+                  <div className="text-xs text-slate-500 font-medium min-h-[18px] flex items-center">
+                    <TypewriterText text="Advice & Support" speed={35} delay={850} />
                   </div>
                 </div>
               </div>
