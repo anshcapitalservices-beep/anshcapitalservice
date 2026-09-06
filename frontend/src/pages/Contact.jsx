@@ -53,8 +53,8 @@ const Contact = () => {
 
       <section className="bg-white py-16 md:py-20">
         <div className="max-w-[1280px] mx-auto px-4 md:px-6 grid lg:grid-cols-[1fr_1.15fr] gap-10">
-          {/* Info */}
-          <Reveal>
+          {/* Info — shows second on mobile, first on desktop */}
+          <Reveal className="order-2 lg:order-1">
             <p className="text-gold font-semibold tracking-[0.2em] text-xs uppercase mb-3">
               GET IN TOUCH
             </p>
@@ -102,8 +102,8 @@ const Contact = () => {
             </div>
           </Reveal>
 
-          {/* Form */}
-          <Reveal delay={120}>
+          {/* Form — shows first on mobile, second on desktop */}
+          <Reveal delay={120} className="order-1 lg:order-2">
             <form
               onSubmit={handleSubmit}
               className="bg-white rounded-2xl border border-slate-100 shadow-[0_24px_50px_-24px_rgba(11,31,58,0.25)] p-7 md:p-8"
