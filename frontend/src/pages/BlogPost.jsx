@@ -56,29 +56,40 @@ const BlogPost = () => {
   return (
     <article className="bg-white">
       {/* header */}
-      <div className="bg-navy">
-        <div className="max-w-3xl mx-auto px-4 md:px-6 py-12 md:py-16">
+      <div className="relative bg-[#06152b] overflow-hidden">
+        {/* Background image with multi-layer deep gradient overlays */}
+        <div className="absolute inset-0 z-0">
+          <img
+            src={post.image || "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=2000&q=80"}
+            alt={post.title}
+            className="w-full h-full object-cover object-center opacity-25 scale-105"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#06152b] via-[#06152b]/90 to-[#0b1f3a]/75" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#06152b] via-transparent to-transparent opacity-90" />
+        </div>
+
+        <div className="max-w-3xl mx-auto px-4 md:px-6 py-12 md:py-16 relative z-10">
           <Link
             to="/blog"
-            className="inline-flex items-center gap-2 text-sm text-white/60 hover:text-gold transition-colors mb-6"
+            className="inline-flex items-center gap-2 text-sm text-white/70 hover:text-gold transition-colors mb-6"
           >
             <ArrowLeft className="h-4 w-4" /> Back to Blog
           </Link>
-          <span className="text-[11px] font-bold tracking-wider text-gold uppercase">
+          <span className="text-[11px] font-bold tracking-wider text-[#d89626] uppercase">
             {post.category}
           </span>
           <h1 className="mt-3 font-display text-3xl md:text-4xl font-bold text-white leading-tight">
             {post.title}
           </h1>
-          <div className="mt-5 flex flex-wrap items-center gap-5 text-sm text-white/60">
+          <div className="mt-5 flex flex-wrap items-center gap-5 text-sm text-white/70">
             <span className="inline-flex items-center gap-2">
-              <User className="h-4 w-4 text-gold" /> {post.author}
+              <User className="h-4 w-4 text-[#d89626]" /> {post.author}
             </span>
             <span className="inline-flex items-center gap-2">
-              <Calendar className="h-4 w-4 text-gold" /> {post.date}
+              <Calendar className="h-4 w-4 text-[#d89626]" /> {post.date}
             </span>
             <span className="inline-flex items-center gap-2">
-              <Clock className="h-4 w-4 text-gold" /> {post.read_time}
+              <Clock className="h-4 w-4 text-[#d89626]" /> {post.read_time}
             </span>
           </div>
         </div>
