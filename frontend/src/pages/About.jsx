@@ -5,7 +5,8 @@ import PageHeader from "../components/PageHeader";
 import SectionHeading from "../components/SectionHeading";
 import Reveal from "../components/Reveal";
 import { Icon } from "../components/iconMap";
-import { aboutPage, hero } from "../mock/mock";
+import { aboutPage } from "../mock/mock";
+import aboutUsImg from "../assets/about-us.png";
 
 const About = () => {
   return (
@@ -21,7 +22,7 @@ const About = () => {
         <div className="max-w-[1280px] mx-auto px-4 md:px-6 grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
           <Reveal className="relative">
             <img
-              src={aboutPage.image || "/images/about-us.png"}
+              src={aboutUsImg}
               alt="About ANSH Capital Services"
               className="rounded-2xl w-full h-[360px] md:h-[400px] object-cover shadow-[0_30px_60px_-24px_rgba(11,31,58,0.35)] border border-slate-100"
             />
