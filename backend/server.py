@@ -203,6 +203,95 @@ async def admin_login(data: LoginInput):
     return {"token": ADMIN_TOKEN}
 
 
+# ==================== CONTACT / LEADS ====================
+LEAD_COLLECTION = "leads"
+LEAD_NOTIFICATION_EMAIL = os.environ.get("LEAD_NOTIFICATION_EMAIL", "pratyushk92.pk@gmail.com")
+
+class ContactLead(BaseModel):
+    name: str
+    phone: str
+    email: Optional[str] = ""
+    service: Optional[str] = ""
+    budget: Optional[str] = ""
+    message: Optional[str] = ""
+
+@api_router.post("/contact")
+async def submit_contact(lead: ContactLead):
+    if not lead.name or not lead.phone:
+        raise HTTPException(status_code=400, detail="Name and phone number are required.")
+
+    lead_data = lead.model_dump()
+    lead_data["id"] = str(uuid.uuid4())
+    lead_data["created_at"] = datetime.now(timezone.utc).isoformat()
+    lead_data["date"] = datetime.now(timezone.utc).strftime("%B %d, %Y, %I:%M %p UTC")
+
+    # 1. Save to Firestore if available
+    try:
+        if fs is not None:
+            fs.collection(LEAD_COLLECTION).document(lead_data["id"]).set(lead_data)
+            logging.getLogger(__name__).info("Saved lead %s to Firestore", lead_data["id"])
+    except Exception as e:
+        logging.getLogger(__name__).warning("Could not save lead to Firestore: %s", e)
+
+    # 2. Email dispatch via SMTP if configured
+    smtp_host = os.environ.get("SMTP_HOST")
+    smtp_user = os.environ.get("SMTP_USER")
+    smtp_pass = os.environ.get("SMTP_PASSWORD")
+    smtp_port = int(os.environ.get("SMTP_PORT", "587"))
+
+    if smtp_host and smtp_user and smtp_pass:
+        try:
+            import smtplib
+            from email.mime.text import MIMEText
+            from email.mime.multipart import MIMEMultipart
+
+            msg = MIMEMultipart("alternative")
+            msg["Subject"] = f"New Consultation Lead: {lead.name} ({lead.service or 'Consultation'})"
+            msg["From"] = smtp_user
+            msg["To"] = LEAD_NOTIFICATION_EMAIL
+
+            html = f"""
+            <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; padding: 20px; border: 1px solid #e2e8f0; border-radius: 12px;">
+              <h2 style="color: #0b1f3a; margin-top: 0;">New Consultation Request</h2>
+              <p style="color: #64748b; font-size: 14px;">A new lead has submitted the consultation form on ANSH Capital Services:</p>
+              <table style="width: 100%; border-collapse: collapse; margin-top: 15px;">
+                <tr style="border-bottom: 1px solid #f1f5f9;"><td style="padding: 10px; font-weight: bold; color: #0b1f3a;">Full Name:</td><td style="padding: 10px; color: #334155;">{lead.name}</td></tr>
+                <tr style="border-bottom: 1px solid #f1f5f9;"><td style="padding: 10px; font-weight: bold; color: #0b1f3a;">Mobile Number:</td><td style="padding: 10px; color: #334155;"><a href="tel:{lead.phone}">{lead.phone}</a></td></tr>
+                <tr style="border-bottom: 1px solid #f1f5f9;"><td style="padding: 10px; font-weight: bold; color: #0b1f3a;">Email:</td><td style="padding: 10px; color: #334155;">{lead.email or 'Not provided'}</td></tr>
+                <tr style="border-bottom: 1px solid #f1f5f9;"><td style="padding: 10px; font-weight: bold; color: #0b1f3a;">Selected Service:</td><td style="padding: 10px; color: #334155;">{lead.service or 'General'}</td></tr>
+                <tr style="border-bottom: 1px solid #f1f5f9;"><td style="padding: 10px; font-weight: bold; color: #0b1f3a;">Monthly Budget:</td><td style="padding: 10px; color: #334155;">{lead.budget or 'Not specified'}</td></tr>
+                <tr style="border-bottom: 1px solid #f1f5f9;"><td style="padding: 10px; font-weight: bold; color: #0b1f3a;">Message / Goals:</td><td style="padding: 10px; color: #334155;">{lead.message or 'None'}</td></tr>
+                <tr><td style="padding: 10px; font-weight: bold; color: #0b1f3a;">Submitted At:</td><td style="padding: 10px; color: #64748b;">{lead_data["date"]}</td></tr>
+              </table>
+              <div style="margin-top: 25px; padding-top: 15px; border-top: 1px solid #e2e8f0; text-align: center;">
+                <a href="tel:{lead.phone}" style="background-color: #d89626; color: #ffffff; padding: 10px 20px; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 14px; display: inline-block;">Call Lead Now</a>
+              </div>
+            </div>
+            """
+            msg.attach(MIMEText(html, "html"))
+
+            with smtplib.SMTP(smtp_host, smtp_port) as server:
+                server.starttls()
+                server.login(smtp_user, smtp_pass)
+                server.sendmail(smtp_user, [LEAD_NOTIFICATION_EMAIL], msg.as_string())
+            logging.getLogger(__name__).info("Lead email notification sent to %s", LEAD_NOTIFICATION_EMAIL)
+        except Exception as mail_err:
+            logging.getLogger(__name__).error("Failed sending email notification: %s", mail_err)
+
+    return {"success": True, "message": "Lead received successfully"}
+
+@api_router.get("/contact/leads")
+async def list_leads(_: bool = Depends(require_admin)):
+    if fs is None:
+        return []
+    try:
+        docs = fs.collection(LEAD_COLLECTION).order_by("created_at", direction=fb_firestore.Query.DESCENDING).stream()
+        return [d.to_dict() for d in docs]
+    except Exception as e:
+        logging.getLogger(__name__).error("Error fetching leads: %s", e)
+        return []
+
+
 BLOG_COLLECTION = "blog_posts"
 
 

@@ -27,3 +27,8 @@ export const blogApi = {
   },
   login: (password) => axios.post(`${API}/admin/login`, { password }),
 };
+
+export const contactApi = {
+  submit: (data) => axios.post(`${API}/contact`, data),
+  getLeads: () => axios.get(`${API}/contact/leads`, authHeaders()),
+};
