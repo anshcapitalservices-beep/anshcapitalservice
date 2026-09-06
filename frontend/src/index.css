@@ -49,12 +49,19 @@ code {
     animation: fadeUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
-/* Marquee for the top bar */
+/* Marquee for ticker and train ribbons */
 @keyframes marquee {
     0% { transform: translateX(0); }
     100% { transform: translateX(-50%); }
 }
-.animate-marquee { animation: marquee 26s linear infinite; }
+.animate-marquee {
+    display: inline-flex;
+    animation: marquee 30s linear infinite;
+    will-change: transform;
+}
+.animate-marquee:hover {
+    animation-play-state: paused;
+}
 
 /* Arrow float */
 @keyframes floatArrow {

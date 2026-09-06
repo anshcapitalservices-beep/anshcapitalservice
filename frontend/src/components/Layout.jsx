@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import TopBar from "./TopBar";
 import Navbar from "./Navbar";
+import TickerBar from "./TickerBar";
 import Footer from "./Footer";
 import CtaSection from "./CtaSection";
 import FloatingButtons from "./FloatingButtons";
@@ -42,6 +43,7 @@ const Layout = () => {
     <div className="min-h-screen flex flex-col bg-white">
       <TopBar />
       <Navbar />
+      <TickerBar />
       <main className="flex-1">
         <Outlet />
       </main>
