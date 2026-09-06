@@ -31,7 +31,8 @@ const ServicesPage = () => {
                 key={s.id}
                 id={s.id}
                 delay={i * 70}
-                className="scroll-mt-28 group bg-white rounded-2xl border border-slate-100 p-7 hover:shadow-[0_24px_50px_-24px_rgba(11,31,58,0.3)] transition-all duration-300 flex gap-5"
+                className="scroll-mt-28 group bg-white rounded-2xl border border-slate-100 p-7 hover:shadow-[0_24px_50px_-24px_rgba(11,31,58,0.3)] transition-all duration-300 flex gap-5 cursor-pointer"
+                onClick={() => window.location.href = `/services/${s.id}`}
               >
                 <div className="h-16 w-16 rounded-xl bg-cream flex items-center justify-center shrink-0 group-hover:bg-gold transition-colors">
                   <Icon
@@ -58,10 +59,10 @@ const ServicesPage = () => {
                     ))}
                   </ul>
                   <Link
-                    to="/contact"
+                    to={`/services/${s.id}`}
                     className="inline-flex items-center gap-1.5 text-sm font-semibold text-navy group-hover:text-gold transition-colors"
                   >
-                    Talk to an Expert <ArrowRight className="h-4 w-4" />
+                    Learn More <ArrowRight className="h-4 w-4" />
                   </Link>
                 </div>
               </Reveal>

@@ -98,6 +98,39 @@ export const services = [
     description:
       "Grow your wealth with smart investing plans tailored to your goals.",
     points: ["SIP Planning", "Goal-based Investing", "Portfolio Review"],
+    detail: {
+      heroImage: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=2000&q=80",
+      overview: "Mutual Funds are professionally managed investment vehicles that pool money from multiple investors to invest in diversified portfolios of stocks, bonds, and other securities. At ANSH Capital Services, we help you identify the right mutual fund schemes aligned with your risk profile, financial goals, and investment horizon.",
+      scope: [
+        "Equity Mutual Funds — for long-term wealth creation through stock market exposure",
+        "Debt Mutual Funds — for stable, low-risk income generation",
+        "Hybrid Funds — a balanced mix of equity and debt for moderate growth",
+        "ELSS (Tax-Saving Funds) — to save tax under Section 80C while growing your money",
+        "Index Funds & ETFs — low-cost passive investing tracking market indices",
+        "Sectoral & Thematic Funds — targeted exposure to specific industries",
+      ],
+      process: [
+        { step: "01", title: "Risk Assessment", desc: "We evaluate your risk tolerance, financial goals, and investment timeline through a detailed consultation." },
+        { step: "02", title: "Fund Selection", desc: "Our experts shortlist the best-performing funds from trusted AMCs based on your profile and market conditions." },
+        { step: "03", title: "SIP or Lump Sum Setup", desc: "We help you choose between SIP (Systematic Investment Plan) or lump-sum investments and set up your account." },
+        { step: "04", title: "Portfolio Monitoring", desc: "We continuously track your portfolio performance and make timely rebalancing recommendations." },
+        { step: "05", title: "Review & Reporting", desc: "Regular reviews and transparent reports keep you informed about your wealth growth journey." },
+      ],
+      benefits: [
+        "Professional fund management by expert analysts",
+        "Diversification across asset classes to reduce risk",
+        "Start with as low as ₹500/month via SIP",
+        "Tax benefits up to ₹1.5 Lakh under Section 80C (ELSS)",
+        "High liquidity — redeem anytime (open-ended funds)",
+        "Power of compounding for long-term wealth creation",
+      ],
+      faqs: [
+        { q: "What is the minimum amount to start investing in mutual funds?", a: "You can start a SIP with as little as ₹500 per month. Lump-sum investments typically start from ₹5,000 depending on the fund house." },
+        { q: "Are mutual funds safe?", a: "Mutual funds are regulated by SEBI and managed by professional fund managers. While market-linked funds carry some risk, proper diversification and a long-term approach significantly reduce risk." },
+        { q: "How long should I stay invested?", a: "For equity funds, we recommend a minimum of 5-7 years. Debt funds can work well for 1-3 years. The longer you stay invested, the better the compounding benefits." },
+        { q: "Can I withdraw my money anytime?", a: "Yes, open-ended mutual funds allow redemption at any time. However, some funds may have exit loads if redeemed within a certain period (usually 1 year for equity funds)." },
+      ],
+    },
   },
   {
     id: "insurance",
@@ -106,6 +139,39 @@ export const services = [
     description:
       "Protect your family and your assets with comprehensive coverage.",
     points: ["Health Insurance", "Life Insurance", "General Insurance"],
+    detail: {
+      heroImage: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=2000&q=80",
+      overview: "Insurance is the cornerstone of any sound financial plan. At ANSH Capital Services, we help you secure your family's future with the right mix of life, health, and general insurance policies. We work with all major insurers to find you the best coverage at the most competitive premiums.",
+      scope: [
+        "Term Life Insurance — pure protection plans with high coverage at low premiums",
+        "Health Insurance — cashless hospitalization and medical expense coverage for individuals and families",
+        "Critical Illness Cover — lump-sum payout on diagnosis of specified critical illnesses",
+        "Motor Insurance — comprehensive and third-party coverage for cars and two-wheelers",
+        "Home & Property Insurance — protection against natural disasters, theft, and damage",
+        "Travel Insurance — coverage for medical emergencies, trip cancellations, and baggage loss",
+      ],
+      process: [
+        { step: "01", title: "Needs Analysis", desc: "We assess your family's financial obligations, existing coverage gaps, and protection requirements." },
+        { step: "02", title: "Plan Comparison", desc: "We compare plans from 30+ insurers to find the right balance of coverage, premiums, and claim settlement ratio." },
+        { step: "03", title: "Application & Documentation", desc: "We handle the entire paperwork, medical tests coordination, and application submission on your behalf." },
+        { step: "04", title: "Policy Issuance", desc: "Once approved, we ensure timely policy issuance and explain all terms, exclusions, and benefits." },
+        { step: "05", title: "Claims Assistance", desc: "In case of a claim, we guide you through the entire process for quick and hassle-free settlement." },
+      ],
+      benefits: [
+        "Financial security for your family against unforeseen events",
+        "Tax benefits under Section 80C and 80D",
+        "Cashless hospitalization at 10,000+ network hospitals",
+        "Affordable premiums with maximum coverage",
+        "Dedicated claims support and assistance",
+        "Riders for accidental death, disability, and waiver of premium",
+      ],
+      faqs: [
+        { q: "How much life insurance coverage do I need?", a: "A general rule is 10-15 times your annual income. However, we consider your liabilities, dependents, and financial goals to recommend an optimal sum assured." },
+        { q: "Should I buy online or through an advisor?", a: "While online plans may seem cheaper, an advisor helps you choose the right plan, assists with documentation, and provides crucial support during claims — which is when insurance truly matters." },
+        { q: "What is the claim settlement ratio?", a: "It's the percentage of claims an insurer settles out of total claims received. We recommend companies with a settlement ratio above 95% for maximum reliability." },
+        { q: "Can I have multiple health insurance policies?", a: "Yes, you can hold multiple health insurance policies. In case of a claim, you can use the primary policy first and the remaining amount from the second policy." },
+      ],
+    },
   },
   {
     id: "wealth",
@@ -114,6 +180,39 @@ export const services = [
     description:
       "Financial planning, investment advisory and goal-based strategies.",
     points: ["Financial Planning", "Advisory", "Goal Strategies"],
+    detail: {
+      heroImage: "https://images.unsplash.com/photo-1553729459-uj4njqzqtq0?auto=format&fit=crop&w=2000&q=80",
+      overview: "Wealth Management is a holistic advisory service that combines financial planning, investment management, and tax optimization to help high-net-worth individuals and families grow, protect, and transfer their wealth. At ANSH Capital Services, we provide personalized strategies that align with your lifestyle, goals, and legacy plans.",
+      scope: [
+        "Comprehensive Financial Planning — budgeting, cash flow analysis, and goal mapping",
+        "Investment Portfolio Construction — diversified allocation across equities, debt, real estate, and alternatives",
+        "Tax Planning & Optimization — strategies to minimize tax liability legally",
+        "Estate Planning — will drafting, trust creation, and succession planning",
+        "Risk Management — insurance adequacy review and hedging strategies",
+        "NRI Wealth Services — investment advisory for Non-Resident Indians",
+      ],
+      process: [
+        { step: "01", title: "Discovery Meeting", desc: "We understand your complete financial picture — income, expenses, assets, liabilities, and aspirations." },
+        { step: "02", title: "Goal Prioritization", desc: "We help you define and prioritize short-term, mid-term, and long-term financial goals." },
+        { step: "03", title: "Strategy Design", desc: "Our team crafts a personalized wealth strategy with the right asset allocation and investment vehicles." },
+        { step: "04", title: "Implementation", desc: "We execute the plan across multiple instruments — mutual funds, stocks, bonds, insurance, and more." },
+        { step: "05", title: "Ongoing Review", desc: "Quarterly reviews ensure your portfolio stays aligned with your evolving goals and market conditions." },
+      ],
+      benefits: [
+        "360-degree view of your financial health",
+        "Personalized asset allocation strategy",
+        "Tax-efficient investment structures",
+        "Access to exclusive investment opportunities",
+        "Regular portfolio rebalancing and optimization",
+        "Legacy and succession planning for wealth transfer",
+      ],
+      faqs: [
+        { q: "Who needs wealth management?", a: "Anyone with significant savings, multiple income sources, or complex financial needs can benefit. It's especially valuable for business owners, professionals, and families planning for the future." },
+        { q: "How is wealth management different from just investing?", a: "Investing focuses on growing money. Wealth management is comprehensive — it includes tax planning, insurance, estate planning, and retirement alongside investments." },
+        { q: "What is the minimum investment required?", a: "We work with clients across various investment sizes. Our planning services are designed to add value whether you're starting your wealth journey or managing a substantial portfolio." },
+        { q: "How often will my portfolio be reviewed?", a: "We conduct formal quarterly reviews, but our team monitors your portfolio continuously and reaches out proactively if market conditions warrant changes." },
+      ],
+    },
   },
   {
     id: "retirement",
@@ -122,6 +221,39 @@ export const services = [
     description:
       "Plan today for a peaceful and financially secure retirement tomorrow.",
     points: ["Pension Plans", "Annuities", "Corpus Building"],
+    detail: {
+      heroImage: "https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?auto=format&fit=crop&w=2000&q=80",
+      overview: "Retirement Planning ensures you maintain your desired lifestyle after you stop earning. At ANSH Capital Services, we help you build a robust retirement corpus through the right combination of pension plans, systematic investments, and annuities — so you can enjoy your golden years without financial worries.",
+      scope: [
+        "National Pension System (NPS) — government-backed retirement scheme with tax benefits",
+        "Employee Provident Fund (EPF) — optimization and voluntary PF contributions",
+        "Pension & Annuity Plans — guaranteed regular income post-retirement",
+        "Systematic Withdrawal Plans (SWP) — creating monthly income from mutual fund investments",
+        "Senior Citizen Savings Scheme (SCSS) — high-interest government savings for retirees",
+        "Retirement Mutual Funds — dedicated solution funds for retirement corpus building",
+      ],
+      process: [
+        { step: "01", title: "Retirement Goal Setting", desc: "We help you determine your desired retirement age, monthly income needs, and lifestyle expectations." },
+        { step: "02", title: "Gap Analysis", desc: "We calculate the gap between your current savings and the corpus needed for a comfortable retirement." },
+        { step: "03", title: "Investment Plan Design", desc: "We design a customized investment plan using the right mix of NPS, mutual funds, and pension products." },
+        { step: "04", title: "Systematic Execution", desc: "We set up SIPs, NPS contributions, and other retirement savings vehicles with automated contributions." },
+        { step: "05", title: "Pre-Retirement Review", desc: "As retirement approaches, we shift to capital preservation strategies and plan your post-retirement income streams." },
+      ],
+      benefits: [
+        "Financial independence in your golden years",
+        "Additional tax savings under Section 80CCD (NPS)",
+        "Inflation-adjusted corpus planning",
+        "Guaranteed income streams through annuities",
+        "Flexible withdrawal options post-retirement",
+        "Peace of mind for you and your family",
+      ],
+      faqs: [
+        { q: "When should I start retirement planning?", a: "The earlier, the better. Starting in your 20s or 30s gives you the maximum benefit of compounding. However, it's never too late — even starting at 40 or 45 can make a significant difference." },
+        { q: "How much do I need for retirement?", a: "It depends on your lifestyle, expenses, and inflation. A general rule: you'll need approximately 70-80% of your pre-retirement income annually. We calculate the exact corpus needed based on your specific situation." },
+        { q: "Is NPS a good option?", a: "Yes, NPS offers excellent returns with low fund management charges and additional tax benefits of ₹50,000 under Section 80CCD(1B) over and above the ₹1.5 lakh limit of 80C." },
+        { q: "Can I retire early?", a: "Absolutely! With disciplined saving and smart investing, early retirement (FIRE) is achievable. We can design a specific plan to help you reach financial independence earlier." },
+      ],
+    },
   },
   {
     id: "loans",
@@ -129,6 +261,39 @@ export const services = [
     title: "Loan Solutions",
     description: "Smart loan solutions tailored to your financial needs.",
     points: ["Home Loan", "Personal Loan", "Business Loan"],
+    detail: {
+      heroImage: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=2000&q=80",
+      overview: "Whether you're buying your dream home, funding your business expansion, or meeting personal financial needs, ANSH Capital Services connects you with the best loan products from leading banks and NBFCs. We negotiate the best interest rates and ensure a smooth, hassle-free disbursement process.",
+      scope: [
+        "Home Loan — purchase, construction, or renovation of residential property",
+        "Business Loan — working capital, expansion, and equipment financing",
+        "Personal Loan — for weddings, travel, medical emergencies, or any personal need",
+        "Loan Against Property (LAP) — unlock the value of your property for large funding needs",
+        "Education Loan — funding for higher education in India and abroad",
+        "Loan Against Securities — leverage your mutual funds, shares, and insurance for quick liquidity",
+      ],
+      process: [
+        { step: "01", title: "Requirement Understanding", desc: "We understand your loan purpose, amount needed, repayment capacity, and timeline preferences." },
+        { step: "02", title: "Lender Comparison", desc: "We compare interest rates, processing fees, and terms from 25+ banks and NBFCs to find you the best deal." },
+        { step: "03", title: "Documentation Support", desc: "We assist with all paperwork — income proof, property documents, KYC, and application forms." },
+        { step: "04", title: "Application & Processing", desc: "We submit your application, follow up with the lender, and coordinate property valuation if needed." },
+        { step: "05", title: "Disbursement & Support", desc: "Once approved, we ensure quick disbursement and remain available for any post-disbursement queries." },
+      ],
+      benefits: [
+        "Access to competitive interest rates from 25+ lenders",
+        "Zero processing fees on select products",
+        "Quick approval — as fast as 24-48 hours",
+        "End-to-end documentation support",
+        "Balance transfer facility for lower interest rates",
+        "Flexible repayment tenures from 1 to 30 years",
+      ],
+      faqs: [
+        { q: "What is the current home loan interest rate?", a: "Home loan rates start from 8.25% p.a. onwards depending on the lender, your credit score, and loan amount. We help you get the most competitive rate available." },
+        { q: "What credit score do I need for a loan?", a: "A CIBIL score of 750+ is ideal for the best rates. However, we work with lenders who offer loans even for scores of 650+, though at slightly higher rates." },
+        { q: "Can self-employed individuals get loans?", a: "Yes! We specialize in helping self-employed professionals and business owners get approved with the right documentation — ITR, bank statements, and business proof." },
+        { q: "How can I reduce my loan EMI?", a: "You can reduce EMI by opting for a longer tenure, making prepayments, or transferring your loan to a lender with a lower interest rate. We can help with all these options." },
+      ],
+    },
   },
 ];
 

@@ -49,7 +49,7 @@ const Services = () => {
                 </ul>
               </div>
               <Link
-                to="/services"
+                to={`/services/${s.id}`}
                 className="inline-flex items-center gap-1 sm:gap-1.5 text-xs sm:text-sm font-semibold text-navy group-hover:text-gold transition-colors mt-auto pt-1"
               >
                 <span>Learn More</span> <ArrowRight className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
