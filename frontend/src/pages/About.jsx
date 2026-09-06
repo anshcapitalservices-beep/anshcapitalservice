@@ -21,9 +21,9 @@ const About = () => {
         <div className="max-w-[1280px] mx-auto px-4 md:px-6 grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
           <Reveal className="relative">
             <img
-              src={aboutPage.image || "/images/about-team.jpg"}
-              alt="ANSH Capital Services financial advisory team"
-              className="rounded-2xl w-full h-[380px] md:h-[420px] object-cover shadow-[0_30px_60px_-24px_rgba(11,31,58,0.35)] border border-slate-100"
+              src={aboutPage.image || "/images/about-us.png"}
+              alt="About ANSH Capital Services"
+              className="rounded-2xl w-full h-[360px] md:h-[400px] object-cover shadow-[0_30px_60px_-24px_rgba(11,31,58,0.35)] border border-slate-100"
             />
             <div className="absolute -bottom-6 -right-4 bg-navy text-white rounded-xl px-6 py-5 hidden md:block">
               <div className="font-display text-3xl font-bold text-gold">16+</div>
