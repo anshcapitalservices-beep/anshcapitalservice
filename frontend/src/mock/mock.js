@@ -620,6 +620,7 @@ export const footer = {
 export const aboutPage = {
   eyebrow: "ABOUT US",
   title: "Financial Guidance With a Human Touch",
+  image: "/images/about-team.jpg",
   intro:
     "ANSH Capital Services is a Faridabad-based financial advisory firm helping families and businesses make confident money decisions. We combine 16+ years of experience with honest, jargon-free advice.",
   mission:
