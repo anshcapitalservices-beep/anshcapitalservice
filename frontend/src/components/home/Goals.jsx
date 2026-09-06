@@ -30,17 +30,17 @@ const Goals = () => {
 
           <div className="flex-1 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
             {goals.map((g, i) => (
-              <Reveal key={g.id} delay={i * 70} className="group">
-                <div className="relative rounded-xl overflow-hidden">
+              <Reveal key={g.id} delay={i * 70} className="group flex flex-col items-center">
+                <div className="relative rounded-xl overflow-hidden w-full aspect-[4/3]">
                   <img
                     src={g.image}
                     alt={g.title}
-                    className="w-full h-36 object-cover group-hover:scale-110 transition-transform duration-500"
+                    className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-navy/10" />
                 </div>
-                <div className="flex flex-col items-center -mt-7">
-                  <div className="h-14 w-14 rounded-full bg-white border-4 border-white shadow-md flex items-center justify-center group-hover:bg-gold transition-colors">
+                <div className="flex flex-col items-center -mt-7 relative z-10">
+                  <div className="h-14 w-14 rounded-full bg-white border-4 border-white shadow-md flex items-center justify-center shrink-0 group-hover:bg-gold transition-colors">
                     <Icon
                       name={g.icon}
                       className="h-6 w-6 text-gold group-hover:text-white transition-colors"
