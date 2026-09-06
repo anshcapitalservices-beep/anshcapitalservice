@@ -205,7 +205,7 @@ async def admin_login(data: LoginInput):
 
 # ==================== CONTACT / LEADS ====================
 LEAD_COLLECTION = "leads"
-LEAD_NOTIFICATION_EMAIL = os.environ.get("LEAD_NOTIFICATION_EMAIL", "pratyushk92.pk@gmail.com")
+LEAD_NOTIFICATION_EMAIL = os.environ.get("LEAD_NOTIFICATION_EMAIL", "support@anshcapitalservices.com")
 
 class ContactLead(BaseModel):
     name: str

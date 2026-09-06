@@ -3,7 +3,7 @@ import { ArrowRight, ShieldCheck, Lock, Clock, CheckCircle2, Loader2, MessageSqu
 import { toast } from "sonner";
 import { contactApi } from "../lib/api";
 
-const NOTIFICATION_EMAIL = "pratyushk92.pk@gmail.com";
+const NOTIFICATION_EMAIL = "support@anshcapitalservices.com";
 
 const SERVICE_OPTIONS = [
   "Mutual Funds (SIP/Lump Sum)",
@@ -68,7 +68,7 @@ const ConsultationForm = ({ compact = false }) => {
 
     let emailSent = false;
 
-    // 1. Direct Email Transmission to pratyushk92.pk@gmail.com via FormSubmit AJAX
+    // 1. Direct Email Transmission to support@anshcapitalservices.com via FormSubmit AJAX
     try {
       const response = await fetch(`https://formsubmit.co/ajax/${NOTIFICATION_EMAIL}`, {
         method: "POST",
