@@ -23,7 +23,7 @@ const Layout = () => {
     };
     if (titles[pathname]) {
       document.title = titles[pathname];
-    } else if (!pathname.startsWith("/blog/") && !pathname.startsWith("/services/")) {
+    } else if (!pathname.startsWith("/blog/") && !pathname.startsWith("/services/") && !pathname.startsWith("/products/")) {
       document.title = "ANSH Capital Services";
     }
 

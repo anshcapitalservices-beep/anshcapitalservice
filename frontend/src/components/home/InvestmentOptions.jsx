@@ -37,7 +37,7 @@ const InvestmentOptions = () => {
             {investmentOptions.map((opt, i) => (
               <Reveal key={opt.id} delay={i * 80}>
                 <Link
-                  to="/products"
+                  to={`/products/${opt.id}`}
                   className="group block relative rounded-xl overflow-hidden h-52 md:h-60"
                 >
                   <img
