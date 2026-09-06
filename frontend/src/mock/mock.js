@@ -543,6 +543,39 @@ export const insights = [
     excerpt:
       "Everything a first-time buyer needs to know about eligibility, interest rates, EMIs and documentation.",
   },
+  {
+    id: "tax-saving-regimes",
+    category: "TAX PLANNING",
+    title: "Old vs New Tax Regime: Which Saves You More Money?",
+    date: "April 18, 2024",
+    readTime: "6 min read",
+    image:
+      "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjY2NzF8MHwxfHNlYXJjaHwxfHx0YXglMjBzYXZpbmd8ZW58MHx8fHwxNzg4NDMzNzAxfDA&ixlib=rb-4.1.0&q=85",
+    excerpt:
+      "A complete breakdown of deductions under 80C, 80D and standard deductions compared against lower slab rates.",
+  },
+  {
+    id: "emergency-fund-guide",
+    category: "WEALTH MANAGEMENT",
+    title: "Building an Emergency Fund: 5 Common Mistakes to Avoid",
+    date: "April 05, 2024",
+    readTime: "4 min read",
+    image:
+      "https://images.unsplash.com/photo-1553729459-efe14ef6055d?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjY2NzF8MHwxfHNlYXJjaHwxfHxzYXZpbmdzfGVufDB8fHx8MTc4ODQzMzcwMXww&ixlib=rb-4.1.0&q=85",
+    excerpt:
+      "Why keeping emergency money in locked instruments hurts you, and where you should ideally park 6 months of expenses.",
+  },
+  {
+    id: "retirement-corpus-target",
+    category: "RETIREMENT",
+    title: "How Much Corpus Do You Need to Retire Gracefully at 60?",
+    date: "March 24, 2024",
+    readTime: "8 min read",
+    image:
+      "https://images.unsplash.com/photo-1473186578172-c141e6798cf4?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjY2NzF8MHwxfHNlYXJjaHwxfHxyZXRpcmVtZW50fGVufDB8fHx8MTc4ODQzMzcwMXww&ixlib=rb-4.1.0&q=85",
+    excerpt:
+      "Factor inflation, medical expenses, and lifestyle needs into your retirement calculation with our step-by-step formula.",
+  },
 ];
 
 export const ctaSection = {
