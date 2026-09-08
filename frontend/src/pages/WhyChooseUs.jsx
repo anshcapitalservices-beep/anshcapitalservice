@@ -1,7 +1,6 @@
 import React from "react";
 import PageHeader from "../components/PageHeader";
 import SectionHeading from "../components/SectionHeading";
-import StatsSection from "../components/home/StatsSection";
 import Reveal from "../components/Reveal";
 import { Icon } from "../components/iconMap";
 import { whyChooseUs } from "../mock/mock";
@@ -48,8 +47,6 @@ const WhyChooseUs = () => {
           </div>
         </div>
       </section>
-
-      <StatsSection />
     </>
   );
 };
