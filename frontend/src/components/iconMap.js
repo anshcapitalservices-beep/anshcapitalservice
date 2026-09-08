@@ -41,6 +41,8 @@ import {
   Hourglass,
   Bell,
   CheckCircle2,
+  Car,
+  Banknote,
 } from "lucide-react";
 import React from "react";
 
@@ -87,6 +89,8 @@ const icons = {
   Hourglass,
   Bell,
   CheckCircle2,
+  Car,
+  Banknote,
 };
 
 export const Icon = ({ name, className = "", strokeWidth = 1.75, ...props }) => {
