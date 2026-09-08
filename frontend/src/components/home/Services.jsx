@@ -33,43 +33,43 @@ const Services = () => {
           </p>
         </Reveal>
 
-        <div className="mt-8 md:mt-12 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4 lg:gap-5">
+        <div className="mt-10 md:mt-14 grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
           {services.map((s, i) => (
             <Reveal
               key={s.id}
-              delay={i * 80}
-              className="group bg-white rounded-xl border border-slate-100 p-3.5 sm:p-5 md:p-6 hover:shadow-[0_24px_50px_-24px_rgba(11,31,58,0.35)] hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between"
+              delay={i * 90}
+              className="group bg-white rounded-2xl border border-slate-100 p-6 sm:p-7 md:p-8 hover:shadow-[0_24px_50px_-20px_rgba(11,31,58,0.25)] hover:-translate-y-2 transition-all duration-300 flex flex-col justify-between"
             >
               <div>
-                <div className="h-10 w-10 sm:h-12 sm:w-12 md:h-14 md:w-14 rounded-lg sm:rounded-xl bg-cream flex items-center justify-center mb-3 sm:mb-4 md:mb-5 group-hover:bg-gold transition-colors">
+                <div className="h-14 w-14 sm:h-16 sm:w-16 rounded-2xl bg-cream flex items-center justify-center mb-5 md:mb-6 group-hover:bg-gold transition-colors">
                   <Icon
                     name={s.icon}
-                    className="h-5 w-5 sm:h-6 sm:w-6 md:h-7 md:w-7 text-gold group-hover:text-white transition-colors"
+                    className="h-7 w-7 sm:h-8 sm:w-8 text-gold group-hover:text-white transition-colors"
                   />
                 </div>
-                <h3 className="font-display text-[15px] sm:text-base md:text-lg font-bold text-navy mb-1.5 sm:mb-2 leading-snug">
+                <h3 className="font-display text-xl sm:text-2xl font-bold text-navy mb-2.5 leading-snug group-hover:text-gold transition-colors">
                   {s.title}
                 </h3>
-                <p className="text-xs sm:text-[13px] md:text-sm text-slate-500 leading-relaxed mb-3 sm:mb-4 line-clamp-3 sm:line-clamp-none">
+                <p className="text-sm sm:text-[15px] text-slate-500 leading-relaxed mb-5">
                   {s.description}
                 </p>
-                <ul className="space-y-1 sm:space-y-1.5 mb-3 sm:mb-5">
+                <ul className="space-y-2.5 mb-6 pt-2 border-t border-slate-50">
                   {s.points.map((p) => (
                     <li
                       key={p}
-                      className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm text-navy font-medium leading-tight"
+                      className="flex items-center gap-2.5 text-sm text-navy font-medium"
                     >
-                      <span className="h-1 w-1 sm:h-1.5 sm:w-1.5 rounded-full bg-gold shrink-0" />
-                      <span className="truncate sm:whitespace-normal">{p}</span>
+                      <span className="h-2 w-2 rounded-full bg-gold shrink-0" />
+                      <span>{p}</span>
                     </li>
                   ))}
                 </ul>
               </div>
               <Link
                 to={`/services/${s.id}`}
-                className="inline-flex items-center gap-1 sm:gap-1.5 text-xs sm:text-sm font-semibold text-navy group-hover:text-gold transition-colors mt-auto pt-1"
+                className="inline-flex items-center justify-between w-full pt-4 border-t border-slate-100 text-sm font-semibold text-navy group-hover:text-gold transition-colors mt-auto"
               >
-                <span>Learn More</span> <ArrowRight className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+                <span>Learn More & Scope</span> <ArrowRight className="h-4 w-4" />
               </Link>
             </Reveal>
           ))}

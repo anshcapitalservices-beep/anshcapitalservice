@@ -32,7 +32,7 @@ const ServicesPage = () => {
             subtitle={servicesIntro.subtitle}
           />
 
-          <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
             {services.map((s, i) => (
               <Reveal
                 key={s.id}
