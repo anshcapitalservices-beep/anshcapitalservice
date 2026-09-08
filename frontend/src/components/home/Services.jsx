@@ -28,7 +28,7 @@ const Services = () => {
             <span className="block">Around your Goals</span>
           </h2>
 
-          <p className="mt-4 sm:mt-5 text-[15px] sm:text-base text-slate-500 leading-relaxed max-w-xl mx-auto">
+          <p className="mt-4 sm:mt-5 text-[15px] sm:text-base text-slate-500 leading-relaxed max-w-3xl mx-auto">
             {servicesIntro.subtitle}
           </p>
         </Reveal>
