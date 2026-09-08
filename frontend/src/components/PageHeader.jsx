@@ -26,30 +26,6 @@ const PageHeader = ({
         <div className="absolute inset-0 bg-gradient-to-t from-[#06152b] via-transparent to-transparent opacity-90" />
       </div>
 
-      {/* Decorative arrow curve */}
-      <svg
-        className="absolute right-0 top-0 h-full w-1/3 opacity-50 hidden md:block pointer-events-none z-10"
-        viewBox="0 0 400 240"
-        fill="none"
-        preserveAspectRatio="xMaxYMin meet"
-      >
-        <path
-          d="M20 210 C 150 200, 260 150, 370 40"
-          stroke="#d89626"
-          strokeWidth="3.5"
-          fill="none"
-          strokeLinecap="round"
-          opacity="0.7"
-        />
-        <path
-          d="M370 40 L 350 62 M370 40 L 344 34"
-          stroke="#d89626"
-          strokeWidth="3.5"
-          fill="none"
-          strokeLinecap="round"
-          opacity="0.7"
-        />
-      </svg>
 
       <div className="max-w-[1280px] mx-auto px-4 md:px-6 py-14 md:py-18 relative z-20">
         {eyebrow && (
