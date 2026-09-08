@@ -38,7 +38,7 @@ const ProductDetail = () => {
   }, [product]);
 
   if (!product || !product.detail) {
-    return <Navigate to="/products" replace />;
+    return <Navigate to="/services#products" replace />;
   }
 
   const { detail } = product;
@@ -145,10 +145,10 @@ const ProductDetail = () => {
                   Start Investing Today
                 </Link>
                 <Link
-                  to="/products"
+                  to="/services#products"
                   className="inline-flex items-center gap-2 bg-slate-100 hover:bg-slate-200 text-navy text-sm font-semibold px-5 py-3.5 rounded-lg transition-colors"
                 >
-                  All Products
+                  All Products & Services
                 </Link>
               </div>
             </Reveal>
@@ -275,7 +275,7 @@ const ProductDetail = () => {
               How We Help You <span className="text-gold">Invest Right</span>
             </h2>
             <p className="text-slate-500 text-sm mt-3">
-              We remove the guesswork and help you construct an institutional-grade portfolio backed by 16+ years of advisory experience.
+              We remove the guesswork and help you construct an institutional-grade portfolio backed by 19+ years of advisory experience.
             </p>
           </Reveal>
 
@@ -355,7 +355,7 @@ const ProductDetail = () => {
               <h3 className="font-display text-xl font-bold text-white">More Mutual Fund Products</h3>
             </div>
             <Link
-              to="/products"
+              to="/services#products"
               className="text-xs text-gold hover:text-gold-light font-semibold inline-flex items-center gap-1"
             >
               View All Products <ArrowRight className="w-3.5 h-3.5" />

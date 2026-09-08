@@ -13,7 +13,7 @@ const SectionHeading = ({
   return (
     <div className={`${alignCls} max-w-2xl ${className}`}>
       {eyebrow && (
-        <p className="text-gold font-semibold tracking-[0.2em] text-xs uppercase mb-3">
+        <p className="text-gold font-bold tracking-[0.22em] text-[13.5px] sm:text-sm uppercase mb-3.5">
           {eyebrow}
         </p>
       )}

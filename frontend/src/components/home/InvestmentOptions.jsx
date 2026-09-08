@@ -24,7 +24,7 @@ const InvestmentOptions = () => {
               {investIntro.description}
             </p>
             <Link
-              to="/products"
+              to="/services#products"
               className="mt-6 inline-flex items-center gap-2 bg-gold hover:bg-gold-dark text-white text-sm font-semibold px-5 py-3 rounded-md transition-colors"
             >
               {investIntro.cta}

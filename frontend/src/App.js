@@ -5,10 +5,8 @@ import Home from "./pages/Home";
 import About from "./pages/About";
 import ServicesPage from "./pages/ServicesPage";
 import ServiceDetail from "./pages/ServiceDetail";
-import ProductsPage from "./pages/ProductsPage";
 import ProductDetail from "./pages/ProductDetail";
 import WhyChooseUs from "./pages/WhyChooseUs";
-import TestimonialsPage from "./pages/TestimonialsPage";
 import Faq from "./pages/Faq";
 import Contact from "./pages/Contact";
 import Blog from "./pages/Blog";
@@ -27,10 +25,10 @@ function App() {
             <Route path="about" element={<About />} />
             <Route path="services" element={<ServicesPage />} />
             <Route path="services/:serviceId" element={<ServiceDetail />} />
-            <Route path="products" element={<ProductsPage />} />
+            <Route path="products" element={<Navigate to="/services#products" replace />} />
             <Route path="products/:productId" element={<ProductDetail />} />
             <Route path="why-choose-us" element={<WhyChooseUs />} />
-            <Route path="testimonials" element={<TestimonialsPage />} />
+            <Route path="testimonials" element={<Navigate to="/" replace />} />
             <Route path="blog" element={<Blog />} />
             <Route path="blog/:slug" element={<BlogPost />} />
             <Route path="faq" element={<Faq />} />

@@ -10,11 +10,28 @@ const Services = () => {
   return (
     <section id="services" className="bg-white py-16 md:py-20">
       <div className="max-w-[1280px] mx-auto px-4 md:px-6">
-        <SectionHeading
-          eyebrow={servicesIntro.eyebrow}
-          title={servicesIntro.title}
-          subtitle={servicesIntro.subtitle}
-        />
+        {/* Creative 3-Line Section Heading */}
+        <Reveal className="text-center max-w-3xl mx-auto mb-10 md:mb-14">
+          <p className="text-[#d89626] font-bold tracking-[0.24em] text-sm sm:text-base md:text-[17px] uppercase mb-3 sm:mb-4 inline-block">
+            {servicesIntro.eyebrow}
+          </p>
+
+          <h2 className="font-display font-extrabold text-[#0b1f3a] text-3xl sm:text-4xl md:text-[44px] lg:text-[48px] leading-[1.2] tracking-tight">
+            <span className="block">Comprehensive Financial Solutions</span>
+            <span className="inline-flex items-center justify-center my-1.5 sm:my-2.5">
+              <span className="h-px w-6 sm:w-12 bg-[#d89626]/40 mr-2 sm:mr-3" />
+              <span className="font-serif italic font-normal text-3xl sm:text-4xl md:text-[46px] lg:text-[50px] text-[#d89626] tracking-wide px-1">
+                Designed
+              </span>
+              <span className="h-px w-6 sm:w-12 bg-[#d89626]/40 ml-2 sm:ml-3" />
+            </span>
+            <span className="block">Around your Goals</span>
+          </h2>
+
+          <p className="mt-4 sm:mt-5 text-[15px] sm:text-base text-slate-500 leading-relaxed max-w-xl mx-auto">
+            {servicesIntro.subtitle}
+          </p>
+        </Reveal>
 
         <div className="mt-8 md:mt-12 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4 lg:gap-5">
           {services.map((s, i) => (

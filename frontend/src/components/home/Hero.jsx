@@ -88,7 +88,7 @@ const Hero = () => {
                 </div>
                 <div>
                   <div className="font-display text-2xl font-extrabold text-[#0b1f3a] min-h-[32px] flex items-center">
-                    <TypewriterText text="16+" speed={80} delay={150} />
+                    <TypewriterText text="19+" speed={80} delay={150} />
                   </div>
                   <div className="text-xs text-slate-500 font-medium min-h-[18px] flex items-center">
                     <TypewriterText text="Years of Experience" speed={35} delay={350} />
@@ -103,10 +103,10 @@ const Hero = () => {
                 </div>
                 <div>
                   <div className="font-display text-2xl font-extrabold text-[#0b1f3a] min-h-[32px] flex items-center">
-                    <TypewriterText text="1000+" speed={80} delay={300} />
+                    <TypewriterText text="500+" speed={80} delay={300} />
                   </div>
                   <div className="text-xs text-slate-500 font-medium min-h-[18px] flex items-center">
-                    <TypewriterText text="Happy Clients" speed={35} delay={550} />
+                    <TypewriterText text="Satisfied Clients" speed={35} delay={550} />
                   </div>
                 </div>
               </div>
@@ -118,7 +118,7 @@ const Hero = () => {
                 </div>
                 <div>
                   <div className="font-display text-2xl font-extrabold text-[#0b1f3a] min-h-[32px] flex items-center">
-                    <TypewriterText text="15K+" speed={80} delay={450} />
+                    <TypewriterText text="1000+" speed={80} delay={450} />
                   </div>
                   <div className="text-xs text-slate-500 font-medium min-h-[18px] flex items-center">
                     <TypewriterText text="Plans Managed" speed={35} delay={700} />

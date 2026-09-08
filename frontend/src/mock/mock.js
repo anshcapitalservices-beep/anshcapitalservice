@@ -39,20 +39,10 @@ export const navLinks = [
       { label: "Wealth Management", to: "/services#wealth" },
       { label: "Retirement Planning", to: "/services#retirement" },
       { label: "Loan Solutions", to: "/services#loans" },
-    ],
-  },
-  {
-    label: "Products",
-    to: "/products",
-    dropdown: [
-      { label: "Equity Funds", to: "/products/equity" },
-      { label: "Debt Funds", to: "/products/debt" },
-      { label: "Hybrid Funds", to: "/products/hybrid" },
-      { label: "Index Funds", to: "/products/index" },
+      { label: "Investment Products", to: "/services#products" },
     ],
   },
   { label: "Why Choose Us", to: "/why-choose-us" },
-  { label: "Testimonials", to: "/testimonials" },
   { label: "Blog", to: "/blog" },
   { label: "FAQ", to: "/faq" },
   { label: "Contact Us", to: "/contact" },
@@ -70,9 +60,9 @@ export const hero = {
   image:
     "https://images.pexels.com/photos/13515445/pexels-photo-13515445.jpeg",
   stats: [
-    { value: "16+", label: "Years of Experience", icon: "Users" },
-    { value: "1000+", label: "Happy Clients", icon: "ShieldCheck" },
-    { value: "15K+", label: "Plans Managed", icon: "Users2" },
+    { value: "19+", label: "Years of Experience", icon: "Users" },
+    { value: "500+", label: "Satisfied Clients", icon: "ShieldCheck" },
+    { value: "1000+", label: "Plans Managed", icon: "Users2" },
     { value: "AI Trusted", label: "Advice & Support", icon: "BadgeCheck" },
   ],
 };
@@ -85,6 +75,9 @@ export const promoBanner = {
 
 export const servicesIntro = {
   eyebrow: "OUR SERVICES",
+  line1: "Comprehensive Financial Solutions",
+  highlight: "Designed",
+  line2: "Around your Goals",
   title: "Comprehensive Financial Solutions Designed Around Your Goals",
   subtitle:
     "From investments and protection to credit and growth, we provide solutions designed around you.",
@@ -441,9 +434,9 @@ export const goals = [
 ];
 
 export const statsSection = [
-  { value: "16+", label: "Years of Experience", icon: "Award" },
-  { value: "1000+", label: "Families Guided", icon: "Users2" },
-  { value: "15K+", label: "Happy Clients", icon: "Users" },
+  { value: "19+", label: "Years of Experience", icon: "Award" },
+  { value: "500+", label: "Satisfied Clients", icon: "Users2" },
+  { value: "1000+", label: "Plans Managed", icon: "Users" },
   { value: "₹500Cr+", label: "Assets Under Advisory", icon: "Landmark" },
 ];
 
@@ -592,10 +585,8 @@ export const footer = {
   quickLinks: [
     { label: "Home", to: "/" },
     { label: "About Us", to: "/about" },
-    { label: "Services", to: "/services" },
-    { label: "Products", to: "/products" },
+    { label: "Services & Products", to: "/services" },
     { label: "Why Choose Us", to: "/why-choose-us" },
-    { label: "Testimonials", to: "/testimonials" },
     { label: "Blog", to: "/blog" },
     { label: "FAQ", to: "/faq" },
     { label: "Contact Us", to: "/contact" },
@@ -622,7 +613,7 @@ export const aboutPage = {
   title: "Financial Guidance With a Human Touch",
   image: "/images/about-us.png",
   intro:
-    "ANSH Capital Services is a Faridabad-based financial advisory firm helping families and businesses make confident money decisions. We combine 16+ years of experience with honest, jargon-free advice.",
+    "ANSH Capital Services is a Faridabad-based financial advisory firm helping families and businesses make confident money decisions. We combine 19+ years of experience with honest, jargon-free advice.",
   mission:
     "To make financial planning simple, transparent and accessible for every family in our city.",
   vision:
@@ -686,7 +677,7 @@ export const whyChooseUs = {
   reasons: [
     {
       icon: "Award",
-      title: "16+ Years of Experience",
+      title: "19+ Years of Experience",
       description:
         "A proven track record of guiding families and businesses through every market cycle.",
     },

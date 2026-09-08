@@ -27,7 +27,7 @@ const About = () => {
               className="rounded-2xl w-full h-[360px] md:h-[400px] object-cover shadow-[0_30px_60px_-24px_rgba(11,31,58,0.35)] border border-slate-100"
             />
             <div className="absolute -bottom-6 -right-4 bg-navy text-white rounded-xl px-6 py-5 hidden md:block">
-              <div className="font-display text-3xl font-bold text-gold">16+</div>
+              <div className="font-display text-3xl font-bold text-gold">19+</div>
               <div className="text-xs text-white/70">Years of Experience</div>
             </div>
           </Reveal>

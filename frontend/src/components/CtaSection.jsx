@@ -47,7 +47,7 @@ const CtaSection = () => {
               {[
                 "100% confidential — your data never leaves us",
                 "No obligation advisory, no product pushing",
-                "AMFI registered, 16+ years, 1000+ families",
+                "AMFI registered, 19+ years, 500+ families",
               ].map((text) => (
                 <div key={text} className="flex items-center gap-3">
                   <div className="h-7 w-7 rounded-full bg-[#faf6ee] border border-[#e5d4a1] flex items-center justify-center shrink-0">

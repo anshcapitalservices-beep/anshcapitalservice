@@ -13,10 +13,8 @@ const Layout = () => {
     const titles = {
       "/": "ANSH Capital Services",
       "/about": "About Us | ANSH Capital Services",
-      "/services": "Services | ANSH Capital Services",
-      "/products": "Investment Products | ANSH Capital Services",
+      "/services": "Services & Products | ANSH Capital Services",
       "/why-choose-us": "Why Choose Us | ANSH Capital Services",
-      "/testimonials": "Testimonials | ANSH Capital Services",
       "/blog": "Financial Insights & Blog | ANSH Capital Services",
       "/faq": "FAQ | ANSH Capital Services",
       "/contact": "Contact Us | ANSH Capital Services",

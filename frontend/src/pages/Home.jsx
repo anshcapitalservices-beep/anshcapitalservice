@@ -7,7 +7,6 @@ import Process from "../components/home/Process";
 import InvestmentOptions from "../components/home/InvestmentOptions";
 import Goals from "../components/home/Goals";
 import StatsSection from "../components/home/StatsSection";
-import Testimonials from "../components/home/Testimonials";
 import Insights from "../components/home/Insights";
 import CtaSection from "../components/CtaSection";
 
@@ -22,7 +21,6 @@ const Home = () => {
       <InvestmentOptions />
       <Goals />
       <StatsSection />
-      <Testimonials />
       <Insights />
       <CtaSection />
     </>
