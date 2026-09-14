@@ -10,7 +10,7 @@ import heroFamilyRoadmap from "../../assets/hero_family_roadmap.png";
 
 const Hero = () => {
   return (
-    <section className="relative w-full overflow-hidden bg-[#F7F1E2] min-h-[620px] lg:min-h-[660px]">
+    <section className="relative w-full overflow-hidden bg-[#F5E9D5] min-h-[620px] lg:min-h-[660px]">
       <style>{`
         .hero-left-bg {
           position: absolute;
@@ -147,7 +147,7 @@ const Hero = () => {
         </div>
 
         {/* Right Section (Full Uncropped Illustration) */}
-        <div className="relative z-0 w-full h-full flex items-center justify-center lg:justify-end bg-[#F7F1E2] p-2 sm:p-4 lg:p-0">
+        <div className="relative z-0 w-full h-full flex items-center justify-center lg:justify-end bg-[#F5E9D5] p-2 sm:p-4 lg:p-0">
           <img
             src={heroFamilyRoadmap}
             alt="Plan Today for a Brighter Tomorrow - ANSH Capital Services"
