@@ -111,8 +111,9 @@ export const hero = {
 };
 
 export const promoBanner = {
-  left: "The right financial decision today can change your tomorrow.",
-  middle: "Market moves daily. Opportunities don't wait.",
+  left: "Market moves daily. Opportunities don't wait.",
+  middleTitle: "The Right Financial Decision Today",
+  middleSubtitle: "Can Change Your Tomorrow.",
   cta: "Plan Your Future Now",
 };
 

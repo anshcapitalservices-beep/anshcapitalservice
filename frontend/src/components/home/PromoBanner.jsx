@@ -26,10 +26,10 @@ const PromoBanner = () => {
             </div>
             <div className="text-left">
               <div className="text-white font-semibold text-sm md:text-[15px] leading-tight">
-                {promoBanner.middleTitle || "Market moves daily."}
+                {promoBanner.middleTitle || "The Right Financial Decision Today"}
               </div>
               <div className="text-white/70 text-xs md:text-sm mt-0.5">
-                {promoBanner.middleSubtitle || "Opportunities don't wait."}
+                {promoBanner.middleSubtitle || "Can Change Your Tomorrow."}
               </div>
             </div>
           </div>
