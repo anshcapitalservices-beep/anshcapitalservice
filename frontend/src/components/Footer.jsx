@@ -9,7 +9,7 @@ const Footer = () => {
   return (
     <footer className="bg-navy-dark text-white relative overflow-hidden">
       <div className="max-w-[1280px] mx-auto px-4 md:px-6 py-14">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1.1fr_0.85fr_0.95fr_1.35fr_0.95fr] gap-8 xl:gap-10">
           {/* Brand */}
           <div className="lg:col-span-1">
             <Logo variant="light" />
@@ -21,6 +21,8 @@ const Footer = () => {
                 <a
                   key={i}
                   href={s.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   aria-label={s.icon}
                   className="h-9 w-9 rounded-full border border-white/15 flex items-center justify-center text-white/70 hover:bg-gold hover:border-gold hover:text-white transition-colors"
                 >
@@ -69,18 +71,28 @@ const Footer = () => {
             <h4 className="font-display text-lg font-semibold mb-4">Contact Us</h4>
             <ul className="space-y-3 text-sm text-white/60">
               {company.phones.map((p) => (
-                <li key={p} className="flex items-center gap-2.5">
+                <li key={p} className="flex items-center gap-2">
                   <Phone className="h-4 w-4 text-gold shrink-0" />
-                  <span>{p}</span>
+                  <a
+                    href={`tel:${p.replace(/\s+/g, "")}`}
+                    className="whitespace-nowrap hover:text-gold-light transition-colors text-[13px] xl:text-sm"
+                  >
+                    {p}
+                  </a>
                 </li>
               ))}
-              <li className="flex items-center gap-2.5">
+              <li className="flex items-center gap-2">
                 <Mail className="h-4 w-4 text-gold shrink-0" />
-                <span className="break-all">{company.email}</span>
+                <a
+                  href={`mailto:${company.email}`}
+                  className="whitespace-nowrap hover:text-gold-light transition-colors text-[13px] xl:text-sm"
+                >
+                  {company.email}
+                </a>
               </li>
-              <li className="flex items-start gap-2.5">
+              <li className="flex items-start gap-2">
                 <MapPin className="h-4 w-4 text-gold shrink-0 mt-0.5" />
-                <span>{company.address}</span>
+                <span className="text-xs xl:text-sm leading-relaxed">{company.address}</span>
               </li>
             </ul>
           </div>

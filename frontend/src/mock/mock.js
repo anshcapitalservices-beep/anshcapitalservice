@@ -203,7 +203,7 @@ export const services = [
         "Flexible repayment tenures from 1 to 30 years",
       ],
       faqs: [
-        { q: "What is the current home loan interest rate?", a: "Home loan rates start from 8.25% p.a. onwards depending on the lender, your credit score, and loan amount. We help you get the most competitive rate available." },
+        { q: "What is the current home loan interest rate?", a: "Home loan rates start from 7.15% p.a. onwards depending on the lender, your credit score, and loan amount. We help you get the most competitive rate available." },
         { q: "What credit score do I need for a loan?", a: "A CIBIL score of 750+ is ideal for the best rates. However, we work with lenders who offer loans even for scores of 650+, though at slightly higher rates." },
         { q: "Can self-employed individuals get loans?", a: "Yes! We specialize in helping self-employed professionals and business owners get approved with the right documentation — ITR, bank statements, and business proof." },
         { q: "How can I reduce my loan EMI?", a: "You can reduce EMI by opting for a longer tenure, making prepayments, or transferring your loan to a lender with a lower interest rate. We can help with all these options." },
@@ -615,10 +615,18 @@ export const footer = {
     { label: "Financial Planning", to: "/services#wealth" },
   ],
   socials: [
-    { icon: "Linkedin", url: "#" },
-    { icon: "Facebook", url: "#" },
-    { icon: "Instagram", url: "#" },
-    { icon: "Youtube", url: "#" },
+    {
+      icon: "Linkedin",
+      url: "https://www.linkedin.com/in/anshcapitalservices/",
+    },
+    {
+      icon: "Facebook",
+      url: "https://www.facebook.com/Anshcapitalservices/",
+    },
+    {
+      icon: "Instagram",
+      url: "https://www.instagram.com/anshcapitalservices/",
+    },
   ],
 };
 
@@ -628,7 +636,7 @@ export const aboutPage = {
   title: "Financial Guidance With a Human Touch",
   image: "/images/about-us.png",
   intro:
-    "ANSH Capital Services is a Faridabad-based financial advisory firm helping families and businesses make confident money decisions. We combine 19+ years of experience with honest, jargon-free advice.",
+    "ANSH Capital Services is a Delhi/NCR-based financial advisory firm helping families and businesses make confident money decisions. We combine 19+ years of experience with honest, jargon-free advice.",
   mission:
     "To make financial planning simple, transparent and accessible for every family in our city.",
   vision:

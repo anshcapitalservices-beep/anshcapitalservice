@@ -50,15 +50,14 @@ const Testimonials = () => {
   return (
     <section className="bg-[#faf6ee] py-16 md:py-24 overflow-hidden relative border-y border-[#d89626]/20">
       <div className="max-w-[1280px] mx-auto px-4 md:px-6">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
-          <div>
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10 md:mb-12">
+          <div className="max-w-2xl">
             <SectionHeading
+              align="left"
               eyebrow={testimonialsIntro.eyebrow}
               title={testimonialsIntro.title}
+              subtitle="Hear directly from individuals, families, and businesses who have partnered with us for transparent financial guidance."
             />
-            <p className="mt-3 text-slate-600 text-sm sm:text-base max-w-xl">
-              Hear directly from individuals, families, and businesses who have partnered with us for transparent financial guidance.
-            </p>
           </div>
 
           {/* Train live indicator & manual controls */}
@@ -124,7 +123,7 @@ const Testimonials = () => {
         <div className="inline-flex items-center gap-2 text-xs sm:text-sm text-slate-500 bg-white/70 px-4 py-2 rounded-full border border-slate-200/80 shadow-sm">
           <Sparkles className="h-4 w-4 text-[#d89626]" />
           <span>
-            Faridabad's Trusted Financial Partner • <strong>7042470200 | 9999227531</strong>
+            Delhi/NCR's Trusted Financial Partner • <strong>7042470200 | 9999227531</strong>
           </span>
         </div>
       </div>

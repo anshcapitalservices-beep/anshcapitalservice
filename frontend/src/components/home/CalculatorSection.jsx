@@ -94,7 +94,7 @@ const DonutChart = ({ invested, total }) => {
         <span className="text-[10px] font-bold tracking-widest text-[#d89626] uppercase">
           {total > 0 ? "Projected" : "Result"}
         </span>
-        <span className="font-display text-xl sm:text-2xl font-extrabold text-white mt-0.5 leading-none">
+        <span className="font-sans text-xl sm:text-2xl font-extrabold text-white mt-0.5 leading-none tabular-nums tracking-tight">
           {fmt(total)}
         </span>
       </div>
@@ -153,7 +153,7 @@ const ResultCard = ({ label, value, highlight }) => (
     <div className={`text-[10px] font-bold tracking-wider uppercase ${highlight ? "text-[#0b1f3a]/70" : "text-white/50"}`}>
       {label}
     </div>
-    <div className={`font-display text-lg font-extrabold mt-0.5 tabular-nums ${highlight ? "text-[#0b1f3a]" : "text-white"}`}>
+    <div className={`font-sans text-lg sm:text-[19px] font-extrabold mt-0.5 tabular-nums tracking-tight ${highlight ? "text-[#0b1f3a]" : "text-white"}`}>
       {value}
     </div>
   </div>
