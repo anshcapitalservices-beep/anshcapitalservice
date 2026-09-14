@@ -151,7 +151,7 @@ const Hero = () => {
           <img
             src={heroFamilyRoadmap}
             alt="Plan Today for a Brighter Tomorrow - ANSH Capital Services"
-            className="w-full h-auto lg:h-full object-contain object-right block select-none max-h-[580px] mix-blend-multiply"
+            className="w-full h-auto lg:h-full object-contain object-right block select-none max-h-[580px]"
           />
         </div>
 
