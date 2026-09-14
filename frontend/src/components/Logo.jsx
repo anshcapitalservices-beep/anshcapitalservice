@@ -9,6 +9,7 @@ import logoImg from "../assets/logo-transparent.png";
 const Logo = ({ variant = "dark", className = "", showText = true, size = "md" }) => {
   const textMain = variant === "light" ? "text-white" : "text-navy";
   const textSub = variant === "light" ? "text-gold-light" : "text-gold";
+  const textTagline = variant === "light" ? "text-white/80" : "text-slate-500";
 
   const imgHeight = size === "lg" ? "h-14" : size === "sm" ? "h-9" : "h-11";
 
@@ -32,6 +33,11 @@ const Logo = ({ variant = "dark", className = "", showText = true, size = "md" }
             className={`text-[0.58rem] font-semibold tracking-[0.24em] mt-0.5 ${textSub}`}
           >
             CAPITAL SERVICES
+          </div>
+          <div
+            className={`text-[0.62rem] font-medium italic mt-1 tracking-tight ${textTagline}`}
+          >
+            Suraksha Bhi.. Samriddhi Bhi..
           </div>
         </div>
       )}

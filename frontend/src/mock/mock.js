@@ -10,7 +10,7 @@ import manishAggarwalImg from "../assets/team/manish-aggarwal.jpg";
 export const company = {
   name: "ANSH",
   fullName: "ANSH Capital Services",
-  tagline: "CAPITAL SERVICES",
+  tagline: "Suraksha Bhi.. Samriddhi Bhi..",
   city: "Faridabad",
   since: "SINCE DAY ONE",
   phones: ["+91 70424 70200", "+91 99992 27531"],
