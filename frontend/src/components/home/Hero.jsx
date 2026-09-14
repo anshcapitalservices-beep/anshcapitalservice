@@ -6,146 +6,191 @@ import {
   TrendingUp,
   IndianRupee,
 } from "lucide-react";
-import Reveal from "../Reveal";
 import heroFamilyRoadmap from "../../assets/hero_family_roadmap.png";
-
-const servicesBadges = [
-  {
-    icon: Shield,
-    title: "Insurance",
-    subtitle: "Protect what matters",
-    to: "/services/insurance",
-  },
-  {
-    icon: TrendingUp,
-    title: "Mutual Funds",
-    subtitle: "Grow your wealth",
-    to: "/services/mutual-funds",
-  },
-  {
-    icon: IndianRupee,
-    title: "Loans",
-    subtitle: "Achieve your goals",
-    to: "/services/loans",
-  },
-];
 
 const Hero = () => {
   return (
-    <section className="relative w-full bg-[#061a3b] overflow-hidden">
-      {/* Background Graphic Grid */}
-      <div className="relative max-w-[1440px] mx-auto min-h-[540px] lg:min-h-[580px] grid lg:grid-cols-[1.1fr_0.9fr] items-center">
-        {/* Left Section (HTML / CSS Content) */}
-        <div className="relative z-20 px-6 sm:px-10 lg:pl-12 lg:pr-6 py-12 md:py-16 flex flex-col justify-center">
-          <Reveal>
-            {/* Eyebrow */}
-            <div className="flex items-center gap-2 text-[#d89626] font-bold tracking-[0.25em] text-xs uppercase mb-4">
-              <span>FARIDABAD</span>
-              <span className="text-[10px]">•</span>
-              <span>SINCE DAY ONE</span>
-            </div>
+    <section className="relative w-full overflow-hidden bg-[#f8f5ed] min-h-[640px] lg:min-h-[680px]">
+      <style>{`
+        .hero-left-panel {
+          position: absolute;
+          inset: 0 auto 0 0;
+          width: 57%;
+          background:
+            radial-gradient(circle at 15% 35%, rgba(23, 69, 105, 0.28), transparent 42%),
+            linear-gradient(135deg, #062d51 0%, #052846 55%, #031f3b 100%);
+          z-index: 2;
+          clip-path: polygon(0 0, 100% 0, 79% 100%, 0 100%);
+        }
 
-            {/* Heading */}
-            <h1 className="font-display font-extrabold text-white text-4xl sm:text-5xl lg:text-[54px] leading-[1.1] tracking-tight">
-              Plan Today for a
-              <br />
-              <span className="text-[#d89626] italic font-display">Brighter Tomorrow.</span>
-            </h1>
+        .hero-left-panel::after {
+          content: "";
+          position: absolute;
+          left: 0;
+          bottom: -1px;
+          width: 100%;
+          height: 82px;
+          background: #e9a719;
+          clip-path: ellipse(67% 100% at 9% 100%);
+        }
 
-            {/* Paragraph */}
-            <p className="mt-5 text-slate-300 text-sm sm:text-base leading-relaxed max-w-lg font-normal">
-              Expert guidance in Insurance, Mutual Funds and Loans to help you build a secure and prosperous future.
-            </p>
+        @media (max-width: 1024px) {
+          .hero-left-panel {
+            width: 100%;
+            height: auto;
+            position: relative;
+            clip-path: none;
+          }
+          .hero-left-panel::after {
+            display: none;
+          }
+        }
+      `}</style>
 
-            {/* 3 Service Badges Row with Vertical Dividers */}
-            <div className="mt-8 grid grid-cols-3 gap-3 sm:gap-4 max-w-lg py-2">
-              {servicesBadges.map((badge, idx) => {
-                const IconComp = badge.icon;
-                return (
-                  <Link
-                    key={idx}
-                    to={badge.to}
-                    className={`flex flex-col items-center text-center group ${
-                      idx !== 0 ? "border-l border-white/20 pl-3 sm:pl-4" : ""
-                    }`}
-                  >
-                    <div className="h-12 w-12 rounded-full bg-[#d89626] flex items-center justify-center mb-2.5 shadow-md group-hover:scale-105 transition-transform">
-                      <IconComp className="h-6 w-6 text-[#061a3b]" />
-                    </div>
-                    <div className="font-display font-bold text-white text-sm sm:text-[15px] group-hover:text-[#d89626] transition-colors leading-tight">
-                      {badge.title}
-                    </div>
-                    <div className="text-[11px] sm:text-xs text-slate-300 mt-0.5 leading-tight">
-                      {badge.subtitle}
-                    </div>
-                  </Link>
-                );
-              })}
-            </div>
+      {/* Left Navy Angle Panel (Desktop) */}
+      <div className="hero-left-panel hidden lg:block" />
 
-            {/* Action Buttons */}
-            <div className="mt-8 flex flex-wrap items-center gap-4">
-              <Link
-                to="/contact"
-                className="inline-flex items-center gap-2 bg-[#d89626] hover:bg-[#c4841d] text-[#061a3b] font-bold text-sm px-6 py-3.5 rounded-lg shadow-md transition-all hover:scale-105 active:scale-95"
-              >
-                <span>Talk to an Expert</span>
-                <ArrowRight className="h-4 w-4" />
-              </Link>
+      {/* Main Grid Wrapper */}
+      <div className="relative max-w-[1440px] mx-auto min-h-[640px] lg:min-h-[680px] grid lg:grid-cols-[1.15fr_0.85fr] items-center">
+        
+        {/* Left Content */}
+        <div className="relative z-10 bg-[#062d51] lg:bg-transparent px-6 sm:px-10 lg:pl-12 lg:pr-6 py-12 lg:py-16 text-white flex flex-col justify-center">
+          
+          {/* Eyebrow */}
+          <div className="text-[13px] font-bold tracking-[5px] uppercase mb-5">
+            <span className="text-[#e9a719]">FARIDABAD</span>
+            <span className="text-white/60 mx-1">·</span>
+            <span>SINCE DAY ONE</span>
+          </div>
 
-              <Link
-                to="/services"
-                className="inline-flex items-center gap-2 border border-[#d89626] bg-transparent hover:bg-white/10 text-white font-semibold text-sm px-6 py-3.5 rounded-lg shadow-sm transition-all hover:scale-105 active:scale-95"
-              >
-                <span>Explore Our Services</span>
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-            </div>
-          </Reveal>
+          {/* Hero Title */}
+          <h1 className="font-display text-4xl sm:text-5xl lg:text-[64px] font-bold leading-[1.04] tracking-[-1.5px] max-w-[760px] mb-5">
+            Plan Today for a
+            <br />
+            <span className="text-[#e9a719]">Brighter Tomorrow.</span>
+          </h1>
+
+          {/* Hero Description */}
+          <p className="text-white/90 text-base sm:text-lg lg:text-[20px] leading-[1.55] max-w-[660px] mb-7 font-normal">
+            Expert guidance in Insurance, Mutual Funds and Loans to help you build a secure and prosperous future.
+          </p>
+
+          {/* Service Features Row */}
+          <div className="flex items-center gap-4 sm:gap-6 max-w-[680px] mb-8">
+            
+            {/* Feature 1: Insurance */}
+            <Link to="/services/insurance" className="flex-1 text-center group">
+              <div className="w-14 h-14 sm:w-16 sm:h-16 mx-auto mb-2 rounded-full bg-gradient-to-br from-[#f9c53e] to-[#df9b10] flex items-center justify-center text-[#06294a] shadow-md group-hover:scale-105 transition-transform">
+                <Shield className="w-7 h-7 stroke-[2.2]" />
+              </div>
+              <h3 className="text-sm sm:text-base font-bold text-white mb-0.5 group-hover:text-[#e9a719] transition-colors">
+                Insurance
+              </h3>
+              <p className="text-xs sm:text-[13px] text-white/85">
+                Protect what matters
+              </p>
+            </Link>
+
+            {/* Divider */}
+            <div className="w-px h-16 sm:h-20 bg-white/30 shrink-0" />
+
+            {/* Feature 2: Mutual Funds */}
+            <Link to="/services/mutual-funds" className="flex-1 text-center group">
+              <div className="w-14 h-14 sm:w-16 sm:h-16 mx-auto mb-2 rounded-full bg-gradient-to-br from-[#f9c53e] to-[#df9b10] flex items-center justify-center text-[#06294a] shadow-md group-hover:scale-105 transition-transform">
+                <TrendingUp className="w-7 h-7 stroke-[2.2]" />
+              </div>
+              <h3 className="text-sm sm:text-base font-bold text-white mb-0.5 group-hover:text-[#e9a719] transition-colors">
+                Mutual Funds
+              </h3>
+              <p className="text-xs sm:text-[13px] text-white/85">
+                Grow your wealth
+              </p>
+            </Link>
+
+            {/* Divider */}
+            <div className="w-px h-16 sm:h-20 bg-white/30 shrink-0" />
+
+            {/* Feature 3: Loans */}
+            <Link to="/services/loans" className="flex-1 text-center group">
+              <div className="w-14 h-14 sm:w-16 sm:h-16 mx-auto mb-2 rounded-full bg-gradient-to-br from-[#f9c53e] to-[#df9b10] flex items-center justify-center text-[#06294a] shadow-md group-hover:scale-105 transition-transform">
+                <IndianRupee className="w-7 h-7 stroke-[2.2]" />
+              </div>
+              <h3 className="text-sm sm:text-base font-bold text-white mb-0.5 group-hover:text-[#e9a719] transition-colors">
+                Loans
+              </h3>
+              <p className="text-xs sm:text-[13px] text-white/85">
+                Achieve your goals
+              </p>
+            </Link>
+
+          </div>
+
+          {/* Action Buttons */}
+          <div className="flex flex-wrap items-center gap-4">
+            <Link
+              to="/contact"
+              className="h-[54px] sm:h-[58px] px-7 sm:px-8 rounded-[14px] bg-[#e9a719] hover:bg-[#d89626] text-[#06294a] font-bold text-sm sm:text-[15px] inline-flex items-center justify-center gap-3 shadow-md transition-all hover:-translate-y-0.5 active:scale-95"
+            >
+              <span>Talk to an Expert</span>
+              <ArrowRight className="w-5 h-5 stroke-[2.5]" />
+            </Link>
+
+            <Link
+              to="/services"
+              className="h-[54px] sm:h-[58px] px-7 sm:px-8 rounded-[14px] bg-transparent hover:bg-white/10 border-2 border-[#e9a719] text-white font-bold text-sm sm:text-[15px] inline-flex items-center justify-center gap-3 shadow-sm transition-all hover:-translate-y-0.5 active:scale-95"
+            >
+              <span>Explore Our Services</span>
+              <ArrowRight className="w-5 h-5 stroke-[2.5]" />
+            </Link>
+          </div>
+
         </div>
 
-        {/* Right Section (Roadmap Illustration + Family) */}
-        <div className="relative z-10 w-full h-full flex items-center justify-center overflow-hidden lg:pl-0">
-          <div className="relative w-full h-full flex items-center justify-end">
+        {/* Right Illustration Section */}
+        <div className="relative z-0 w-full h-full flex items-center justify-center bg-[#f8f5ed] overflow-hidden min-h-[360px] lg:min-h-full">
+          <div className="relative w-full h-full flex items-center justify-center lg:justify-end">
             <img
               src={heroFamilyRoadmap}
-              alt="ANSH Capital Services - Family Financial Roadmap"
+              alt="Plan Today for a Brighter Tomorrow - ANSH Capital Services"
               className="w-full h-auto lg:h-full object-contain lg:object-cover object-center select-none"
             />
 
-            {/* Watermark Script */}
+            {/* Handwritten script watermark on the right */}
             <div
-              className="absolute z-20 pointer-events-none select-none hidden sm:block"
+              className="absolute z-10 pointer-events-none select-none hidden sm:block"
               style={{
-                right: "4%",
-                top: "22%",
-                transform: "rotate(-8deg)",
+                right: "4.5%",
+                top: "20%",
+                transform: "rotate(-6deg)",
               }}
             >
-              <span
+              <div
                 style={{
-                  fontFamily: "'Dancing Script', 'Great Vibes', cursive",
-                  fontSize: "clamp(1.4rem, 2vw, 2.3rem)",
-                  color: "#c8903a",
-                  textShadow: "0 2px 12px rgba(0,0,0,0.12)",
-                  lineHeight: 1.25,
-                  letterSpacing: "0.01em",
-                  whiteSpace: "pre-line",
-                  display: "block",
+                  fontFamily: "'Playfair Display', serif",
+                  fontStyle: "italic",
+                  fontSize: "clamp(1.3rem, 1.8vw, 2.2rem)",
+                  lineHeight: 1.05,
+                  color: "#102a45",
                 }}
               >
-                {`A Brighter\nFinancial\nTomorrow`}
-              </span>
+                A<br />
+                <span className="underline decoration-[#e9a719] decoration-2">Brighter</span><br />
+                Financial<br />
+                Tomorrow
+              </div>
             </div>
           </div>
         </div>
+
       </div>
 
-      {/* Bottom Golden Wave Ribbon */}
-      <div className="relative w-full z-20 border-t border-[#d89626]/30 bg-gradient-to-r from-[#061a3b] via-[#0b1f3a] to-[#061a3b] py-2 px-6">
-        <div className="max-w-[1440px] mx-auto flex items-center justify-between text-xs text-slate-400 font-medium tracking-widest uppercase">
-          <span className="hidden sm:inline text-[#d89626]/80">Suraksha Bhi.. Samriddhi Bhi..</span>
-          <span className="ml-auto text-white/70 tracking-[0.25em]">PEOPLE • PLANS • PROGRESS.</span>
+      {/* Bottom Curve Ribbon */}
+      <div className="relative w-full z-20 border-t border-[#e9a719]/40 bg-gradient-to-r from-[#031f3b] via-[#052846] to-[#031f3b] py-2.5 px-6">
+        <div className="max-w-[1440px] mx-auto flex items-center justify-between text-xs text-white/70 font-semibold tracking-[4px] uppercase">
+          <span className="hidden sm:inline text-[#e9a719] tracking-[2px]">Suraksha Bhi.. Samriddhi Bhi..</span>
+          <span className="ml-auto">
+            PEOPLE <span className="text-[#e9a719] mx-1.5">•</span> PLANS <span className="text-[#e9a719] mx-1.5">•</span> PROGRESS.
+          </span>
         </div>
       </div>
     </section>
