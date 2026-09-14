@@ -7,8 +7,8 @@ import {
   ChevronRight,
   Phone,
   Sparkles,
-  Target,
-  Layers,
+  ShieldCheck,
+  TrendingUp,
 } from "lucide-react";
 import PageHeader from "../components/PageHeader";
 import Reveal from "../components/Reveal";
@@ -33,11 +33,25 @@ const ServiceDetail = () => {
         title={service.title}
         subtitle={service.description}
         current={service.title}
-        bgImage={detail.heroImage}
       />
 
+      {/* Featured Service Visual Banner */}
+      {service.bannerImage && (
+        <section className="bg-white pt-8 pb-4">
+          <div className="max-w-[1280px] mx-auto px-4 md:px-6">
+            <Reveal className="rounded-2xl sm:rounded-3xl overflow-hidden shadow-[0_12px_40px_rgba(11,31,58,0.1)] border border-slate-100">
+              <img
+                src={service.bannerImage}
+                alt={`${service.title} ANSH Capital Services Banner`}
+                className="w-full h-auto block"
+              />
+            </Reveal>
+          </div>
+        </section>
+      )}
+
       {/* Overview Section */}
-      <section className="bg-white py-14 md:py-20">
+      <section className="bg-white py-12 md:py-16">
         <div className="max-w-[1280px] mx-auto px-4 md:px-6">
           <div className="grid lg:grid-cols-[1fr_1.3fr] gap-10 lg:gap-16 items-start">
             <Reveal>
@@ -51,38 +65,46 @@ const ServiceDetail = () => {
               <p className="mt-5 text-slate-600 leading-relaxed text-[15px]">
                 {detail.overview}
               </p>
-              <Link
-                to="/contact"
-                className="mt-7 inline-flex items-center gap-2 bg-[#0b1f3a] hover:bg-[#061527] text-white text-sm font-semibold px-6 py-3.5 rounded-lg transition-colors shadow-sm"
-              >
-                <Phone className="h-4 w-4" />
-                Get Free Consultation
-              </Link>
+              <div className="mt-7 flex flex-wrap items-center gap-4">
+                <Link
+                  to="/contact"
+                  className="inline-flex items-center gap-2 bg-[#0b1f3a] hover:bg-[#061527] text-white text-sm font-semibold px-6 py-3.5 rounded-lg transition-colors shadow-sm"
+                >
+                  <Phone className="h-4 w-4" />
+                  Get Free Consultation
+                </Link>
+                <a
+                  href="tel:+917042470200"
+                  className="inline-flex items-center gap-2 border border-[#d89626] text-[#d89626] hover:bg-[#d89626] hover:text-white text-sm font-semibold px-5 py-3.5 rounded-lg transition-colors"
+                >
+                  Call +91 70424 70200
+                </a>
+              </div>
             </Reveal>
 
             {/* Scope Cards */}
             <Reveal delay={100}>
               <p className="text-[#d89626] font-bold tracking-[0.22em] text-xs uppercase mb-4">
-                SCOPE & TYPES
+                SCOPE & OFFERINGS
               </p>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                 {detail.scope.map((item, i) => {
                   const [label, desc] = item.split(" — ");
                   return (
                     <div
                       key={i}
-                      className="bg-[#faf6ee] rounded-xl p-4 border border-[#f0dca8]/50 hover:shadow-md transition-shadow"
+                      className="bg-[#faf6ee] rounded-xl p-4 sm:p-5 border border-[#f0dca8]/50 hover:shadow-md transition-shadow"
                     >
                       <div className="flex items-start gap-3">
                         <div className="h-8 w-8 rounded-lg bg-white flex items-center justify-center shrink-0 mt-0.5 shadow-sm">
                           <Sparkles className="h-4 w-4 text-[#d89626]" />
                         </div>
                         <div>
-                          <p className="font-semibold text-[#0b1f3a] text-[13.5px] leading-snug">
+                          <p className="font-bold text-[#0b1f3a] text-[14px] leading-snug">
                             {label}
                           </p>
                           {desc && (
-                            <p className="text-xs text-slate-500 mt-1 leading-relaxed">
+                            <p className="text-xs text-slate-600 mt-1 leading-relaxed">
                               {desc}
                             </p>
                           )}
@@ -96,6 +118,102 @@ const ServiceDetail = () => {
           </div>
         </div>
       </section>
+
+      {/* Special Infographic Section for Mutual Funds */}
+      {service.id === "mutual-funds" && detail.infographicImage && (
+        <section className="bg-[#faf6ee] py-14 md:py-20 border-y border-[#d89626]/20">
+          <div className="max-w-[1280px] mx-auto px-4 md:px-6">
+            <Reveal className="text-center max-w-2xl mx-auto mb-10">
+              <p className="text-[#d89626] font-bold tracking-[0.22em] text-xs uppercase mb-3">
+                INVESTMENT EDUCATION
+              </p>
+              <h2 className="font-display text-3xl md:text-4xl font-bold text-[#0b1f3a] leading-tight">
+                The Significance of Mutual Funds
+              </h2>
+              <p className="mt-3 text-slate-600 text-sm">
+                Direct stock picking vs professional mutual fund management — see how pooling funds, active diversification, and regular SIP build sustainable long-term wealth.
+              </p>
+            </Reveal>
+
+            <Reveal delay={100} className="rounded-2xl overflow-hidden shadow-xl border border-slate-200 bg-white max-w-4xl mx-auto">
+              <img
+                src={detail.infographicImage}
+                alt="Direct Investment vs Mutual Fund Infographic"
+                className="w-full h-auto"
+              />
+            </Reveal>
+          </div>
+        </section>
+      )}
+
+      {/* Special Health Insurance Banner for Insurance */}
+      {service.id === "insurance" && detail.healthBanner && (
+        <section className="bg-[#faf6ee] py-12 md:py-16 border-t border-[#d89626]/20">
+          <div className="max-w-[1280px] mx-auto px-4 md:px-6">
+            <Reveal className="text-center max-w-2xl mx-auto mb-8">
+              <p className="text-[#d89626] font-bold tracking-[0.22em] text-xs uppercase mb-2">
+                HEALTH & FAMILY WELLNESS
+              </p>
+              <h2 className="font-display text-2xl md:text-3xl font-bold text-[#0b1f3a]">
+                Secure Your Health. Protect Your Future.
+              </h2>
+            </Reveal>
+            <Reveal delay={100} className="rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl border border-slate-100 bg-white max-w-4xl mx-auto">
+              <img
+                src={detail.healthBanner}
+                alt="ANSH Capital Health Insurance Banner"
+                className="w-full h-auto"
+              />
+            </Reveal>
+          </div>
+        </section>
+      )}
+
+      {/* Special Life Insurance Legacy Banner for Insurance */}
+      {service.id === "insurance" && detail.legacyBanner && (
+        <section className="bg-white py-12 md:py-16 border-t border-slate-100">
+          <div className="max-w-[1280px] mx-auto px-4 md:px-6">
+            <Reveal className="text-center max-w-2xl mx-auto mb-8">
+              <p className="text-[#d89626] font-bold tracking-[0.22em] text-xs uppercase mb-2">
+                LIFE & GENERATIONAL PROSPERITY
+              </p>
+              <h2 className="font-display text-2xl md:text-3xl font-bold text-[#0b1f3a]">
+                Strategize for Generational Wealth & Family Legacy
+              </h2>
+            </Reveal>
+            <Reveal delay={100} className="rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg border border-slate-100">
+              <img
+                src={detail.legacyBanner}
+                alt="ANSH Capital Life Insurance Legacy Banner"
+                className="w-full h-auto block"
+              />
+            </Reveal>
+          </div>
+        </section>
+      )}
+
+      {/* Special Secondary Asset & Travel Protection Banner for Insurance */}
+      {service.id === "insurance" && (detail.assetBanner || detail.vehicleBanner) && (
+        <section className="bg-[#faf6ee] py-12 md:py-16 border-t border-[#d89626]/20">
+          <div className="max-w-[1280px] mx-auto px-4 md:px-6">
+            <Reveal className="text-center max-w-2xl mx-auto mb-8">
+              <p className="text-[#d89626] font-bold tracking-[0.22em] text-xs uppercase mb-2">
+                HOME, TRAVEL & ACCIDENT COVERAGE
+              </p>
+              <h2 className="font-display text-2xl md:text-3xl font-bold text-[#0b1f3a]">
+                Your Secure Whole World. Protect What Matters Most.
+              </h2>
+            </Reveal>
+            <Reveal delay={100} className="rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg border border-slate-100 max-w-5xl mx-auto">
+              <img
+                src={detail.assetBanner || detail.vehicleBanner}
+                alt="Your Secure Whole World. Protect What Matters Most. ANSH Capital Services"
+                className="w-full h-auto block"
+              />
+            </Reveal>
+          </div>
+        </section>
+      )}
 
       {/* Process Section */}
       <section className="bg-[#0b1f3a] py-14 md:py-20 relative overflow-hidden">
@@ -244,7 +362,7 @@ const ServiceDetail = () => {
             </div>
           </Reveal>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-3xl mx-auto">
             {otherServices.map((s, i) => (
               <Reveal key={s.id} delay={i * 60}>
                 <Link

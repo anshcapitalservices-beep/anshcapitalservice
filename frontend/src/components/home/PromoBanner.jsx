@@ -19,17 +19,17 @@ const PromoBanner = () => {
             </p>
           </div>
 
-          {/* Middle: Market moves daily */}
+          {/* Middle: Shield & Text */}
           <div className="flex items-center gap-3.5 px-0 lg:px-6 lg:border-l lg:border-white/15">
             <div className="shrink-0">
               <Shield className="h-7 w-7 text-[#d89626]" />
             </div>
             <div className="text-left">
               <div className="text-white font-semibold text-sm md:text-[15px] leading-tight">
-                Market moves daily.
+                {promoBanner.middleTitle || "Market moves daily."}
               </div>
               <div className="text-white/70 text-xs md:text-sm mt-0.5">
-                Opportunities don't wait.
+                {promoBanner.middleSubtitle || "Opportunities don't wait."}
               </div>
             </div>
           </div>

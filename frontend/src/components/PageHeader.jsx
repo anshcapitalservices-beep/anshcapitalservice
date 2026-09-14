@@ -26,7 +26,6 @@ const PageHeader = ({
         <div className="absolute inset-0 bg-gradient-to-t from-[#06152b] via-transparent to-transparent opacity-90" />
       </div>
 
-
       <div className="max-w-[1280px] mx-auto px-4 md:px-6 py-14 md:py-18 relative z-20">
         {eyebrow && (
           <p className="text-[#d89626] font-bold tracking-[0.22em] text-xs uppercase mb-3">

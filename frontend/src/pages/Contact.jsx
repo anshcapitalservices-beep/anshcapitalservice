@@ -5,6 +5,7 @@ import Reveal from "../components/Reveal";
 import { Icon } from "../components/iconMap";
 import ConsultationForm from "../components/ConsultationForm";
 import { company, contactIntro, footer } from "../mock/mock";
+import bannerConnectContact from "../assets/banner_connect_contact.jpg";
 
 const Contact = () => {
   const infoCards = [
@@ -28,7 +29,7 @@ const Contact = () => {
       />
 
       {/* Form + Map Section */}
-      <section className="bg-white py-14 md:py-20">
+      <section className="bg-white py-12 md:py-16">
         <div className="max-w-[1280px] mx-auto px-4 md:px-6 grid lg:grid-cols-2 gap-10 lg:gap-14">
           {/* Left — Form */}
           <Reveal className="order-1">
@@ -74,6 +75,19 @@ const Contact = () => {
             >
               Get Direction <ArrowRight className="h-4 w-4" />
             </a>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Connect With Us Custom Graphic Banner */}
+      <section className="bg-white pt-2 pb-10">
+        <div className="max-w-[1280px] mx-auto px-4 md:px-6">
+          <Reveal className="rounded-2xl sm:rounded-3xl overflow-hidden shadow-[0_12px_40px_rgba(11,31,58,0.1)] border border-slate-100">
+            <img
+              src={bannerConnectContact}
+              alt="Connect with ANSH Capital Services - Your Journey Our Expertise"
+              className="w-full h-auto block"
+            />
           </Reveal>
         </div>
       </section>

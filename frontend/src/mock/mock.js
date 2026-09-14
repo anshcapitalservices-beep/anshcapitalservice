@@ -6,6 +6,16 @@
 import anshGuptaImg from "../assets/team/ansh-gupta.jpg";
 import kavitaRaoImg from "../assets/team/kavita-rao.jpg";
 import manishAggarwalImg from "../assets/team/manish-aggarwal.jpg";
+import bannerMutualFunds from "../assets/banner_mutual_funds.png";
+import infographicMutualFunds from "../assets/infographic_mutual_funds.jpg";
+import bannerInsurance from "../assets/banner_insurance.jpg";
+import bannerAssetProtection from "../assets/banner_asset_protection.png";
+import bannerHealthInsurance from "../assets/banner_health_insurance.png";
+import bannerLifeInsuranceLegacy from "../assets/banner_life_insurance_legacy.png";
+import bannerPlanToday from "../assets/banner_plan_today.png";
+import bannerOurMissionTeam from "../assets/banner_our_mission_team.png";
+import bannerConnectContact from "../assets/banner_connect_contact.jpg";
+import bannerLoans from "../assets/banner_loans.png";
 
 export const company = {
   name: "ANSH",
@@ -38,12 +48,41 @@ export const navLinks = [
     label: "Services",
     to: "/services",
     dropdown: [
-      { label: "Mutual Funds", to: "/services#mutual-funds" },
-      { label: "Insurance Solutions", to: "/services#insurance" },
-      { label: "Loan Solutions", to: "/services#loans" },
-      { label: "Motor Insurance", to: "/services#motor-insurance" },
-      { label: "Fixed Deposits & Bonds", to: "/services#fixed-deposits" },
-      { label: "Investment Products", to: "/services#products" },
+      {
+        label: "Mutual Funds",
+        to: "/services/mutual-funds",
+        subItems: [
+          { label: "Equity Funds", to: "/products/equity" },
+          { label: "Debt Funds", to: "/products/debt" },
+          { label: "Hybrid Funds", to: "/products/hybrid" },
+          { label: "Index Funds", to: "/products/index" },
+          { label: "SIP & Tax-Saving (ELSS)", to: "/services/mutual-funds" },
+        ],
+      },
+      {
+        label: "Insurance Solutions",
+        to: "/services/insurance",
+        subItems: [
+          { label: "Child Education / Marriage Plan", to: "/services/insurance" },
+          { label: "Retirement Solutions", to: "/services/insurance" },
+          { label: "Guaranteed Plans", to: "/services/insurance" },
+          { label: "Health & Life Insurance", to: "/services/insurance" },
+        ],
+      },
+      {
+        label: "Loan Solutions",
+        to: "/services/loans",
+        subItems: [
+          { label: "Home Loan", to: "/services/loans" },
+          { label: "Personal Loan", to: "/services/loans" },
+          { label: "Car Loan", to: "/services/loans" },
+          { label: "Business Loan", to: "/services/loans" },
+        ],
+      },
+      {
+        label: "All Services & Products",
+        to: "/services",
+      },
     ],
   },
   { label: "Why Choose Us", to: "/why-choose-us" },
@@ -92,11 +131,13 @@ export const services = [
     id: "mutual-funds",
     icon: "PieChart",
     title: "Mutual Funds",
+    bannerImage: bannerMutualFunds,
     description:
       "Grow your wealth with smart investing plans tailored to your goals.",
     points: ["SIP Planning", "Goal-based Investing", "Portfolio Review"],
     detail: {
-      heroImage: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=2000&q=80",
+      heroImage: bannerMutualFunds,
+      infographicImage: infographicMutualFunds,
       overview: "Mutual Funds are professionally managed investment vehicles that pool money from multiple investors to invest in diversified portfolios of stocks, bonds, and other securities. At ANSH Capital Services, we help you identify the right mutual fund schemes aligned with your risk profile, financial goals, and investment horizon.",
       scope: [
         "Equity Mutual Funds — for long-term wealth creation through stock market exposure",
@@ -133,40 +174,47 @@ export const services = [
     id: "insurance",
     icon: "ShieldCheck",
     title: "Insurance Solutions",
+    bannerImage: bannerInsurance,
+    assetBanner: bannerAssetProtection,
+    healthBanner: bannerHealthInsurance,
+    legacyBanner: bannerLifeInsuranceLegacy,
     description:
       "Protect your family and your assets with comprehensive coverage.",
-    points: ["Health Insurance", "Life Insurance", "General Insurance"],
+    points: ["Child Education & Marriage", "Retirement Solutions", "Guaranteed Plans", "Health & Life Cover"],
     detail: {
-      heroImage: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=2000&q=80",
-      overview: "Insurance is the cornerstone of any sound financial plan. At ANSH Capital Services, we help you secure your family's future with the right mix of life, health, and general insurance policies. We work with all major insurers to find you the best coverage at the most competitive premiums.",
+      heroImage: bannerInsurance,
+      assetBanner: bannerAssetProtection,
+      healthBanner: bannerHealthInsurance,
+      legacyBanner: bannerLifeInsuranceLegacy,
+      overview: "Insurance is the cornerstone of any sound financial plan. At ANSH Capital Services, we help you secure your family's future with the right mix of child future plans, retirement solutions, guaranteed return policies, and health & term insurance. We work with all major insurers to find you the best coverage at the most competitive premiums.",
       scope: [
-        "Term Life Insurance — pure protection plans with high coverage at low premiums",
-        "Health Insurance — cashless hospitalization and medical expense coverage for individuals and families",
-        "Critical Illness Cover — lump-sum payout on diagnosis of specified critical illnesses",
-        "Motor Insurance — comprehensive and third-party coverage for cars and two-wheelers",
-        "Home & Property Insurance — protection against natural disasters, theft, and damage",
-        "Travel Insurance — coverage for medical emergencies, trip cancellations, and baggage loss",
+        "Child Education / Marriage Plan — guaranteed corpus creation to fund higher education and major life milestones",
+        "Retirement Solutions — pension plans and annuity schemes for guaranteed lifelong post-retirement regular income",
+        "Guaranteed Plans — 100% capital safety with assured returns, bonuses, and tax-free maturity benefits",
+        "Term Life Insurance — high cover pure protection plans with affordable premiums for family security",
+        "Health Insurance — cashless hospitalization and critical medical coverage at 10,000+ top hospitals",
+        "Vehicle & Travel Insurance — comprehensive protection for cars, two-wheelers, property, and global travel",
       ],
       process: [
-        { step: "01", title: "Needs Analysis", desc: "We assess your family's financial obligations, existing coverage gaps, and protection requirements." },
-        { step: "02", title: "Plan Comparison", desc: "We compare plans from 30+ insurers to find the right balance of coverage, premiums, and claim settlement ratio." },
+        { step: "01", title: "Needs Analysis", desc: "We assess your family's financial obligations, child future timelines, retirement goals, and protection requirements." },
+        { step: "02", title: "Plan Comparison", desc: "We compare plans from 30+ insurers to find the right balance of guaranteed returns, coverage, and claim settlement ratio." },
         { step: "03", title: "Application & Documentation", desc: "We handle the entire paperwork, medical tests coordination, and application submission on your behalf." },
         { step: "04", title: "Policy Issuance", desc: "Once approved, we ensure timely policy issuance and explain all terms, exclusions, and benefits." },
         { step: "05", title: "Claims Assistance", desc: "In case of a claim, we guide you through the entire process for quick and hassle-free settlement." },
       ],
       benefits: [
-        "Financial security for your family against unforeseen events",
+        "Guaranteed financial security for your child's education and marriage",
+        "Lifelong pension and stress-free retirement income",
+        "100% Capital safety with guaranteed return plans",
         "Tax benefits under Section 80C and 80D",
         "Cashless hospitalization at 10,000+ network hospitals",
-        "Affordable premiums with maximum coverage",
-        "Dedicated claims support and assistance",
-        "Riders for accidental death, disability, and waiver of premium",
+        "Dedicated claims support and lifetime servicing",
       ],
       faqs: [
-        { q: "How much life insurance coverage do I need?", a: "A general rule is 10-15 times your annual income. However, we consider your liabilities, dependents, and financial goals to recommend an optimal sum assured." },
-        { q: "Should I buy online or through an advisor?", a: "While online plans may seem cheaper, an advisor helps you choose the right plan, assists with documentation, and provides crucial support during claims — which is when insurance truly matters." },
-        { q: "What is the claim settlement ratio?", a: "It's the percentage of claims an insurer settles out of total claims received. We recommend companies with a settlement ratio above 95% for maximum reliability." },
-        { q: "Can I have multiple health insurance policies?", a: "Yes, you can hold multiple health insurance policies. In case of a claim, you can use the primary policy first and the remaining amount from the second policy." },
+        { q: "How do Child Education & Marriage Plans work?", a: "These plans combine insurance coverage with guaranteed payouts structured around your child's key milestone ages (e.g. 18 for college, 21 for graduation, 25 for marriage). Even in unfortunate events, the policy continues with premiums waived by the insurer." },
+        { q: "What are Guaranteed Return Plans?", a: "Guaranteed plans offer a fixed, legally binding rate of return on your investment, completely immune to stock market volatility, often with tax-free payouts under Section 10(10D)." },
+        { q: "When should I start Retirement Solutions?", a: "The earlier you start, the smaller the monthly contribution needed due to compounding. Starting in your 20s or 30s ensures a substantial, inflation-beating pension corpus." },
+        { q: "How much life insurance coverage do I need?", a: "A general rule is 10-15 times your annual income, taking into account debts, future child education costs, and family lifestyle maintenance." },
       ],
     },
   },
@@ -174,18 +222,19 @@ export const services = [
     id: "loans",
     icon: "Wallet",
     title: "Loan Solutions",
+    bannerImage: bannerLoans,
     description: "Smart loan solutions tailored to your financial needs.",
-    points: ["Home Loan", "Personal Loan", "Business Loan"],
+    points: ["Home Loan (from 7.15%)", "Personal Loan", "Car Loan", "Business Loan"],
     detail: {
-      heroImage: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=2000&q=80",
-      overview: "Whether you're buying your dream home, funding your business expansion, or meeting personal financial needs, ANSH Capital Services connects you with the best loan products from leading banks and NBFCs. We negotiate the best interest rates and ensure a smooth, hassle-free disbursement process.",
+      heroImage: bannerLoans,
+      overview: "Whether you're buying your dream home, purchasing a car, expanding your business, or meeting urgent personal needs, ANSH Capital Services connects you with the best loan products from 25+ leading banks and NBFCs. We negotiate the lowest interest rates starting from 7.15% and ensure instant, hassle-free processing.",
       scope: [
-        "Home Loan — purchase, construction, or renovation of residential property",
-        "Business Loan — working capital, expansion, and equipment financing",
-        "Personal Loan — for weddings, travel, medical emergencies, or any personal need",
-        "Loan Against Property (LAP) — unlock the value of your property for large funding needs",
-        "Education Loan — funding for higher education in India and abroad",
-        "Loan Against Securities — leverage your mutual funds, shares, and insurance for quick liquidity",
+        "Home Loan — lowest interest rates from 7.15% for purchase, construction, plot, or balance transfer",
+        "Personal Loan — quick collateral-free funding for weddings, travel, medical emergencies, or debt consolidation",
+        "Car Loan — attractive interest rates and flexible tenures for new and pre-owned vehicle purchases",
+        "Business Loan — collateral-free working capital, machinery, and business expansion financing",
+        "Loan Against Property (LAP) — high-value funding leveraging your residential or commercial property",
+        "Education Loan — comprehensive financing for prestigious universities in India and abroad",
       ],
       process: [
         { step: "01", title: "Requirement Understanding", desc: "We understand your loan purpose, amount needed, repayment capacity, and timeline preferences." },
@@ -195,100 +244,18 @@ export const services = [
         { step: "05", title: "Disbursement & Support", desc: "Once approved, we ensure quick disbursement and remain available for any post-disbursement queries." },
       ],
       benefits: [
-        "Access to competitive interest rates from 25+ lenders",
-        "Zero processing fees on select products",
-        "Quick approval — as fast as 24-48 hours",
-        "End-to-end documentation support",
-        "Balance transfer facility for lower interest rates",
+        "Home loan interest rates starting from 7.15% p.a.",
+        "Access to 25+ leading public/private banks and NBFCs",
+        "Zero or discounted processing fees on select products",
+        "Instant digital approval — within 24-48 hours",
+        "Balance transfer facility to reduce your existing EMIs",
         "Flexible repayment tenures from 1 to 30 years",
       ],
       faqs: [
-        { q: "What is the current home loan interest rate?", a: "Home loan rates start from 7.15% p.a. onwards depending on the lender, your credit score, and loan amount. We help you get the most competitive rate available." },
-        { q: "What credit score do I need for a loan?", a: "A CIBIL score of 750+ is ideal for the best rates. However, we work with lenders who offer loans even for scores of 650+, though at slightly higher rates." },
-        { q: "Can self-employed individuals get loans?", a: "Yes! We specialize in helping self-employed professionals and business owners get approved with the right documentation — ITR, bank statements, and business proof." },
-        { q: "How can I reduce my loan EMI?", a: "You can reduce EMI by opting for a longer tenure, making prepayments, or transferring your loan to a lender with a lower interest rate. We can help with all these options." },
-      ],
-    },
-  },
-  {
-    id: "motor-insurance",
-    icon: "Car",
-    title: "Motor Insurance",
-    description:
-      "Comprehensive car & bike insurance with quick claims and best premiums.",
-    points: ["Car Insurance", "Two-Wheeler Insurance", "Third-Party Cover"],
-    detail: {
-      heroImage: "https://images.unsplash.com/photo-1449965408869-ecd3f956aaad?auto=format&fit=crop&w=2000&q=80",
-      overview: "Motor Insurance is a mandatory requirement for every vehicle owner in India. At ANSH Capital Services, we help you choose the right motor insurance policy — whether it's comprehensive coverage, third-party liability, or standalone own-damage cover. We work with all leading general insurers to ensure you get maximum coverage at the most competitive premium with hassle-free claim settlement.",
-      scope: [
-        "Comprehensive Car Insurance — covers own damage + third-party liability in a single policy",
-        "Third-Party Liability Insurance — mandatory legal cover for damage caused to others",
-        "Two-Wheeler Insurance — complete protection for bikes and scooters",
-        "Standalone Own-Damage Cover — protects your vehicle against theft, fire, natural disasters, and accidents",
-        "Add-on Covers — zero depreciation, roadside assistance, engine protection, NCB protect, and more",
-        "Commercial Vehicle Insurance — coverage for trucks, taxis, and fleet vehicles",
-      ],
-      process: [
-        { step: "01", title: "Vehicle & Policy Review", desc: "We assess your vehicle type, age, usage pattern, and existing policy (if any) to understand your coverage needs." },
-        { step: "02", title: "Premium Comparison", desc: "We compare quotes from 15+ insurers to find the best combination of coverage, add-ons, and premium for your vehicle." },
-        { step: "03", title: "Policy Customization", desc: "We recommend the right add-on covers based on your driving habits, city, and risk profile to maximize protection." },
-        { step: "04", title: "Instant Policy Issuance", desc: "Once you select a plan, we process the application and get your policy issued digitally — often within minutes." },
-        { step: "05", title: "Claims Support", desc: "In case of an accident or damage, we guide you through the entire claims process for quick cashless or reimbursement settlement." },
-      ],
-      benefits: [
-        "Mandatory legal compliance for all vehicles on Indian roads",
-        "Financial protection against accidents, theft, fire, and natural disasters",
-        "Cashless repairs at 5,000+ network garages across India",
-        "No Claim Bonus (NCB) discount up to 50% for claim-free years",
-        "Personal accident cover for owner-driver up to ₹15 Lakh",
-        "24/7 roadside assistance and towing support with add-on covers",
-      ],
-      faqs: [
-        { q: "Is motor insurance mandatory in India?", a: "Yes, at minimum a Third-Party Liability Insurance is mandatory under the Motor Vehicles Act. Driving without valid insurance can lead to fines up to ₹2,000 and/or imprisonment for up to 3 months." },
-        { q: "What is the difference between comprehensive and third-party insurance?", a: "Third-party insurance only covers damages you cause to others. Comprehensive insurance covers both third-party liability AND damage to your own vehicle from accidents, theft, fire, and natural disasters." },
-        { q: "What is a No Claim Bonus (NCB)?", a: "NCB is a discount on your premium for every claim-free year. It can go up to 50% after 5 consecutive claim-free years and can be transferred when you switch insurers." },
-        { q: "How do cashless claims work?", a: "At network garages, you don't need to pay upfront for repairs. The insurer settles the bill directly with the garage. We help you locate the nearest network garage and coordinate the entire process." },
-      ],
-    },
-  },
-  {
-    id: "fixed-deposits",
-    icon: "Banknote",
-    title: "Fixed Deposits & Bonds",
-    description:
-      "Secure your capital with guaranteed returns through FDs and government bonds.",
-    points: ["Bank FDs", "Corporate Bonds", "Government Securities"],
-    detail: {
-      heroImage: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=2000&q=80",
-      overview: "Fixed Deposits and Bonds are the foundation of a secure investment portfolio, offering guaranteed returns with capital protection. At ANSH Capital Services, we help you maximize your fixed-income returns by comparing rates across banks, NBFCs, and corporate/government bond issuers. Whether you're a conservative investor or looking to park surplus funds safely, we find the best options for you.",
-      scope: [
-        "Bank Fixed Deposits — guaranteed returns from India's leading public and private sector banks",
-        "Corporate Fixed Deposits — higher interest rates from AAA-rated NBFCs and corporates",
-        "Government Securities (G-Secs) — sovereign-backed bonds with zero default risk",
-        "Tax-Saving Fixed Deposits — 5-year lock-in FDs with tax benefit under Section 80C",
-        "RBI Floating Rate Savings Bonds — government-issued bonds with interest linked to NSC rates",
-        "Senior Citizen Schemes — SCSS, PMVVY, and other special high-yield options for retirees",
-      ],
-      process: [
-        { step: "01", title: "Goal & Risk Assessment", desc: "We understand your investment horizon, liquidity needs, and whether you prefer guaranteed returns over market-linked growth." },
-        { step: "02", title: "Rate Comparison", desc: "We compare interest rates, credit ratings, and tenures across 30+ banks, NBFCs, and bond issuers to find the best returns." },
-        { step: "03", title: "Investment Selection", desc: "Based on your tax bracket and goals, we recommend the optimal mix of FDs, bonds, and government securities." },
-        { step: "04", title: "Account Setup & Investment", desc: "We assist with account opening, KYC documentation, and placing your investment — both online and offline." },
-        { step: "05", title: "Maturity Management", desc: "We track maturity dates, send timely reminders, and help you reinvest or withdraw based on your evolving needs." },
-      ],
-      benefits: [
-        "Capital safety with guaranteed returns — no market risk",
-        "Interest rates up to 9.5% p.a. from top-rated NBFCs",
-        "Tax-saving FDs eligible for deduction under Section 80C",
-        "Flexible tenures from 7 days to 10 years",
-        "Senior citizens get 0.25% to 0.75% extra interest",
-        "Premature withdrawal and loan against FD facility available",
-      ],
-      faqs: [
-        { q: "Are fixed deposits completely safe?", a: "Bank FDs are insured up to ₹5 Lakh per depositor per bank by DICGC. For corporate FDs, we only recommend AAA/AA+ rated companies with strong financials for maximum safety." },
-        { q: "What is the current best FD rate?", a: "As of now, leading banks offer 7-7.5% p.a. for regular citizens and up to 7.75% for senior citizens. Select NBFCs offer up to 9-9.5% p.a. for certain tenures. Rates change frequently — contact us for the latest comparison." },
-        { q: "Should I choose cumulative or non-cumulative FD?", a: "Cumulative FDs reinvest your interest and pay a lump sum at maturity — ideal for wealth building. Non-cumulative FDs pay interest monthly/quarterly — ideal for regular income needs." },
-        { q: "How are FD returns taxed?", a: "Interest earned on FDs is fully taxable as per your income tax slab. TDS is deducted at 10% if annual interest exceeds ₹40,000 (₹50,000 for senior citizens). You can submit Form 15G/15H to avoid TDS if your total income is below the taxable limit." },
+        { q: "What is the starting interest rate for home loans?", a: "Home loan rates start from 7.15% p.a. onwards depending on the lender, your CIBIL score, and loan amount. We help negotiate the lowest rate for you." },
+        { q: "Can I get a Car Loan or Personal Loan without heavy paperwork?", a: "Yes! We offer pre-approved and minimal documentation personal and car loans with instant digital KYC and rapid disbursement." },
+        { q: "What is the eligibility for Business Loans?", a: "Business loans are available for self-employed professionals, traders, manufacturers, and service providers with minimum 1-2 years of business vintage and ITR filings." },
+        { q: "How can I reduce my loan EMI?", a: "You can reduce EMI by transferring your existing loan to a lender with a lower interest rate, increasing your tenure, or making prepayments. We handle the entire balance transfer process." },
       ],
     },
   },
@@ -347,8 +314,8 @@ export const processSteps = [
 
 export const investIntro = {
   eyebrow: "INVEST SMARTLY",
-  titleLine1: "Investment Options for",
-  titleLine2: "Every Financial Goal",
+  titleLine1: "How We Help You",
+  titleLine2: "Achieve Your Goals",
   description:
     "Choose from a wide range of mutual fund schemes tailored to your risk profile and financial objectives.",
   cta: "Explore Mutual Funds",
@@ -446,65 +413,72 @@ export const statsSection = [
 
 export const testimonialsIntro = {
   eyebrow: "WHAT OUR CLIENTS SAY",
-  title: "Trusted by Families & Businesses Across Delhi NCR",
+  title: "Trusted by Families Like Yours",
 };
 
 export const testimonials = [
   {
     id: 1,
+    name: "Prashant Solanki",
+    role: "Business Owner, Faridabad",
+    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=160&h=160&q=80",
+    rating: 5,
     quote:
       "I've had a very good experience with Ansh Capital Services. The team is helpful, responsive, and most importantly, Mr. Ankur explains everything in a very simple and easy-to-understand way. Unlike many other insurance service providers, there's no complicated jargon or confusion — he takes the time to explain the options clearly and helps you make an informed decision. I've been really satisfied with their service and have also recommended Ansh Capital Services to some of my close friends and family. Definitely a reliable team to work with. Thank you, Mr. Ankur, for the continued support!",
-    name: "Prashant Solanki",
-    role: "Verified Client",
-    rating: 5,
   },
   {
     id: 2,
+    name: "Pankaj Chawla",
+    role: "Working Professional, Delhi",
+    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=160&h=160&q=80",
+    rating: 5,
     quote:
       "I had a very positive experience with Ansh Capital Services for my insurance requirements. The team was professional, responsive, and extremely helpful throughout the process. They took the time to understand my needs, explained the policy details clearly, and guided me toward the right coverage without making the process complicated. What I particularly appreciated was their prompt communication and customer-focused approach. I would definitely recommend Ansh Capital Services to anyone looking for a reliable and trustworthy insurance service provider.",
-    name: "Pankaj Chawla",
-    role: "Insurance Client",
-    rating: 5,
   },
   {
     id: 3,
+    name: "Nandani Verma",
+    role: "Mutual Fund Investor, Gurgaon",
+    avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=160&h=160&q=80",
+    rating: 5,
     quote:
       "I wasn't aware of SIPs before, and I honestly had a lot of questions about how they work and how to get started. Mr. Ankur Jain and his team explained everything very patiently and in a very easy-to-understand way. They answered all my questions politely and guided me throughout the process. Really appreciate their support and the way they made everything so simple and clear.",
-    name: "Nandani Verma",
-    role: "Mutual Fund Investor",
-    rating: 5,
   },
   {
     id: 4,
+    name: "Keshav",
+    role: "Media Entrepreneur, Delhi NCR",
+    avatar: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=160&h=160&q=80",
+    rating: 5,
     quote:
       "I run my own media company and have been working with Ankur Sir and the team at Ansh Capital. Their professionalism and work ethics have been genuinely impressive. They have recommended funds that I am investing in, and they also took care of my term insurance along with my family's complete health insurance. I highly recommend them.",
-    name: "Keshav",
-    role: "Media Entrepreneur",
-    rating: 5,
   },
   {
     id: 5,
+    name: "Radhika Arora",
+    role: "Health Insurance Client, Faridabad",
+    avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=160&h=160&q=80",
+    rating: 5,
     quote:
       "I was actually planning to have my health insurance for a very long time but was very skeptical of my decision. My dear friend Mr. Vivek, who is part of Ansh Capital Services, always used to guide me on the benefits of health insurance, because of which I actually made up my mind and took it. The overall process was really quick, smooth, and he even made me understand all the benefits and time period of the same. He even twice confirmed everything before proceeding, so it was a very smooth process. Thank you once again!",
-    name: "Radhika Arora",
-    role: "Health Insurance Client",
-    rating: 5,
   },
   {
     id: 6,
+    name: "Priyanka Ghai",
+    role: "Financial Planning Client, Delhi",
+    avatar: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=160&h=160&q=80",
+    rating: 5,
     quote:
       "A big thanks to Ankur Sir and Vivek for changing my perspective on financial planning and helping me make smarter money decisions. Taking term insurance and starting my mutual fund journey with their guidance has been one of my best decisions. What I admire most is that they're always ready to help with financial advice whether you're a client or not. Thank you for teaching me the value of money, savings, and investing. Wishing you both continued success and growth ahead!",
-    name: "Priyanka Ghai",
-    role: "Financial Planning Client",
-    rating: 5,
   },
   {
     id: 7,
-    quote:
-      "We had a great experience working with Ansh Capital Services for the GMC policy for our employees. The team was helpful, understood our requirements, explained the options clearly and helped us through the entire process without any hassle. The team was always available to help and made the overall experience quite smooth for us.",
     name: "CodM",
     role: "Corporate GMC Client",
+    avatar: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=160&h=160&q=80",
     rating: 5,
+    quote:
+      "We had a great experience working with Ansh Capital Services for the GMC policy for our employees. The team was helpful, understood our requirements, explained the options clearly and helped us through the entire process without any hassle. The team was always available to help and made the overall experience quite smooth for us.",
   },
 ];
 

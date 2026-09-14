@@ -7,6 +7,7 @@ import Reveal from "../components/Reveal";
 import { Icon } from "../components/iconMap";
 import { aboutPage } from "../mock/mock";
 import aboutUsImg from "../assets/about-us.png";
+import bannerOurMissionTeam from "../assets/banner_our_mission_team.png";
 
 const About = () => {
   return (
@@ -17,8 +18,21 @@ const About = () => {
         current="About Us"
       />
 
+      {/* Mission & Team Showcase Banner */}
+      <section className="bg-white pt-8 pb-4">
+        <div className="max-w-[1280px] mx-auto px-4 md:px-6">
+          <Reveal className="rounded-2xl sm:rounded-3xl overflow-hidden shadow-[0_12px_40px_rgba(11,31,58,0.1)] border border-slate-100">
+            <img
+              src={bannerOurMissionTeam}
+              alt="Our Mission. Your Future. ANSH Capital Services"
+              className="w-full h-auto block"
+            />
+          </Reveal>
+        </div>
+      </section>
+
       {/* Intro */}
-      <section className="bg-white py-16 md:py-20">
+      <section className="bg-white py-14 md:py-18">
         <div className="max-w-[1280px] mx-auto px-4 md:px-6 grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
           <Reveal className="relative">
             <img

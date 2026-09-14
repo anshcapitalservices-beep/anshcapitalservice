@@ -7,11 +7,11 @@ const TopBar = () => {
       <div className="max-w-[1360px] mx-auto px-3 sm:px-4 md:px-6 py-2 flex flex-col md:flex-row items-center justify-between gap-2 md:gap-4">
         {/* Left message */}
         <div className="flex items-center justify-center md:justify-start text-center md:text-left w-full md:w-auto">
-          <div className="text-[11px] sm:text-[12.5px] md:text-[13px] text-white flex items-center justify-center md:justify-start gap-1 sm:gap-1.5 flex-wrap font-normal leading-tight">
-            <span className="text-white/95 whitespace-nowrap font-medium">Secure.</span>
-            <span className="text-[#d89626] font-bold text-xs sm:text-sm">›</span>
-            <span className="text-[#d89626] font-semibold whitespace-nowrap">Invest.</span>
-            <span className="text-[#d89626] font-bold text-xs sm:text-sm">›</span>
+          <div className="text-[11px] sm:text-[12.5px] md:text-[13px] text-white flex items-center justify-center md:justify-start gap-2 flex-wrap font-normal leading-tight">
+            <span className="text-white/95 whitespace-nowrap font-medium">Secure</span>
+            <span className="text-[#d89626] font-bold text-xs">•</span>
+            <span className="text-[#d89626] font-semibold whitespace-nowrap">Invest</span>
+            <span className="text-[#d89626] font-bold text-xs">•</span>
             <span className="text-white/95 whitespace-nowrap font-medium">Grow.</span>
           </div>
         </div>
