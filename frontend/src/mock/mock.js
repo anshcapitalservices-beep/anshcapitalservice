@@ -3,6 +3,10 @@
 // All content here is mocked and can later be replaced by a real backend.
 // ============================================================
 
+import anshGuptaImg from "../assets/team/ansh-gupta.jpg";
+import kavitaRaoImg from "../assets/team/kavita-rao.jpg";
+import manishAggarwalImg from "../assets/team/manish-aggarwal.jpg";
+
 export const company = {
   name: "ANSH",
   fullName: "ANSH Capital Services",
@@ -648,22 +652,17 @@ export const aboutPage = {
     {
       name: "Ansh Gupta",
       role: "Founder & Principal Advisor",
-      avatar: "https://randomuser.me/api/portraits/men/45.jpg",
+      avatar: anshGuptaImg,
     },
     {
       name: "Kavita Rao",
       role: "Insurance Specialist",
-      avatar: "https://randomuser.me/api/portraits/women/65.jpg",
+      avatar: kavitaRaoImg,
     },
     {
       name: "Manish Aggarwal",
       role: "Mutual Fund Advisor",
-      avatar: "https://randomuser.me/api/portraits/men/22.jpg",
-    },
-    {
-      name: "Sneha Kapoor",
-      role: "Client Relations Manager",
-      avatar: "https://randomuser.me/api/portraits/women/29.jpg",
+      avatar: manishAggarwalImg,
     },
   ],
 };

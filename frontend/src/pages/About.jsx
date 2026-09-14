@@ -105,20 +105,20 @@ const About = () => {
       <section className="bg-white py-16 md:py-20">
         <div className="max-w-[1280px] mx-auto px-4 md:px-6">
           <SectionHeading eyebrow="OUR TEAM" title="Meet the People Behind ANSH" />
-          <div className="mt-12 grid grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
             {aboutPage.team.map((m, i) => (
               <Reveal
                 key={m.name}
                 delay={i * 80}
                 className="group text-center"
               >
-                <div className="relative rounded-2xl overflow-hidden mb-4">
+                <div className="relative rounded-2xl overflow-hidden mb-4 shadow-sm border border-slate-100 bg-slate-50">
                   <img
                     src={m.avatar}
                     alt={m.name}
-                    className="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-500"
+                    className="w-full h-72 sm:h-80 object-cover object-top group-hover:scale-105 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-navy/40 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-navy/40 via-transparent to-transparent pointer-events-none" />
                 </div>
                 <h3 className="font-display text-lg font-bold text-navy">
                   {m.name}
