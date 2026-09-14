@@ -33,20 +33,17 @@ const TestimonialsPage = () => {
                   {t.quote}
                 </p>
                 <div className="flex gap-0.5 mt-4">
-                  {Array.from({ length: t.rating }).map((_, s) => (
+                  {Array.from({ length: t.rating || 5 }).map((_, s) => (
                     <Star key={s} className="h-4 w-4 text-gold fill-gold" />
                   ))}
                 </div>
-                <div className="flex items-center gap-3 mt-4 pt-4 border-t border-slate-100">
-                  <img
-                    src={t.avatar}
-                    alt={t.name}
-                    className="h-11 w-11 rounded-full object-cover"
-                  />
-                  <div>
-                    <div className="font-semibold text-navy text-sm">{t.name}</div>
-                    <div className="text-xs text-slate-500">{t.role}</div>
+                <div className="flex items-center justify-between mt-4 pt-4 border-t border-slate-100">
+                  <div className="font-display font-bold text-navy text-base">
+                    — {t.name}
                   </div>
+                  <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-cream text-gold-dark border border-gold/20">
+                    {t.role}
+                  </span>
                 </div>
               </Reveal>
             ))}

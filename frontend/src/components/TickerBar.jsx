@@ -12,7 +12,7 @@ import {
 const tickerItems = [
   {
     icon: Sparkles,
-    text: "MARKET OPPORTUNITIES DON'T WAIT. PLAN TODAY. SECURE TOMORROW.",
+    text: "SECURE. INVEST. GROW.",
   },
   {
     icon: Shield,

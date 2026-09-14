@@ -63,6 +63,30 @@ code {
     animation-play-state: paused;
 }
 
+/* Train swipe animation for testimonials */
+@keyframes trainSlide {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+.animate-train-slow {
+    display: flex;
+    width: max-content;
+    animation: trainSlide 45s linear infinite;
+    will-change: transform;
+}
+.animate-train-slow:hover {
+    animation-play-state: paused;
+}
+
+/* Hide scrollbar for train track */
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
 /* Arrow float */
 @keyframes floatArrow {
     0%, 100% { transform: translateY(0); }

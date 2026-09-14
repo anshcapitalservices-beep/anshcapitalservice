@@ -26,9 +26,9 @@ export const company = {
 };
 
 export const topBar = {
-  message: "Market opportunities don't wait.",
-  highlight: "Plan today.",
-  suffix: "Secure tomorrow.",
+  message: "Secure.",
+  highlight: "Invest.",
+  suffix: "Grow.",
 };
 
 export const navLinks = [
@@ -446,53 +446,64 @@ export const statsSection = [
 
 export const testimonialsIntro = {
   eyebrow: "WHAT OUR CLIENTS SAY",
-  title: "Trusted by Families Like Yours",
+  title: "Trusted by Families & Businesses Across Delhi NCR",
 };
 
 export const testimonials = [
   {
     id: 1,
     quote:
-      "Ansh Capital helped me structure my investments the right way. I now feel confident about my family's future.",
-    name: "Amit Sharma",
-    role: "Business Owner, Faridabad",
-    avatar: "https://randomuser.me/api/portraits/men/32.jpg",
+      "I've had a very good experience with Ansh Capital Services. The team is helpful, responsive, and most importantly, Mr. Ankur explains everything in a very simple and easy-to-understand way. Unlike many other insurance service providers, there's no complicated jargon or confusion — he takes the time to explain the options clearly and helps you make an informed decision. I've been really satisfied with their service and have also recommended Ansh Capital Services to some of my close friends and family. Definitely a reliable team to work with. Thank you, Mr. Ankur, for the continued support!",
+    name: "Prashant Solanki",
+    role: "Verified Client",
     rating: 5,
   },
   {
     id: 2,
     quote:
-      "Their team guided me with the right financial plan for my child's education and retirement. Highly professional and reliable.",
-    name: "Neha Verma",
-    role: "Working Professional, Delhi",
-    avatar: "https://randomuser.me/api/portraits/women/44.jpg",
+      "I had a very positive experience with Ansh Capital Services for my insurance requirements. The team was professional, responsive, and extremely helpful throughout the process. They took the time to understand my needs, explained the policy details clearly, and guided me toward the right coverage without making the process complicated. What I particularly appreciated was their prompt communication and customer-focused approach. I would definitely recommend Ansh Capital Services to anyone looking for a reliable and trustworthy insurance service provider.",
+    name: "Pankaj Chawla",
+    role: "Insurance Client",
     rating: 5,
   },
   {
     id: 3,
     quote:
-      "I love their transparent approach and regular reviews. It keeps my investments aligned with my goals and life changes.",
-    name: "Rohit Kapoor",
-    role: "IT Consultant, Gurugram",
-    avatar: "https://randomuser.me/api/portraits/men/54.jpg",
+      "I wasn't aware of SIPs before, and I honestly had a lot of questions about how they work and how to get started. Mr. Ankur Jain and his team explained everything very patiently and in a very easy-to-understand way. They answered all my questions politely and guided me throughout the process. Really appreciate their support and the way they made everything so simple and clear.",
+    name: "Nandani Verma",
+    role: "Mutual Fund Investor",
     rating: 5,
   },
   {
     id: 4,
     quote:
-      "Getting a home loan felt effortless with their guidance. They compared options and got me the best possible rate.",
-    name: "Priya Nair",
-    role: "Doctor, Faridabad",
-    avatar: "https://randomuser.me/api/portraits/women/68.jpg",
+      "I run my own media company and have been working with Ankur Sir and the team at Ansh Capital. Their professionalism and work ethics have been genuinely impressive. They have recommended funds that I am investing in, and they also took care of my term insurance along with my family's complete health insurance. I highly recommend them.",
+    name: "Keshav",
+    role: "Media Entrepreneur",
     rating: 5,
   },
   {
     id: 5,
     quote:
-      "Honest advice with zero pressure. They explained every option clearly before I invested a single rupee.",
-    name: "Sandeep Yadav",
-    role: "Entrepreneur, Noida",
-    avatar: "https://randomuser.me/api/portraits/men/76.jpg",
+      "I was actually planning to have my health insurance for a very long time but was very skeptical of my decision. My dear friend Mr. Vivek, who is part of Ansh Capital Services, always used to guide me on the benefits of health insurance, because of which I actually made up my mind and took it. The overall process was really quick, smooth, and he even made me understand all the benefits and time period of the same. He even twice confirmed everything before proceeding, so it was a very smooth process. Thank you once again!",
+    name: "Radhika Arora",
+    role: "Health Insurance Client",
+    rating: 5,
+  },
+  {
+    id: 6,
+    quote:
+      "A big thanks to Ankur Sir and Vivek for changing my perspective on financial planning and helping me make smarter money decisions. Taking term insurance and starting my mutual fund journey with their guidance has been one of my best decisions. What I admire most is that they're always ready to help with financial advice whether you're a client or not. Thank you for teaching me the value of money, savings, and investing. Wishing you both continued success and growth ahead!",
+    name: "Priyanka Ghai",
+    role: "Financial Planning Client",
+    rating: 5,
+  },
+  {
+    id: 7,
+    quote:
+      "We had a great experience working with Ansh Capital Services for the GMC policy for our employees. The team was helpful, understood our requirements, explained the options clearly and helped us through the entire process without any hassle. The team was always available to help and made the overall experience quite smooth for us.",
+    name: "CodM",
+    role: "Corporate GMC Client",
     rating: 5,
   },
 ];
