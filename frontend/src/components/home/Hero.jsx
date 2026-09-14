@@ -154,31 +154,6 @@ const Hero = () => {
               alt="Plan Today for a Brighter Tomorrow - ANSH Capital Services"
               className="w-full h-auto lg:h-full object-contain lg:object-cover object-center select-none"
             />
-
-            {/* Handwritten script watermark on the right */}
-            <div
-              className="absolute z-10 pointer-events-none select-none hidden sm:block"
-              style={{
-                right: "4.5%",
-                top: "20%",
-                transform: "rotate(-6deg)",
-              }}
-            >
-              <div
-                style={{
-                  fontFamily: "'Playfair Display', serif",
-                  fontStyle: "italic",
-                  fontSize: "clamp(1.3rem, 1.8vw, 2.2rem)",
-                  lineHeight: 1.05,
-                  color: "#102a45",
-                }}
-              >
-                A<br />
-                <span className="underline decoration-[#e9a719] decoration-2">Brighter</span><br />
-                Financial<br />
-                Tomorrow
-              </div>
-            </div>
           </div>
         </div>
 
