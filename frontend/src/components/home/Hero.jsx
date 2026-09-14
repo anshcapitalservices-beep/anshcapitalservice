@@ -2,161 +2,165 @@ import React from "react";
 import { Link } from "react-router-dom";
 import {
   ArrowRight,
-  Award,
-  Users,
-  Layers,
-  Sprout,
+  Shield,
+  TrendingUp,
+  IndianRupee,
 } from "lucide-react";
-import { hero } from "../../mock/mock";
 import Reveal from "../Reveal";
-import heroBg from "../../assets/hero_bg_new.png";
+import heroBannerPlanToday from "../../assets/hero_banner_plan_today.png";
 
-const statsBadges = [
+const servicesBadges = [
   {
-    icon: Award,
-    title: "19+ Years",
-    subtitle: "of Experience",
+    icon: Shield,
+    title: "Insurance",
+    subtitle: "Protect what matters",
+    to: "/services/insurance",
   },
   {
-    icon: Users,
-    title: "500+",
-    subtitle: "Satisfied Clients",
+    icon: TrendingUp,
+    title: "Mutual Funds",
+    subtitle: "Grow your wealth",
+    to: "/services/mutual-funds",
   },
   {
-    icon: Layers,
-    title: "1000+",
-    subtitle: "Plans Managed",
-  },
-  {
-    icon: Sprout,
-    title: "Plan Today",
-    subtitle: "for a Brighter Tomorrow",
+    icon: IndianRupee,
+    title: "Loans",
+    subtitle: "Achieve your goals",
+    to: "/services/loans",
   },
 ];
 
 const Hero = () => {
   return (
-    <div className="relative w-full bg-white">
-      {/* Hero Main Panoramic Section */}
-      <section className="relative overflow-hidden bg-[#faf8f5] min-h-[520px] lg:min-h-[580px] flex flex-col justify-between">
-        {/* Full-width background image with skyline & family */}
-        <div className="absolute inset-0 w-full h-full z-0 pointer-events-none">
+    <div className="relative w-full bg-[#081d3d] overflow-hidden">
+      {/* Desktop / Tablet: Full Panoramic Banner Visual with Interactive Overlay */}
+      <div className="hidden md:block relative w-full">
+        <div className="max-w-[1440px] mx-auto relative">
           <img
-            src={heroBg}
-            alt="Family looking towards city skyline"
-            className="w-full h-full object-cover object-bottom"
+            src={heroBannerPlanToday}
+            alt="Plan Today for a Brighter Tomorrow - ANSH Capital Services"
+            className="w-full h-auto block select-none"
           />
-          {/* Subtle soft gradient on left for text readability */}
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                "linear-gradient(to right, rgba(255,255,255,0.98) 0%, rgba(255,255,255,0.92) 28%, rgba(255,255,255,0.60) 48%, rgba(255,255,255,0.15) 68%, transparent 85%)",
-            }}
-          />
-        </div>
 
-        {/* Cursive text overlay on the right: "A Brighter Financial Tomorrow" */}
-        <div
-          className="absolute z-10 pointer-events-none select-none hidden md:block"
-          style={{
-            right: "4.5%",
-            top: "20%",
-            transform: "rotate(-8deg)",
-          }}
-        >
-          <span
+          {/* Interactive CTA Buttons Overlay positioned on the left action area */}
+          <div
+            className="absolute z-20 flex items-center gap-3.5"
             style={{
-              fontFamily: "'Dancing Script', 'Great Vibes', cursive",
-              fontSize: "clamp(1.6rem, 2.5vw, 2.8rem)",
-              color: "#c8903a",
-              textShadow: "0 2px 14px rgba(0,0,0,0.15)",
-              lineHeight: 1.25,
-              letterSpacing: "0.01em",
-              whiteSpace: "pre-line",
-              display: "block",
+              left: "5.5%",
+              bottom: "14%",
             }}
           >
-            {`A Brighter\nFinancial\nTomorrow`}
-          </span>
-        </div>
+            <Link
+              to="/contact"
+              className="inline-flex items-center gap-2 bg-[#d89626] hover:bg-[#c4841d] text-[#081d3d] font-bold text-xs lg:text-sm px-5 lg:px-6 py-2.5 lg:py-3.5 rounded-lg shadow-md transition-all hover:scale-105 active:scale-95"
+            >
+              <span>Talk to an Expert</span>
+              <ArrowRight className="h-4 w-4" />
+            </Link>
 
-        {/* Hero Content Container */}
-        <div className="max-w-[1360px] w-full mx-auto px-4 md:px-6 relative z-10 pt-10 sm:pt-14 md:pt-16 pb-6">
-          <div className="max-w-xl lg:max-w-[540px]">
-            <Reveal>
-              <div className="flex items-center gap-2 text-[#d89626] font-bold tracking-[0.24em] text-xs sm:text-[12.5px] uppercase mb-3.5">
-                <span>FARIDABAD</span>
-                <span className="text-[10px]">•</span>
-                <span>SINCE DAY ONE</span>
-              </div>
+            <Link
+              to="/services"
+              className="inline-flex items-center gap-2 bg-[#081d3d]/90 hover:bg-[#081d3d] border border-[#d89626]/70 text-white font-semibold text-xs lg:text-sm px-5 lg:px-6 py-2.5 lg:py-3.5 rounded-lg shadow-md transition-all hover:scale-105 active:scale-95 backdrop-blur-xs"
+            >
+              <span>Explore Our Services</span>
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
 
-              <h1 className="font-display font-bold text-[#0b1f3a] text-4xl sm:text-5xl lg:text-[56px] leading-[1.1] tracking-tight">
-                Money moves
-                <br />
-                made{" "}
-                <span className="text-[#d89626] italic font-serif">simple.</span>
-              </h1>
-
-              <p className="mt-4 sm:mt-5 text-slate-600 text-sm sm:text-base md:text-[16px] leading-relaxed max-w-lg font-normal">
-                {hero.description}
-              </p>
-
-              {/* Action Buttons */}
-              <div className="mt-7 sm:mt-8 flex flex-wrap items-center gap-3.5 sm:gap-4">
-                <Link
-                  to="/contact"
-                  className="inline-flex items-center gap-2 bg-[#0b1f3a] hover:bg-[#061527] text-white font-semibold text-sm px-6 py-3.5 rounded-lg shadow-sm transition-all duration-200"
-                >
-                  <span>{hero.primaryCta}</span>
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
-
-                <Link
-                  to="/services"
-                  className="inline-flex items-center gap-2 border border-[#d89626] text-[#d89626] bg-white hover:bg-[#d89626] hover:text-white font-semibold text-sm px-6 py-3.5 rounded-lg shadow-sm transition-all duration-200"
-                >
-                  <span>{hero.secondaryCta}</span>
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
-              </div>
-            </Reveal>
+          {/* Invisible interactive click areas for the 3 service icons */}
+          <div
+            className="absolute z-20 flex items-center justify-between"
+            style={{
+              left: "4.5%",
+              bottom: "29%",
+              width: "36%",
+              height: "18%",
+            }}
+          >
+            {servicesBadges.map((badge, idx) => (
+              <Link
+                key={idx}
+                to={badge.to}
+                className="w-1/3 h-full cursor-pointer hover:opacity-80 transition-opacity"
+                title={`Explore ${badge.title}`}
+              />
+            ))}
           </div>
         </div>
+      </div>
 
-        {/* Embedded Stats Badges Row (Bottom of Hero) */}
-        <div className="relative z-10 w-full pb-6 md:pb-8 pt-2">
-          <div className="max-w-[1360px] mx-auto px-4 md:px-6">
-            <Reveal delay={120}>
-              <div className="inline-flex flex-wrap md:flex-nowrap items-center gap-4 sm:gap-6 md:gap-8 bg-white/70 backdrop-blur-md py-3 px-4 sm:px-6 rounded-2xl border border-white/80 shadow-[0_8px_30px_rgba(11,31,58,0.06)]">
-                {statsBadges.map((badge, idx) => {
-                  const IconComp = badge.icon;
-                  return (
-                    <div
-                      key={idx}
-                      className={`flex items-center gap-3 py-1.5 ${
-                        idx !== 0 ? "md:border-l md:border-slate-200/80 md:pl-8" : ""
-                      }`}
-                    >
-                      <div className="h-10 w-10 rounded-xl bg-amber-50/90 flex items-center justify-center shrink-0 border border-amber-200/50 shadow-xs">
-                        <IconComp className="h-5 w-5 text-[#d89626]" />
-                      </div>
-                      <div>
-                        <div className="font-display font-bold text-[#0b1f3a] text-sm sm:text-[15px] leading-tight">
-                          {badge.title}
-                        </div>
-                        <div className="text-xs text-slate-500 font-medium mt-0.5 leading-tight">
-                          {badge.subtitle}
-                        </div>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            </Reveal>
+      {/* Mobile: Clean Responsive Layout */}
+      <div className="md:hidden relative bg-[#081d3d] text-white px-5 py-10">
+        <Reveal>
+          <div className="flex items-center gap-2 text-[#d89626] font-bold tracking-[0.22em] text-xs uppercase mb-3">
+            <span>FARIDABAD</span>
+            <span className="text-[10px]">•</span>
+            <span>SINCE DAY ONE</span>
           </div>
+
+          <h1 className="font-display font-bold text-3xl sm:text-4xl text-white leading-tight">
+            Plan Today for a
+            <br />
+            <span className="text-[#d89626] font-serif">Brighter Tomorrow.</span>
+          </h1>
+
+          <p className="mt-4 text-white/80 text-sm leading-relaxed">
+            Expert guidance in Insurance, Mutual Funds and Loans to help you build a secure and prosperous future.
+          </p>
+
+          {/* 3 Service Badges */}
+          <div className="mt-6 grid grid-cols-3 gap-2 border-y border-white/15 py-4">
+            {servicesBadges.map((badge, idx) => {
+              const IconComp = badge.icon;
+              return (
+                <Link
+                  key={idx}
+                  to={badge.to}
+                  className="text-center flex flex-col items-center group"
+                >
+                  <div className="h-10 w-10 rounded-full bg-[#d89626]/15 border border-[#d89626] flex items-center justify-center mb-2 group-hover:bg-[#d89626] transition-colors">
+                    <IconComp className="h-5 w-5 text-[#d89626] group-hover:text-[#081d3d] transition-colors" />
+                  </div>
+                  <div className="font-bold text-xs text-white group-hover:text-[#d89626] transition-colors">
+                    {badge.title}
+                  </div>
+                  <div className="text-[10px] text-white/60 mt-0.5 leading-tight">
+                    {badge.subtitle}
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
+
+          {/* Action Buttons */}
+          <div className="mt-6 flex flex-col gap-3">
+            <Link
+              to="/contact"
+              className="inline-flex items-center justify-center gap-2 bg-[#d89626] hover:bg-[#c4841d] text-[#081d3d] font-bold text-sm px-6 py-3.5 rounded-lg shadow-md transition-all"
+            >
+              <span>Talk to an Expert</span>
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+
+            <Link
+              to="/services"
+              className="inline-flex items-center justify-center gap-2 bg-[#081d3d] border border-[#d89626] text-white font-semibold text-sm px-6 py-3.5 rounded-lg shadow-md transition-all"
+            >
+              <span>Explore Our Services</span>
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
+        </Reveal>
+
+        {/* Mobile artwork banner preview */}
+        <div className="mt-8 rounded-xl overflow-hidden border border-white/10 shadow-lg">
+          <img
+            src={heroBannerPlanToday}
+            alt="ANSH Capital Services - Plan Today for a Brighter Tomorrow"
+            className="w-full h-auto"
+          />
         </div>
-      </section>
+      </div>
     </div>
   );
 };
