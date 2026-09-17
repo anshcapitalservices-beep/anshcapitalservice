@@ -218,11 +218,10 @@ const ServicesPage = () => {
                     </Link>
 
                     <div className="p-6 md:p-7">
-                      <div className="flex items-baseline gap-2 mb-3">
-                        <span className="font-display text-2xl font-bold text-[#d89626]">
-                          {p.returns}
+                      <div className="flex items-center gap-2 mb-3">
+                        <span className="text-xs font-bold uppercase tracking-wider text-[#d89626] bg-[#faf6ee] px-3 py-1 rounded-md">
+                          {p.focus}
                         </span>
-                        <span className="text-xs text-slate-400 font-medium">indicative historical return</span>
                       </div>
 
                       <p className="text-sm text-slate-600 leading-relaxed mb-5">
@@ -289,7 +288,7 @@ const ServicesPage = () => {
             </div>
 
             <p className="mt-8 text-center text-xs text-slate-400">
-              *Returns are indicative and for illustration purposes only. Mutual fund investments are subject to market risks. Read all scheme related documents carefully.
+              *Mutual fund investments are subject to market risks. Read all scheme related documents carefully before investing.
             </p>
           </div>
         </section>

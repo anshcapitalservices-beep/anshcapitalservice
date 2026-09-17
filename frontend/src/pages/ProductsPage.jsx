@@ -57,11 +57,10 @@ const ProductsPage = () => {
                     </div>
                   </Link>
                   <div className="p-6">
-                    <div className="flex items-baseline gap-2 mb-3">
-                      <span className="font-display text-2xl font-bold text-gold">
-                        {p.returns}
+                    <div className="flex items-center gap-2 mb-3">
+                      <span className="text-xs font-bold uppercase tracking-wider text-gold bg-gold/10 px-3 py-1 rounded-md">
+                        {p.focus}
                       </span>
-                      <span className="text-xs text-slate-400">expected returns</span>
                     </div>
                     <p className="text-sm text-slate-500 leading-relaxed mb-4">
                       {p.description}
@@ -99,7 +98,7 @@ const ProductsPage = () => {
           </div>
 
           <p className="mt-8 text-center text-xs text-slate-400">
-            *Returns are indicative and for illustration only. Mutual fund investments are subject to market risks.
+            *Mutual fund investments are subject to market risks. Read all scheme related documents carefully before investing.
           </p>
         </div>
       </section>

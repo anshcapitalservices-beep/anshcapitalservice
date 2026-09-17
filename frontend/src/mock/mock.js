@@ -3,9 +3,9 @@
 // All content here is mocked and can later be replaced by a real backend.
 // ============================================================
 
-import anshGuptaImg from "../assets/team/ansh-gupta.jpg";
-import kavitaRaoImg from "../assets/team/kavita-rao.jpg";
-import manishAggarwalImg from "../assets/team/manish-aggarwal.jpg";
+import ankurJainImg from "../assets/team/ansh-gupta.jpg";
+import nehaSabharwalImg from "../assets/team/kavita-rao.jpg";
+import vivekKapoorImg from "../assets/team/manish-aggarwal.jpg";
 import bannerMutualFunds from "../assets/banner_mutual_funds.png";
 import infographicMutualFunds from "../assets/infographic_mutual_funds.jpg";
 import bannerInsurance from "../assets/banner_insurance.jpg";
@@ -52,6 +52,7 @@ export const navLinks = [
         label: "Mutual Funds",
         to: "/services/mutual-funds",
         subItems: [
+          { label: "Mutual Funds Guide", to: "/services/mutual-funds#mutual-funds-guide" },
           { label: "Equity Funds", to: "/products/equity" },
           { label: "Debt Funds", to: "/products/debt" },
           { label: "Hybrid Funds", to: "/products/hybrid" },
@@ -63,17 +64,20 @@ export const navLinks = [
         label: "Insurance Solutions",
         to: "/services/insurance",
         subItems: [
+          { label: "Health Insurance Guide", to: "/services/insurance#health-insurance" },
+          { label: "Motor & Vehicle Insurance", to: "/services/insurance#motor-insurance" },
+          { label: "Life & Term Insurance Guide", to: "/services/insurance#life-insurance" },
           { label: "Child Education / Marriage Plan", to: "/services/insurance" },
           { label: "Retirement Solutions", to: "/services/insurance" },
           { label: "Guaranteed Plans", to: "/services/insurance" },
-          { label: "Health & Life Insurance", to: "/services/insurance" },
         ],
       },
       {
         label: "Loan Solutions",
         to: "/services/loans",
         subItems: [
-          { label: "Home Loan", to: "/services/loans" },
+          { label: "Loans Comprehensive Guide", to: "/services/loans#loans-guide" },
+          { label: "Home Loan (from 7.15%)", to: "/services/loans" },
           { label: "Personal Loan", to: "/services/loans" },
           { label: "Car Loan", to: "/services/loans" },
           { label: "Business Loan", to: "/services/loans" },
@@ -333,7 +337,7 @@ export const investmentOptions = [
   {
     id: "debt",
     title: "Debt Funds",
-    subtitle: "Stable returns lower risk",
+    subtitle: "Capital preservation with lower risk",
     image:
       "https://images.pexels.com/photos/34742289/pexels-photo-34742289.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
   },
@@ -644,19 +648,19 @@ export const aboutPage = {
   ],
   team: [
     {
-      name: "Ansh Gupta",
-      role: "Founder & Principal Advisor",
-      avatar: anshGuptaImg,
+      name: "Ankur Jain",
+      role: "Founder",
+      avatar: ankurJainImg,
     },
     {
-      name: "Kavita Rao",
-      role: "Insurance Specialist",
-      avatar: kavitaRaoImg,
+      name: "Neha Sabharwal",
+      role: "Business Head – Insurance and Investments",
+      avatar: nehaSabharwalImg,
     },
     {
-      name: "Manish Aggarwal",
-      role: "Mutual Fund Advisor",
-      avatar: manishAggarwalImg,
+      name: "Vivek Kapoor",
+      role: "Senior Manager – Client Relationship & Services",
+      avatar: vivekKapoorImg,
     },
   ],
 };
@@ -720,7 +724,7 @@ export const products = [
     id: "equity",
     title: "Equity Funds",
     risk: "High",
-    returns: "12-15% p.a.*",
+    focus: "Long-Term Capital Growth",
     description:
       "Ideal for long-term wealth creation. These funds invest primarily in stocks for high growth potential.",
     image:
@@ -733,8 +737,7 @@ export const products = [
       overview:
         "Equity mutual funds pool capital from investors to invest primarily in equity shares of publicly listed companies across market capitalizations. By holding a diversified basket of 30–60 high-conviction stocks, equity funds offer substantial long-term wealth compounding, beat inflation, and allow retail investors to participate directly in India's corporate growth story without needing to research individual stocks.",
       idealHorizon: "5+ Years (Recommended 7-10 Years)",
-      riskProfile: "High Risk — High Potential Return",
-      indicativeReturn: "12% - 15% p.a.*",
+      riskProfile: "High Risk — Equity Market Linked",
       scope: [
         "Large Cap Funds — Top 100 established blue-chip companies with stable balance sheets and proven track records.",
         "Mid Cap Funds — High-growth companies ranked 101 to 250 with strong earnings momentum and aggressive expansion.",
@@ -745,7 +748,7 @@ export const products = [
       ],
       benefits: [
         {
-          title: "Superior Inflation-Beating Returns",
+          title: "Superior Inflation-Beating Potential",
           desc: "Historically outperforms fixed deposits, gold, and real estate over 7+ year time horizons through corporate earnings compounding.",
         },
         {
@@ -818,9 +821,9 @@ export const products = [
     id: "debt",
     title: "Debt Funds",
     risk: "Low",
-    returns: "6-8% p.a.*",
+    focus: "Capital Preservation & Income",
     description:
-      "Stable, lower-risk investments in bonds and fixed-income securities for steady returns.",
+      "Stable, lower-risk investments in bonds and fixed-income securities for capital safety and steady income.",
     image:
       "https://images.pexels.com/photos/34742289/pexels-photo-34742289.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
     features: ["Capital preservation", "Steady income", "High liquidity"],
@@ -829,10 +832,9 @@ export const products = [
         "https://images.pexels.com/photos/34742289/pexels-photo-34742289.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
       tagline: "Capital preservation, predictable income, and institutional liquidity",
       overview:
-        "Debt mutual funds invest in fixed-income securities including Government Bonds (G-Secs), Treasury Bills, AAA-rated Corporate Debentures, Certificates of Deposit (CDs), and Commercial Papers. They generate steady returns primarily through periodic interest coupon payments and capital appreciation, providing a much higher degree of capital safety and liquidity than equity markets.",
+        "Debt mutual funds invest in fixed-income securities including Government Bonds (G-Secs), Treasury Bills, AAA-rated Corporate Debentures, Certificates of Deposit (CDs), and Commercial Papers. They generate steady income and capital stability primarily through periodic interest coupon payments, providing a much higher degree of capital safety and liquidity than equity markets.",
       idealHorizon: "1 Day to 3 Years (Flexible)",
       riskProfile: "Low to Moderate Risk",
-      indicativeReturn: "6% - 8% p.a.*",
       scope: [
         "Liquid & Overnight Funds — Parking emergency funds and surplus business cash for 1 day to 3 months with instant redemption up to ₹50,000.",
         "Ultra Short & Low Duration Funds — Suitable for 3 to 12 months with low interest rate sensitivity and higher yields than bank savings.",
@@ -916,7 +918,7 @@ export const products = [
     id: "hybrid",
     title: "Hybrid Funds",
     risk: "Medium",
-    returns: "9-11% p.a.*",
+    focus: "Balanced Growth & Stability",
     description:
       "A balanced mix of equity and debt to give you growth with reduced volatility.",
     image:
@@ -930,7 +932,6 @@ export const products = [
         "Hybrid mutual funds strategically combine equity (stocks) and debt (bonds and fixed income) within a single portfolio. When equity markets rally, the stock component captures capital growth; when equity markets experience sharp dips, the debt component acts as a resilient shock absorber. With dynamic automatic rebalancing, hybrid funds deliver smoother wealth creation without emotional panic.",
       idealHorizon: "3 to 5 Years",
       riskProfile: "Moderate Risk",
-      indicativeReturn: "9% - 11% p.a.*",
       scope: [
         "Balanced Advantage / Dynamic Asset Allocation (BAF) — Uses quantitative valuation models to dynamically shift between 30% and 80% equity, buying low and selling high automatically.",
         "Aggressive Hybrid Funds — Maintains 65% to 80% in equities and 20% to 35% in debt. Qualifies for equity taxation while cutting downside volatility.",
@@ -1014,12 +1015,12 @@ export const products = [
     id: "index",
     title: "Index Funds",
     risk: "Medium",
-    returns: "10-12% p.a.*",
+    focus: "Low-Cost Index Tracking",
     description:
       "Low-cost passive funds that track a market index like the Nifty 50 or Sensex.",
     image:
       "https://images.unsplash.com/photo-1433002208920-1362f13a93a3?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1Nzh8MHwxfHNlYXJjaHw0fHxhZXJpYWwlMjB2aWV3JTIwaG9yaXpvbnxlbnwwfHx8fDE3ODY3MTQ4MDN8MA&ixlib=rb-4.1.0&q=85",
-    features: ["Ultra low cost", "Market returns", "Fully transparent"],
+    features: ["Ultra low cost", "Index tracking", "Fully transparent"],
     detail: {
       heroImage:
         "https://images.unsplash.com/photo-1433002208920-1362f13a93a3?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1Nzh8MHwxfHNlYXJjaHw0fHxhZXJpYWwlMjB2aWV3JTIwaG9yaXpvbnxlbnwwfHx8fDE3ODY3MTQ4MDN8MA&ixlib=rb-4.1.0&q=85",
@@ -1028,7 +1029,6 @@ export const products = [
         "Index mutual funds and ETFs are passive investments that replicate the exact portfolio and company weights of a benchmark index like the Nifty 50, BSE Sensex, or Nifty Next 50. Instead of paying expensive management teams to guess which individual stocks will win, index funds capture the broad economic growth of India's leading corporations at razor-thin expense ratios.",
       idealHorizon: "5+ Years",
       riskProfile: "Moderate to High Risk (Matches Benchmark)",
-      indicativeReturn: "10% - 12% p.a.*",
       scope: [
         "Nifty 50 Index Funds — Invests in India's top 50 blue-chip market leaders representing over 60% of total free-float market cap.",
         "BSE Sensex 30 Index Funds — Tracks the 30 largest, most liquid companies listed on the Bombay Stock Exchange.",

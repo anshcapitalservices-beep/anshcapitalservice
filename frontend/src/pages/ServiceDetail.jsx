@@ -13,11 +13,28 @@ import {
 import PageHeader from "../components/PageHeader";
 import Reveal from "../components/Reveal";
 import { Icon } from "../components/iconMap";
+import HealthInsuranceGuide from "../components/HealthInsuranceGuide";
+import MotorInsuranceGuide from "../components/MotorInsuranceGuide";
+import LifeInsuranceGuide from "../components/LifeInsuranceGuide";
+import MutualFundsGuide from "../components/MutualFundsGuide";
+import LoansGuide from "../components/LoansGuide";
 import { services } from "../mock/mock";
 
 const ServiceDetail = () => {
   const { serviceId } = useParams();
   const service = services.find((s) => s.id === serviceId);
+
+  React.useEffect(() => {
+    if (window.location.hash) {
+      const hashId = window.location.hash.replace("#", "");
+      setTimeout(() => {
+        const elem = document.getElementById(hashId);
+        if (elem) {
+          elem.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 100);
+    }
+  }, [serviceId]);
 
   if (!service || !service.detail) {
     return <Navigate to="/services" replace />;
@@ -118,6 +135,21 @@ const ServiceDetail = () => {
           </div>
         </div>
       </section>
+
+      {/* Comprehensive Mutual Funds Breakdown Section */}
+      {service.id === "mutual-funds" && <MutualFundsGuide />}
+
+      {/* Comprehensive Health Insurance Breakdown Section */}
+      {service.id === "insurance" && <HealthInsuranceGuide />}
+
+      {/* Comprehensive Motor & Vehicle Insurance Breakdown Section */}
+      {service.id === "insurance" && <MotorInsuranceGuide />}
+
+      {/* Comprehensive Life & Term Insurance Breakdown Section */}
+      {service.id === "insurance" && <LifeInsuranceGuide />}
+
+      {/* Comprehensive Loans & Credit Breakdown Section */}
+      {service.id === "loans" && <LoansGuide />}
 
       {/* Special Infographic Section for Mutual Funds */}
       {service.id === "mutual-funds" && detail.infographicImage && (
