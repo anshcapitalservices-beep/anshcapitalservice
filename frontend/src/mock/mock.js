@@ -64,19 +64,16 @@ export const navLinks = [
         label: "Insurance Solutions",
         to: "/services/insurance",
         subItems: [
-          { label: "Health Insurance Guide", to: "/services/insurance#health-insurance" },
-          { label: "Motor & Vehicle Insurance", to: "/services/insurance#motor-insurance" },
-          { label: "Life & Term Insurance Guide", to: "/services/insurance#life-insurance" },
           { label: "Child Education / Marriage Plan", to: "/services/insurance" },
           { label: "Retirement Solutions", to: "/services/insurance" },
           { label: "Guaranteed Plans", to: "/services/insurance" },
+          { label: "Health & Life Insurance", to: "/services/insurance" },
         ],
       },
       {
         label: "Loan Solutions",
         to: "/services/loans",
         subItems: [
-          { label: "Loans Comprehensive Guide", to: "/services/loans#loans-guide" },
           { label: "Home Loan (from 7.15%)", to: "/services/loans" },
           { label: "Personal Loan", to: "/services/loans" },
           { label: "Car Loan", to: "/services/loans" },
