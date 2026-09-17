@@ -61,14 +61,14 @@ const Contact = () => {
             <div className="rounded-2xl overflow-hidden border border-slate-100 shadow-sm">
               <iframe
                 title="ANSH Capital Services location"
-                src="https://www.google.com/maps?q=RPS+12th+Avenue+Sector+27C+Mathura+Road+Faridabad+Haryana&output=embed"
+                src="https://www.google.com/maps?q=RPS+12+Avenue+Tower-4+Lower+Ground+Floor+Sec-27C+Mathura+Road+Faridabad+Haryana+121001&output=embed"
                 className="w-full h-[320px] md:h-[380px]"
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
               />
             </div>
             <a
-              href="https://www.google.com/maps/dir/?api=1&destination=RPS+12th+Avenue+Sector+27C+Mathura+Road+Faridabad+Haryana"
+              href={company.mapUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="mt-4 inline-flex items-center gap-2 bg-[#0b1f3a] hover:bg-[#061527] text-white font-semibold text-sm px-5 py-3 rounded-lg transition-colors"

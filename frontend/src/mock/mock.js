@@ -32,7 +32,8 @@ export const company = {
     { day: "Mon - Sat", hours: "10:00 AM - 7:00 PM" },
     { day: "Sunday", hours: "Closed" },
   ],
-  mapUrl: "https://maps.google.com/?q=Faridabad+Haryana",
+  mapUrl:
+    "https://www.google.com/maps/dir/?api=1&destination=RPS+12+Avenue+Tower-4+Lower+Ground+Floor+Sec-27C+Mathura+Road+Faridabad+Haryana+121001",
 };
 
 export const topBar = {
