@@ -319,8 +319,8 @@ export const processSteps = [
 
 export const investIntro = {
   eyebrow: "INVEST SMARTLY",
-  titleLine1: "How We Help You",
-  titleLine2: "Achieve Your Goals",
+  titleLine1: "Curated Mutual Funds",
+  titleLine2: "For Every Goal",
   description:
     "Choose from a wide range of mutual fund schemes tailored to your risk profile and financial objectives.",
   cta: "Explore Mutual Funds",
