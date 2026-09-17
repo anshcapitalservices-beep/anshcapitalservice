@@ -202,28 +202,6 @@ const ServiceDetail = () => {
         </section>
       )}
 
-      {/* Special Secondary Asset & Travel Protection Banner for Insurance */}
-      {service.id === "insurance" && (detail.assetBanner || detail.vehicleBanner) && (
-        <section className="bg-[#faf6ee] py-12 md:py-16 border-t border-[#d89626]/20">
-          <div className="max-w-[1280px] mx-auto px-4 md:px-6">
-            <Reveal className="text-center max-w-2xl mx-auto mb-8">
-              <p className="text-[#d89626] font-bold tracking-[0.22em] text-xs uppercase mb-2">
-                HOME, TRAVEL & ACCIDENT COVERAGE
-              </p>
-              <h2 className="font-display text-2xl md:text-3xl font-bold text-[#0b1f3a]">
-                Your Secure Whole World. Protect What Matters Most.
-              </h2>
-            </Reveal>
-            <Reveal delay={100} className="rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg border border-slate-100 max-w-5xl mx-auto">
-              <img
-                src={detail.assetBanner || detail.vehicleBanner}
-                alt="Your Secure Whole World. Protect What Matters Most. ANSH Capital Services"
-                className="w-full h-auto block"
-              />
-            </Reveal>
-          </div>
-        </section>
-      )}
 
       {/* Process Section */}
       <section className="bg-[#0b1f3a] py-14 md:py-20 relative overflow-hidden">
