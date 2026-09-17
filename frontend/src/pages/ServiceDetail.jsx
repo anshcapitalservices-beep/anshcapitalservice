@@ -178,28 +178,6 @@ const ServiceDetail = () => {
         </section>
       )}
 
-      {/* Special Health Insurance Banner for Insurance */}
-      {service.id === "insurance" && detail.healthBanner && (
-        <section className="bg-[#faf6ee] py-12 md:py-16 border-t border-[#d89626]/20">
-          <div className="max-w-[1280px] mx-auto px-4 md:px-6">
-            <Reveal className="text-center max-w-2xl mx-auto mb-8">
-              <p className="text-[#d89626] font-bold tracking-[0.22em] text-xs uppercase mb-2">
-                HEALTH & FAMILY WELLNESS
-              </p>
-              <h2 className="font-display text-2xl md:text-3xl font-bold text-[#0b1f3a]">
-                Secure Your Health. Protect Your Future.
-              </h2>
-            </Reveal>
-            <Reveal delay={100} className="rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl border border-slate-100 bg-white max-w-4xl mx-auto">
-              <img
-                src={detail.healthBanner}
-                alt="ANSH Capital Health Insurance Banner"
-                className="w-full h-auto"
-              />
-            </Reveal>
-          </div>
-        </section>
-      )}
 
       {/* Special Life Insurance Legacy Banner for Insurance */}
       {service.id === "insurance" && detail.legacyBanner && (
