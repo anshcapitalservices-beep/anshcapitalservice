@@ -1,37 +1,23 @@
 {
-  "version": 2,
-  "builds": [
-    {
-      "src": "backend/server.py",
-      "use": "@vercel/python",
-      "config": {
-        "includeFiles": ["backend/firebase_service_account.json"]
-      }
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "services": {
+    "backend": {
+      "root": "backend",
+      "framework": "fastapi"
     },
-    {
-      "src": "frontend/package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "build"
-      }
+    "frontend": {
+      "root": "frontend",
+      "framework": "create-react-app"
     }
-  ],
-  "routes": [
+  },
+  "rewrites": [
     {
-      "src": "/api/(.*)",
-      "dest": "backend/server.py"
+      "source": "/api/:path*",
+      "destination": "backend/api/:path*"
     },
     {
-      "src": "/static/(.*)",
-      "dest": "frontend/static/$1"
-    },
-    {
-      "src": "/(favicon\\.ico|favicon\\.svg|favicon\\.png|logo.*\\.png|logo-transparent\\.png|manifest\\.json|robots\\.txt|asset-manifest\\.json)",
-      "dest": "frontend/$1"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "frontend/index.html"
+      "source": "/:path*",
+      "destination": "frontend/:path*"
     }
   ]
 }
