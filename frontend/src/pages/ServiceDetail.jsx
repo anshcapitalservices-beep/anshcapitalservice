@@ -169,6 +169,7 @@ const ServiceDetail = () => {
 
             <Reveal delay={100} className="rounded-2xl overflow-hidden shadow-xl border border-slate-200 bg-white max-w-4xl mx-auto">
               <img
+                loading="lazy" decoding="async"
                 src={detail.infographicImage}
                 alt="Direct Investment vs Mutual Fund Infographic"
                 className="w-full h-auto"
@@ -193,6 +194,7 @@ const ServiceDetail = () => {
             </Reveal>
             <Reveal delay={100} className="rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg border border-slate-100">
               <img
+                loading="lazy" decoding="async"
                 src={detail.legacyBanner}
                 alt="ANSH Capital Life Insurance Legacy Banner"
                 className="w-full h-auto block"

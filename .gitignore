@@ -40,3 +40,6 @@ yarn-error.log*
 # Firebase service account keys (set FIREBASE_SERVICE_ACCOUNT_JSON in Vercel instead)
 *firebase-adminsdk*.json
 backend/firebase_service_account.json
+
+# Backend secrets (configure these as Vercel environment variables)
+backend/.env

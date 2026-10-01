@@ -3,19 +3,19 @@
 // All content here is mocked and can later be replaced by a real backend.
 // ============================================================
 
-import ankurJainImg from "../assets/team/ansh-gupta.jpg";
-import nehaSabharwalImg from "../assets/team/kavita-rao.jpg";
-import vivekKapoorImg from "../assets/team/manish-aggarwal.jpg";
-import bannerMutualFunds from "../assets/banner_mutual_funds.png";
-import infographicMutualFunds from "../assets/infographic_mutual_funds.jpg";
-import bannerInsurance from "../assets/banner_insurance.jpg";
-import bannerAssetProtection from "../assets/banner_asset_protection.png";
-import bannerHealthInsurance from "../assets/banner_health_insurance.png";
-import bannerLifeInsuranceLegacy from "../assets/banner_life_insurance_legacy.png";
-import bannerPlanToday from "../assets/banner_plan_today.png";
-import bannerOurMissionTeam from "../assets/banner_our_mission_team.png";
-import bannerConnectContact from "../assets/banner_connect_contact.jpg";
-import bannerLoans from "../assets/banner_loans.png";
+import ankurJainImg from "../assets/team/ansh-gupta.webp";
+import nehaSabharwalImg from "../assets/team/kavita-rao.webp";
+import vivekKapoorImg from "../assets/team/manish-aggarwal.webp";
+import bannerMutualFunds from "../assets/banner_mutual_funds.webp";
+import infographicMutualFunds from "../assets/infographic_mutual_funds.webp";
+import bannerInsurance from "../assets/banner_insurance.webp";
+import bannerAssetProtection from "../assets/banner_asset_protection.webp";
+import bannerHealthInsurance from "../assets/banner_health_insurance.webp";
+import bannerLifeInsuranceLegacy from "../assets/banner_life_insurance_legacy.webp";
+import bannerPlanToday from "../assets/banner_plan_today.webp";
+import bannerOurMissionTeam from "../assets/banner_our_mission_team.webp";
+import bannerConnectContact from "../assets/banner_connect_contact.webp";
+import bannerLoans from "../assets/banner_loans.webp";
 
 export const company = {
   name: "ANSH",
@@ -103,7 +103,7 @@ export const hero = {
   primaryCta: "Talk to an Expert",
   secondaryCta: "Explore Our Services",
   image:
-    "https://images.pexels.com/photos/13515445/pexels-photo-13515445.jpeg",
+    "https://images.pexels.com/photos/13515445/pexels-photo-13515445.jpeg?auto=compress&cs=tinysrgb&w=1200",
   stats: [
     { value: "19+", label: "Years of Experience", icon: "Users" },
     { value: "500+", label: "Satisfied Clients", icon: "ShieldCheck" },
@@ -330,7 +330,7 @@ export const investmentOptions = [
     title: "Equity Funds",
     subtitle: "High growth wealth creation",
     image:
-      "https://images.pexels.com/photos/16876265/pexels-photo-16876265.jpeg",
+      "https://images.pexels.com/photos/16876265/pexels-photo-16876265.jpeg?auto=compress&cs=tinysrgb&w=1200",
   },
   {
     id: "debt",
@@ -344,14 +344,14 @@ export const investmentOptions = [
     title: "Hybrid Funds",
     subtitle: "Balanced growth with stability",
     image:
-      "https://images.pexels.com/photos/16204377/pexels-photo-16204377.jpeg",
+      "https://images.pexels.com/photos/16204377/pexels-photo-16204377.jpeg?auto=compress&cs=tinysrgb&w=1200",
   },
   {
     id: "index",
     title: "Index Funds",
     subtitle: "Low cost passive investing",
     image:
-      "https://images.unsplash.com/photo-1433002208920-1362f13a93a3?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1Nzh8MHwxfHNlYXJjaHw0fHxhZXJpYWwlMjB2aWV3JTIwaG9yaXpvbnxlbnwwfHx8fDE3ODY3MTQ4MDN8MA&ixlib=rb-4.1.0&q=85",
+      "https://images.unsplash.com/photo-1433002208920-1362f13a93a3?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1Nzh8MHwxfHNlYXJjaHw0fHxhZXJpYWwlMjB2aWV3JTIwaG9yaXpvbnxlbnwwfHx8fDE3ODY3MTQ4MDN8MA&ixlib=rb-4.1.0&q=85&w=1200&auto=format",
   },
 ];
 
@@ -375,21 +375,21 @@ export const goals = [
     title: "Buy Your Dream Home",
     icon: "Home",
     image:
-      "https://images.pexels.com/photos/186077/pexels-photo-186077.jpeg",
+      "https://images.pexels.com/photos/186077/pexels-photo-186077.jpeg?auto=compress&cs=tinysrgb&w=1200",
   },
   {
     id: "education",
     title: "Child's Education",
     icon: "GraduationCap",
     image:
-      "https://images.unsplash.com/photo-1618355776464-8666794d2520?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Nzd8MHwxfHNlYXJjaHwxfHxncmFkdWF0aW9uJTIwZWR1Y2F0aW9ufGVufDB8fHx8MTc4MTg1NzI2M3ww&ixlib=rb-4.1.0&q=85",
+      "https://images.unsplash.com/photo-1618355776464-8666794d2520?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Nzd8MHwxfHNlYXJjaHwxfHxncmFkdWF0aW9uJTIwZWR1Y2F0aW9ufGVufDB8fHx8MTc4MTg1NzI2M3ww&ixlib=rb-4.1.0&q=85&w=1200&auto=format",
   },
   {
     id: "wealth",
     title: "Wealth Creation",
     icon: "TrendingUp",
     image:
-      "https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1ODB8MHwxfHNlYXJjaHwxfHx3ZWFsdGglMjBncm93dGh8ZW58MHx8fHwxNzg4NDMzNjAzfDA&ixlib=rb-4.1.0&q=85",
+      "https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1ODB8MHwxfHNlYXJjaHwxfHx3ZWFsdGglMjBncm93dGh8ZW58MHx8fHwxNzg4NDMzNjAzfDA&ixlib=rb-4.1.0&q=85&w=1200&auto=format",
   },
   {
     id: "retirement",
@@ -403,7 +403,7 @@ export const goals = [
     title: "Financial Protection",
     icon: "BarChart3",
     image:
-      "https://images.pexels.com/photos/9467762/pexels-photo-9467762.jpeg",
+      "https://images.pexels.com/photos/9467762/pexels-photo-9467762.jpeg?auto=compress&cs=tinysrgb&w=1200",
   },
 ];
 
@@ -502,7 +502,7 @@ export const insights = [
     date: "May 12, 2024",
     readTime: "5 min read",
     image:
-      "https://images.unsplash.com/photo-1579621970795-87facc2f976d?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1NjZ8MHwxfHNlYXJjaHwyfHxmaW5hbmNpYWwlMjBwbGFubmluZ3xlbnwwfHx8fDE3ODg0MzM3MDF8MA&ixlib=rb-4.1.0&q=85",
+      "https://images.unsplash.com/photo-1579621970795-87facc2f976d?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1NjZ8MHwxfHNlYXJjaHwyfHxmaW5hbmNpYWwlMjBwbGFubmluZ3xlbnwwfHx8fDE3ODg0MzM3MDF8MA&ixlib=rb-4.1.0&q=85&w=1200&auto=format",
     excerpt:
       "Understand the difference between systematic investing and one-time investing to choose the right strategy for your goals.",
   },
@@ -513,7 +513,7 @@ export const insights = [
     date: "May 08, 2024",
     readTime: "6 min read",
     image:
-      "https://images.unsplash.com/photo-1506836467174-27f1042aa48c?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxODl8MHwxfHNlYXJjaHwxfHxmYW1pbHklMjBpbnN1cmFuY2V8ZW58MHx8fHwxNzg4NDMzNzAxfDA&ixlib=rb-4.1.0&q=85",
+      "https://images.unsplash.com/photo-1506836467174-27f1042aa48c?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxODl8MHwxfHNlYXJjaHwxfHxmYW1pbHklMjBpbnN1cmFuY2V8ZW58MHx8fHwxNzg4NDMzNzAxfDA&ixlib=rb-4.1.0&q=85&w=1200&auto=format",
     excerpt:
       "A simple framework to calculate the right cover so your family stays protected no matter what happens.",
   },
@@ -524,7 +524,7 @@ export const insights = [
     date: "April 29, 2024",
     readTime: "7 min read",
     image:
-      "https://images.unsplash.com/photo-1560518883-ce09059eeffa?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjY2NzF8MHwxfHNlYXJjaHwzfHxob21lJTIwbG9hbnxlbnwwfHx8fDE3ODg0MzM3MDN8MA&ixlib=rb-4.1.0&q=85",
+      "https://images.unsplash.com/photo-1560518883-ce09059eeffa?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjY2NzF8MHwxfHNlYXJjaHwzfHxob21lJTIwbG9hbnxlbnwwfHx8fDE3ODg0MzM3MDN8MA&ixlib=rb-4.1.0&q=85&w=1200&auto=format",
     excerpt:
       "Everything a first-time buyer needs to know about eligibility, interest rates, EMIs and documentation.",
   },
@@ -535,7 +535,7 @@ export const insights = [
     date: "April 18, 2024",
     readTime: "6 min read",
     image:
-      "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjY2NzF8MHwxfHNlYXJjaHwxfHx0YXglMjBzYXZpbmd8ZW58MHx8fHwxNzg4NDMzNzAxfDA&ixlib=rb-4.1.0&q=85",
+      "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjY2NzF8MHwxfHNlYXJjaHwxfHx0YXglMjBzYXZpbmd8ZW58MHx8fHwxNzg4NDMzNzAxfDA&ixlib=rb-4.1.0&q=85&w=1200&auto=format",
     excerpt:
       "A complete breakdown of deductions under 80C, 80D and standard deductions compared against lower slab rates.",
   },
@@ -546,7 +546,7 @@ export const insights = [
     date: "April 05, 2024",
     readTime: "4 min read",
     image:
-      "https://images.unsplash.com/photo-1553729459-efe14ef6055d?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjY2NzF8MHwxfHNlYXJjaHwxfHxzYXZpbmdzfGVufDB8fHx8MTc4ODQzMzcwMXww&ixlib=rb-4.1.0&q=85",
+      "https://images.unsplash.com/photo-1553729459-efe14ef6055d?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjY2NzF8MHwxfHNlYXJjaHwxfHxzYXZpbmdzfGVufDB8fHx8MTc4ODQzMzcwMXww&ixlib=rb-4.1.0&q=85&w=1200&auto=format",
     excerpt:
       "Why keeping emergency money in locked instruments hurts you, and where you should ideally park 6 months of expenses.",
   },
@@ -557,7 +557,7 @@ export const insights = [
     date: "March 24, 2024",
     readTime: "8 min read",
     image:
-      "https://images.unsplash.com/photo-1473186578172-c141e6798cf4?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjY2NzF8MHwxfHNlYXJjaHwxfHxyZXRpcmVtZW50fGVufDB8fHx8MTc4ODQzMzcwMXww&ixlib=rb-4.1.0&q=85",
+      "https://images.unsplash.com/photo-1473186578172-c141e6798cf4?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjY2NzF8MHwxfHNlYXJjaHwxfHxyZXRpcmVtZW50fGVufDB8fHx8MTc4ODQzMzcwMXww&ixlib=rb-4.1.0&q=85&w=1200&auto=format",
     excerpt:
       "Factor inflation, medical expenses, and lifestyle needs into your retirement calculation with our step-by-step formula.",
   },
@@ -726,11 +726,11 @@ export const products = [
     description:
       "Ideal for long-term wealth creation. These funds invest primarily in stocks for high growth potential.",
     image:
-      "https://images.pexels.com/photos/16876265/pexels-photo-16876265.jpeg",
+      "https://images.pexels.com/photos/16876265/pexels-photo-16876265.jpeg?auto=compress&cs=tinysrgb&w=1200",
     features: ["Long-term growth", "Tax-efficient (ELSS)", "SIP available"],
     detail: {
       heroImage:
-        "https://images.pexels.com/photos/16876265/pexels-photo-16876265.jpeg",
+        "https://images.pexels.com/photos/16876265/pexels-photo-16876265.jpeg?auto=compress&cs=tinysrgb&w=1200",
       tagline: "High-growth wealth creation for long-term financial freedom",
       overview:
         "Equity mutual funds pool capital from investors to invest primarily in equity shares of publicly listed companies across market capitalizations. By holding a diversified basket of 30–60 high-conviction stocks, equity funds offer substantial long-term wealth compounding, beat inflation, and allow retail investors to participate directly in India's corporate growth story without needing to research individual stocks.",
@@ -920,11 +920,11 @@ export const products = [
     description:
       "A balanced mix of equity and debt to give you growth with reduced volatility.",
     image:
-      "https://images.pexels.com/photos/16204377/pexels-photo-16204377.jpeg",
+      "https://images.pexels.com/photos/16204377/pexels-photo-16204377.jpeg?auto=compress&cs=tinysrgb&w=1200",
     features: ["Balanced approach", "Auto rebalancing", "Moderate risk"],
     detail: {
       heroImage:
-        "https://images.pexels.com/photos/16204377/pexels-photo-16204377.jpeg",
+        "https://images.pexels.com/photos/16204377/pexels-photo-16204377.jpeg?auto=compress&cs=tinysrgb&w=1200",
       tagline: "The best of both worlds — equity growth engine with debt safety cushion",
       overview:
         "Hybrid mutual funds strategically combine equity (stocks) and debt (bonds and fixed income) within a single portfolio. When equity markets rally, the stock component captures capital growth; when equity markets experience sharp dips, the debt component acts as a resilient shock absorber. With dynamic automatic rebalancing, hybrid funds deliver smoother wealth creation without emotional panic.",
@@ -1017,11 +1017,11 @@ export const products = [
     description:
       "Low-cost passive funds that track a market index like the Nifty 50 or Sensex.",
     image:
-      "https://images.unsplash.com/photo-1433002208920-1362f13a93a3?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1Nzh8MHwxfHNlYXJjaHw0fHxhZXJpYWwlMjB2aWV3JTIwaG9yaXpvbnxlbnwwfHx8fDE3ODY3MTQ4MDN8MA&ixlib=rb-4.1.0&q=85",
+      "https://images.unsplash.com/photo-1433002208920-1362f13a93a3?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1Nzh8MHwxfHNlYXJjaHw0fHxhZXJpYWwlMjB2aWV3JTIwaG9yaXpvbnxlbnwwfHx8fDE3ODY3MTQ4MDN8MA&ixlib=rb-4.1.0&q=85&w=1200&auto=format",
     features: ["Ultra low cost", "Index tracking", "Fully transparent"],
     detail: {
       heroImage:
-        "https://images.unsplash.com/photo-1433002208920-1362f13a93a3?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1Nzh8MHwxfHNlYXJjaHw0fHxhZXJpYWwlMjB2aWV3JTIwaG9yaXpvbnxlbnwwfHx8fDE3ODY3MTQ4MDN8MA&ixlib=rb-4.1.0&q=85",
+        "https://images.unsplash.com/photo-1433002208920-1362f13a93a3?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1Nzh8MHwxfHNlYXJjaHw0fHxhZXJpYWwlMjB2aWV3JTIwaG9yaXpvbnxlbnwwfHx8fDE3ODY3MTQ4MDN8MA&ixlib=rb-4.1.0&q=85&w=1200&auto=format",
       tagline: "Low-cost, zero-bias, transparent passive compounding tracking India's top indices",
       overview:
         "Index mutual funds and ETFs are passive investments that replicate the exact portfolio and company weights of a benchmark index like the Nifty 50, BSE Sensex, or Nifty Next 50. Instead of paying expensive management teams to guess which individual stocks will win, index funds capture the broad economic growth of India's leading corporations at razor-thin expense ratios.",

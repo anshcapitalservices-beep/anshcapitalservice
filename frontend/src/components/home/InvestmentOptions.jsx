@@ -41,6 +41,7 @@ const InvestmentOptions = () => {
                   className="group block relative rounded-xl overflow-hidden h-52 md:h-60"
                 >
                   <img
+                    loading="lazy" decoding="async"
                     src={opt.image}
                     alt={opt.title}
                     className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"

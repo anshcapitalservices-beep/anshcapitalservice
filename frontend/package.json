@@ -39,6 +39,7 @@
     "cra-template": "1.2.0",
     "date-fns": "4.1.0",
     "dayjs": "1.11.13",
+    "dompurify": "3.2.6",
     "embla-carousel-react": "8.6.0",
     "framer-motion": "11.18.0",
     "input-otp": "1.4.2",
@@ -62,7 +63,7 @@
   },
   "scripts": {
     "start": "craco start",
-    "build": "CI=false craco build",
+    "build": "CI=false GENERATE_SOURCEMAP=false INLINE_RUNTIME_CHUNK=false craco build",
     "test": "craco test"
   },
   "browserslist": {

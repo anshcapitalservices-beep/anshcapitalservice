@@ -4,6 +4,7 @@ import { ArrowRight } from "lucide-react";
 import PageHeader from "../components/PageHeader";
 import Reveal from "../components/Reveal";
 import { blogApi } from "../lib/api";
+import { optimizeImageUrl } from "../lib/utils";
 
 const SkeletonCard = () => (
   <div className="bg-white rounded-xl overflow-hidden border border-slate-100">
@@ -86,7 +87,8 @@ const Blog = () => {
                   >
                     <div className="overflow-hidden">
                       <img
-                        src={post.image}
+                        loading="lazy" decoding="async"
+                        src={optimizeImageUrl(post.image)}
                         alt={post.title}
                         className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
                       />

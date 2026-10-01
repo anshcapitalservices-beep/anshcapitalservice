@@ -115,13 +115,13 @@ backend:
     status_history:
         -working: "NA"
         -agent: "main"
-        -comment: "Password auth against ADMIN_PASSWORD env (ansh@admin2025). Returns bearer token (ADMIN_TOKEN). Wrong password should 401."
+        -comment: "Password auth against ADMIN_PASSWORD env (<redacted>). Returns bearer token (ADMIN_TOKEN). Wrong password should 401."
         -working: true
         -agent: "testing"
-        -comment: "✅ TESTED & WORKING. All auth tests passed: (1) Wrong password returns 401 with 'Invalid password' detail, (2) Correct password (ansh@admin2025) returns 200 with token. Token format verified and used successfully in subsequent protected endpoint tests."
+        -comment: "✅ TESTED & WORKING. All auth tests passed: (1) Wrong password returns 401 with 'Invalid password' detail, (2) Correct password (<redacted>) returns 200 with token. Token format verified and used successfully in subsequent protected endpoint tests."
         -working: true
         -agent: "testing"
-        -comment: "✅ RE-VERIFIED AFTER FIRESTORE MIGRATION. Auth working correctly: (1) Wrong password returns 401, (2) Correct password returns 200 with token 'ansh-secret-token-8f3a1c9d2e4b'. Token successfully used in all protected endpoint tests."
+        -comment: "✅ RE-VERIFIED AFTER FIRESTORE MIGRATION. Auth working correctly: (1) Wrong password returns 401, (2) Correct password returns 200 with token <redacted>. Token successfully used in all protected endpoint tests."
 
   - task: "Blog CRUD (GET list/single, POST create, PUT update, DELETE) under /api/blog"
     implemented: true
@@ -186,7 +186,7 @@ test_plan:
 
 agent_communication:
     -agent: "main"
-    -message: "Please test the blog backend APIs only (no frontend). Admin password is 'ansh@admin2025'. Flow: login -> get token -> create a post (send X-Admin-Token header) -> list & fetch by slug -> update -> delete. Also verify: public GET endpoints work without token, write endpoints return 401 without/with wrong token, GET missing slug returns 404, and /api/blog/upload requires auth. Seeded posts (3) should already exist."
+    -message: "Please test the blog backend APIs only (no frontend). Admin password is '<redacted>'. Flow: login -> get token -> create a post (send X-Admin-Token header) -> list & fetch by slug -> update -> delete. Also verify: public GET endpoints work without token, write endpoints return 401 without/with wrong token, GET missing slug returns 404, and /api/blog/upload requires auth. Seeded posts (3) should already exist."
     -agent: "testing"
     -message: "✅ ALL BACKEND TESTS PASSED (17/17 - 100% success rate). Comprehensive testing completed covering: (1) Public endpoints - list, filter by category, get categories, get by slug, 404 handling, (2) Authentication - wrong password 401, correct password returns token, (3) Protected CRUD - auth validation, create/read/update/delete full lifecycle, (4) Image upload - auth protection and base64 data URL response. All edge cases verified. No issues found. Backend is production-ready."
     -agent: "main"

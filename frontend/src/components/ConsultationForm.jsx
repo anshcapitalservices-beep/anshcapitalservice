@@ -201,6 +201,7 @@ const ConsultationForm = ({ compact = false }) => {
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">
         <select
           name="service"
+          aria-label="Service"
           value={form.service}
           onChange={handleChange}
           className="h-11 px-3 rounded-lg border border-slate-200 text-sm text-[#0b1f3a] bg-white focus:outline-none focus:ring-2 focus:ring-[#d89626]/40 focus:border-[#d89626] transition-all appearance-none cursor-pointer"
@@ -217,6 +218,7 @@ const ConsultationForm = ({ compact = false }) => {
         </select>
         <select
           name="budget"
+          aria-label="Monthly budget"
           value={form.budget}
           onChange={handleChange}
           className="h-11 px-3 rounded-lg border border-slate-200 text-sm text-[#0b1f3a] bg-white focus:outline-none focus:ring-2 focus:ring-[#d89626]/40 focus:border-[#d89626] transition-all appearance-none cursor-pointer"

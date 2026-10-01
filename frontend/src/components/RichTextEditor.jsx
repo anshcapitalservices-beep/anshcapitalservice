@@ -10,6 +10,7 @@ import {
   Quote,
   Pilcrow,
 } from "lucide-react";
+import { sanitizeHtml } from "../lib/sanitize";
 
 /**
  * Lightweight rich text editor built on contentEditable + execCommand.
@@ -21,7 +22,7 @@ const RichTextEditor = ({ value, onChange, placeholder = "Write your article..."
   // Set initial / external value without disrupting the caret while typing.
   useEffect(() => {
     if (ref.current && ref.current.innerHTML !== (value || "") && document.activeElement !== ref.current) {
-      ref.current.innerHTML = value || "";
+      ref.current.innerHTML = sanitizeHtml(value);
     }
   }, [value]);
 
@@ -36,8 +37,13 @@ const RichTextEditor = ({ value, onChange, placeholder = "Write your article..."
   };
 
   const addLink = () => {
-    const url = window.prompt("Enter URL", "https://");
-    if (url) exec("createLink", url);
+    const url = (window.prompt("Enter URL", "https://") || "").trim();
+    if (!url) return;
+    if (!/^(https?:|mailto:|tel:|\/|#)/i.test(url)) {
+      window.alert("Please enter a link starting with https://, mailto: or tel:");
+      return;
+    }
+    exec("createLink", url);
   };
 
   const Btn = ({ onClick, title, children }) => (

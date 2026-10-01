@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import logoImg from "../assets/logo-transparent.png";
+import logoImg from "../assets/logo-transparent.webp";
 
 /**
  * ANSH Capital Services official logo
@@ -17,6 +17,7 @@ const Logo = ({ variant = "dark", className = "", showText = true, size = "md" }
     <Link to="/" className={`flex items-center gap-3 group ${className}`}>
       <div className={`shrink-0 flex items-center justify-center ${variant === "light" ? "bg-white p-1 rounded-xl shadow-md" : ""}`}>
         <img
+          width={333} height={224}
           src={logoImg}
           alt="ANSH Capital Services Logo"
           className={`${imgHeight} w-auto object-contain transition-transform duration-300 group-hover:scale-105`}

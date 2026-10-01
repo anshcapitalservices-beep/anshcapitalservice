@@ -40,6 +40,7 @@ const ProductsPage = () => {
                 <div>
                   <Link to={`/products/${p.id}`} className="block relative h-48 overflow-hidden">
                     <img
+                      loading="lazy" decoding="async"
                       src={p.image}
                       alt={p.title}
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"

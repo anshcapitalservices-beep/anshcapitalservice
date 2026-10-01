@@ -43,8 +43,8 @@ const Admin = () => {
   const [uploading, setUploading] = useState(false);
 
   const loadPosts = () => {
-    blogApi.list("All").then((res) => setPosts(res.data)).catch(() => {});
-    blogApi.categories().then((res) => setCategories(res.data.categories)).catch(() => {});
+    blogApi.list("All", true).then((res) => setPosts(res.data)).catch(() => {});
+    blogApi.categories(true).then((res) => setCategories(res.data.categories)).catch(() => {});
   };
 
   useEffect(() => {
@@ -64,7 +64,11 @@ const Admin = () => {
       setAuthed(true);
       toast.success("Welcome back!");
     } catch (err) {
-      toast.error("Invalid password. Please try again.");
+      toast.error(
+        err?.response?.status === 429
+          ? "Too many attempts. Please wait a few minutes and try again."
+          : "Invalid password. Please try again."
+      );
     } finally {
       setLoggingIn(false);
     }

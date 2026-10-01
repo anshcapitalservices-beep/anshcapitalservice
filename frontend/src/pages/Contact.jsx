@@ -5,7 +5,7 @@ import Reveal from "../components/Reveal";
 import { Icon } from "../components/iconMap";
 import ConsultationForm from "../components/ConsultationForm";
 import { company, contactIntro, footer } from "../mock/mock";
-import bannerConnectContact from "../assets/banner_connect_contact.jpg";
+import bannerConnectContact from "../assets/banner_connect_contact.webp";
 
 const Contact = () => {
   const infoCards = [
@@ -84,6 +84,7 @@ const Contact = () => {
         <div className="max-w-[1280px] mx-auto px-4 md:px-6">
           <Reveal className="rounded-2xl sm:rounded-3xl overflow-hidden shadow-[0_12px_40px_rgba(11,31,58,0.1)] border border-slate-100">
             <img
+              loading="lazy" decoding="async" width={1024} height={689}
               src={bannerConnectContact}
               alt="Connect with ANSH Capital Services - Your Journey Our Expertise"
               className="w-full h-auto block"

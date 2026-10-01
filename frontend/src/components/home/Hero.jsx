@@ -6,7 +6,7 @@ import {
   TrendingUp,
   IndianRupee,
 } from "lucide-react";
-import heroFamilyRoadmap from "../../assets/hero_family_roadmap.png";
+import heroFamilyRoadmap from "../../assets/hero_family_roadmap.webp";
 
 const Hero = () => {
   return (
@@ -83,9 +83,9 @@ const Hero = () => {
               <div className="w-14 h-14 sm:w-16 sm:h-16 mx-auto mb-2 rounded-full bg-gradient-to-br from-[#f9c53e] to-[#df9b10] flex items-center justify-center text-[#06294a] shadow-md group-hover:scale-105 transition-transform">
                 <Shield className="w-7 h-7 stroke-[2.2]" />
               </div>
-              <h3 className="text-sm sm:text-base font-bold text-white mb-0.5 group-hover:text-[#e9a719] transition-colors">
+              <h2 className="text-sm sm:text-base font-bold text-white mb-0.5 group-hover:text-[#e9a719] transition-colors">
                 Insurance
-              </h3>
+              </h2>
               <p className="text-xs sm:text-[13px] text-white/85">
                 Protect what matters
               </p>
@@ -99,9 +99,9 @@ const Hero = () => {
               <div className="w-14 h-14 sm:w-16 sm:h-16 mx-auto mb-2 rounded-full bg-gradient-to-br from-[#f9c53e] to-[#df9b10] flex items-center justify-center text-[#06294a] shadow-md group-hover:scale-105 transition-transform">
                 <TrendingUp className="w-7 h-7 stroke-[2.2]" />
               </div>
-              <h3 className="text-sm sm:text-base font-bold text-white mb-0.5 group-hover:text-[#e9a719] transition-colors">
+              <h2 className="text-sm sm:text-base font-bold text-white mb-0.5 group-hover:text-[#e9a719] transition-colors">
                 Mutual Funds
-              </h3>
+              </h2>
               <p className="text-xs sm:text-[13px] text-white/85">
                 Grow your wealth
               </p>
@@ -115,9 +115,9 @@ const Hero = () => {
               <div className="w-14 h-14 sm:w-16 sm:h-16 mx-auto mb-2 rounded-full bg-gradient-to-br from-[#f9c53e] to-[#df9b10] flex items-center justify-center text-[#06294a] shadow-md group-hover:scale-105 transition-transform">
                 <IndianRupee className="w-7 h-7 stroke-[2.2]" />
               </div>
-              <h3 className="text-sm sm:text-base font-bold text-white mb-0.5 group-hover:text-[#e9a719] transition-colors">
+              <h2 className="text-sm sm:text-base font-bold text-white mb-0.5 group-hover:text-[#e9a719] transition-colors">
                 Loans
-              </h3>
+              </h2>
               <p className="text-xs sm:text-[13px] text-white/85">
                 Achieve your goals
               </p>
@@ -149,6 +149,7 @@ const Hero = () => {
         {/* Right Section (Full Uncropped Illustration) */}
         <div className="relative z-0 w-full h-full flex items-center justify-center lg:justify-end bg-[#F1E2C9] p-2 sm:p-4 lg:p-0">
           <img
+            width={1024} height={682} fetchPriority="high" decoding="async"
             src={heroFamilyRoadmap}
             alt="Plan Today for a Brighter Tomorrow - ANSH Capital Services"
             className="w-full h-auto lg:h-full object-contain object-right block select-none max-h-[580px]"

@@ -1,4 +1,4 @@
-from fastapi import FastAPI, APIRouter, UploadFile, File, Header, HTTPException, Query, Depends
+from fastapi import FastAPI, APIRouter, UploadFile, File, Header, HTTPException, Query, Depends, Request
 from dotenv import load_dotenv
 from starlette.middleware.cors import CORSMiddleware
 import os
@@ -6,8 +6,14 @@ import logging
 import base64
 import re
 import io
+import hmac
+import html
+import hashlib
+import secrets
+import time
+from collections import defaultdict, deque
 from pathlib import Path
-from pydantic import BaseModel, Field, ConfigDict
+from pydantic import BaseModel, Field, ConfigDict, field_validator
 from typing import List, Optional
 import uuid
 from datetime import datetime, timezone
@@ -91,11 +97,92 @@ if firebase_admin is not None:
         fb_init_error = str(_fb_err)
         logging.getLogger(__name__).error("Firebase init failed: %s", _fb_err)
 
-# Create the main app without a prefix
-app = FastAPI()
+# Create the main app without a prefix. The interactive docs/OpenAPI schema
+# would publish every admin route, so they are off unless explicitly enabled.
+_docs = os.environ.get("ENABLE_API_DOCS", "").lower() == "true"
+app = FastAPI(
+    docs_url="/api/docs" if _docs else None,
+    redoc_url=None,
+    openapi_url="/api/openapi.json" if _docs else None,
+)
 
 # Create a router with the /api prefix
 api_router = APIRouter(prefix="/api")
+
+
+# ==================== ADMIN AUTH ====================
+# Both values must come from the environment; there are no built-in defaults.
+ADMIN_PASSWORD = os.environ.get("ADMIN_PASSWORD", "")
+ADMIN_TOKEN = os.environ.get("ADMIN_TOKEN", "")
+ADMIN_TOKEN_TTL = int(os.environ.get("ADMIN_TOKEN_TTL_SECONDS", str(8 * 3600)))
+
+# Session tokens are signed with a key derived from both secrets, so a token
+# can't be forged without the password, and rotating either one logs everyone out.
+_SIGNING_KEY = (
+    hashlib.sha256(f"{ADMIN_TOKEN}\0{ADMIN_PASSWORD}".encode()).digest()
+    if ADMIN_PASSWORD and ADMIN_TOKEN else b""
+)
+if not _SIGNING_KEY:
+    logging.getLogger(__name__).warning("ADMIN_PASSWORD / ADMIN_TOKEN not set; admin login is disabled")
+
+
+def _sign(payload: str) -> str:
+    return hmac.new(_SIGNING_KEY, payload.encode(), hashlib.sha256).hexdigest()
+
+
+def _issue_token() -> str:
+    payload = f"{int(time.time()) + ADMIN_TOKEN_TTL}.{secrets.token_urlsafe(16)}"
+    return f"{payload}.{_sign(payload)}"
+
+
+def _verify_token(token: Optional[str]) -> bool:
+    if not _SIGNING_KEY or not token or len(token) > 256:
+        return False
+    payload, _, sig = token.rpartition(".")
+    expires = payload.split(".", 1)[0]
+    if not expires.isdigit() or int(expires) < time.time():
+        return False
+    return hmac.compare_digest(sig, _sign(payload))
+
+
+async def require_admin(x_admin_token: Optional[str] = Header(None)):
+    if not _verify_token(x_admin_token):
+        raise HTTPException(status_code=401, detail="Unauthorized: please re-login to the admin portal")
+    return True
+
+
+def _client_ip(request: Request) -> str:
+    # Vercel sets x-forwarded-for / x-real-ip; fall back to the socket peer.
+    fwd = request.headers.get("x-real-ip") or request.headers.get("x-forwarded-for", "").split(",")[0]
+    return fwd.strip() or (request.client.host if request.client else "unknown")
+
+
+class _RateLimiter:
+    """Best-effort in-memory sliding-window limiter (per serverless instance)."""
+
+    def __init__(self, limit: int, window: int):
+        self.limit, self.window = limit, window
+        self.hits = defaultdict(deque)
+
+    def _prune(self, key: str) -> deque:
+        q = self.hits[key]
+        cutoff = time.time() - self.window
+        while q and q[0] < cutoff:
+            q.popleft()
+        if len(self.hits) > 10000:  # bound memory under a flood of distinct IPs
+            self.hits.clear()
+            q = self.hits[key]
+        return q
+
+    def blocked(self, key: str) -> bool:
+        return len(self._prune(key)) >= self.limit
+
+    def hit(self, key: str) -> None:
+        self._prune(key).append(time.time())
+
+
+_login_limiter = _RateLimiter(limit=5, window=15 * 60)
+_contact_limiter = _RateLimiter(limit=10, window=10 * 60)
 
 
 # Define Models
@@ -107,7 +194,7 @@ class StatusCheck(BaseModel):
     timestamp: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
 class StatusCheckCreate(BaseModel):
-    client_name: str
+    client_name: str = Field(max_length=200)
 
 # Add your routes to the router instead of directly to app
 @api_router.get("/")
@@ -115,15 +202,17 @@ async def root():
     return {"message": "Hello World"}
 
 @api_router.get("/health")
-async def health():
-    return {
-        "status": "ok",
-        "firebase_connected": fs is not None,
-        "firebase_error": fb_init_error
-    }
+async def health(x_admin_token: Optional[str] = Header(None)):
+    body = {"status": "ok", "firebase_connected": fs is not None}
+    # Credential diagnostics are only shown to a logged-in admin.
+    if fb_init_error and _verify_token(x_admin_token):
+        body["firebase_error"] = fb_init_error
+    return body
 
 @api_router.post("/status", response_model=StatusCheck)
-async def create_status_check(input: StatusCheckCreate):
+async def create_status_check(input: StatusCheckCreate, _: bool = Depends(require_admin)):
+    if db is None:
+        raise HTTPException(status_code=503, detail="Database unavailable")
     status_dict = input.model_dump()
     status_obj = StatusCheck(**status_dict)
     
@@ -135,7 +224,9 @@ async def create_status_check(input: StatusCheckCreate):
     return status_obj
 
 @api_router.get("/status", response_model=List[StatusCheck])
-async def get_status_checks():
+async def get_status_checks(_: bool = Depends(require_admin)):
+    if db is None:
+        raise HTTPException(status_code=503, detail="Database unavailable")
     # Exclude MongoDB's _id field from the query results
     status_checks = await db.status_checks.find({}, {"_id": 0}).to_list(1000)
     
@@ -147,8 +238,6 @@ async def get_status_checks():
     return status_checks
 
 # ==================== BLOG ====================
-ADMIN_PASSWORD = os.environ.get('ADMIN_PASSWORD', 'ansh@admin2025')
-ADMIN_TOKEN = os.environ.get('ADMIN_TOKEN', 'ansh-secret-token-8f3a1c9d2e4b')
 
 
 def slugify(text: str) -> str:
@@ -159,14 +248,22 @@ def slugify(text: str) -> str:
 
 
 class BlogPostBase(BaseModel):
-    title: str
-    category: str
-    excerpt: str = ""
-    content: str = ""
-    image: str = ""
-    author: str = "ANSH Capital"
-    read_time: str = "5 min read"
+    title: str = Field(max_length=200)
+    category: str = Field(max_length=80)
+    excerpt: str = Field("", max_length=1000)
+    content: str = Field("", max_length=300_000)
+    # Uploaded covers are base64 data URLs capped at ~850KB (see upload_image).
+    image: str = Field("", max_length=1_200_000)
+    author: str = Field("ANSH Capital", max_length=100)
+    read_time: str = Field("5 min read", max_length=40)
     published: bool = True
+
+    @field_validator("image")
+    @classmethod
+    def _image_url(cls, v):
+        if v and not re.match(r"^(https://|/|data:image/(jpeg|png|webp|gif);base64,)", v):
+            raise ValueError("Image must be an https URL or an uploaded image")
+        return v
 
 
 class BlogPostCreate(BlogPostBase):
@@ -182,26 +279,20 @@ class BlogPost(BlogPostBase):
 
 
 class LoginInput(BaseModel):
-    password: str
-
-
-VALID_TOKENS = {
-    ADMIN_TOKEN,
-    "ansh-secret-token",
-    "ansh-secret-token-8f3a1c9d2e4b",
-}
-
-async def require_admin(x_admin_token: Optional[str] = Header(None)):
-    if not x_admin_token or x_admin_token not in VALID_TOKENS:
-        raise HTTPException(status_code=401, detail="Unauthorized: please re-login to the admin portal")
-    return True
+    password: str = Field(max_length=256)
 
 
 @api_router.post("/admin/login")
-async def admin_login(data: LoginInput):
-    if data.password != ADMIN_PASSWORD:
+async def admin_login(data: LoginInput, request: Request):
+    if not _SIGNING_KEY:
+        raise HTTPException(status_code=503, detail="Admin login is not configured")
+    ip = _client_ip(request)
+    if _login_limiter.blocked(ip):
+        raise HTTPException(status_code=429, detail="Too many login attempts. Try again later.")
+    if not hmac.compare_digest(data.password.encode(), ADMIN_PASSWORD.encode()):
+        _login_limiter.hit(ip)
         raise HTTPException(status_code=401, detail="Invalid password")
-    return {"token": ADMIN_TOKEN}
+    return {"token": _issue_token()}
 
 
 # ==================== CONTACT / LEADS ====================
@@ -209,17 +300,34 @@ LEAD_COLLECTION = "leads"
 LEAD_NOTIFICATION_EMAIL = os.environ.get("LEAD_NOTIFICATION_EMAIL", "support@anshcapitalservices.com")
 
 class ContactLead(BaseModel):
-    name: str
-    phone: str
-    email: Optional[str] = ""
-    service: Optional[str] = ""
-    budget: Optional[str] = ""
-    message: Optional[str] = ""
+    name: str = Field(max_length=120)
+    phone: str = Field(max_length=32)
+    email: Optional[str] = Field("", max_length=254)
+    service: Optional[str] = Field("", max_length=120)
+    budget: Optional[str] = Field("", max_length=120)
+    message: Optional[str] = Field("", max_length=4000)
+
+    @field_validator("name", "phone", "email", "service", "budget", "message", mode="before")
+    @classmethod
+    def _strip(cls, v):
+        return v.strip() if isinstance(v, str) else v
+
+    @field_validator("phone")
+    @classmethod
+    def _phone(cls, v):
+        if v and not re.fullmatch(r"[0-9+()\-\s]{7,32}", v):
+            raise ValueError("Invalid phone number")
+        return v
+
 
 @api_router.post("/contact")
-async def submit_contact(lead: ContactLead):
+async def submit_contact(lead: ContactLead, request: Request):
     if not lead.name or not lead.phone:
         raise HTTPException(status_code=400, detail="Name and phone number are required.")
+    ip = _client_ip(request)
+    if _contact_limiter.blocked(ip):
+        raise HTTPException(status_code=429, detail="Too many requests. Please try again later.")
+    _contact_limiter.hit(ip)
 
     lead_data = lead.model_dump()
     lead_data["id"] = str(uuid.uuid4())
@@ -246,8 +354,13 @@ async def submit_contact(lead: ContactLead):
             from email.mime.text import MIMEText
             from email.mime.multipart import MIMEMultipart
 
+            # Every visitor-supplied value is HTML-escaped before it goes in the email.
+            e = {k: html.escape(v or "") for k, v in lead.model_dump().items()}
+            tel = re.sub(r"[^0-9+]", "", lead.phone)
+            subject = f"New Consultation Lead: {lead.name} ({lead.service or 'Consultation'})"
+
             msg = MIMEMultipart("alternative")
-            msg["Subject"] = f"New Consultation Lead: {lead.name} ({lead.service or 'Consultation'})"
+            msg["Subject"] = re.sub(r"[\r\n]+", " ", subject)
             msg["From"] = smtp_user
             msg["To"] = LEAD_NOTIFICATION_EMAIL
 
@@ -256,16 +369,16 @@ async def submit_contact(lead: ContactLead):
               <h2 style="color: #0b1f3a; margin-top: 0;">New Consultation Request</h2>
               <p style="color: #64748b; font-size: 14px;">A new lead has submitted the consultation form on ANSH Capital Services:</p>
               <table style="width: 100%; border-collapse: collapse; margin-top: 15px;">
-                <tr style="border-bottom: 1px solid #f1f5f9;"><td style="padding: 10px; font-weight: bold; color: #0b1f3a;">Full Name:</td><td style="padding: 10px; color: #334155;">{lead.name}</td></tr>
-                <tr style="border-bottom: 1px solid #f1f5f9;"><td style="padding: 10px; font-weight: bold; color: #0b1f3a;">Mobile Number:</td><td style="padding: 10px; color: #334155;"><a href="tel:{lead.phone}">{lead.phone}</a></td></tr>
-                <tr style="border-bottom: 1px solid #f1f5f9;"><td style="padding: 10px; font-weight: bold; color: #0b1f3a;">Email:</td><td style="padding: 10px; color: #334155;">{lead.email or 'Not provided'}</td></tr>
-                <tr style="border-bottom: 1px solid #f1f5f9;"><td style="padding: 10px; font-weight: bold; color: #0b1f3a;">Selected Service:</td><td style="padding: 10px; color: #334155;">{lead.service or 'General'}</td></tr>
-                <tr style="border-bottom: 1px solid #f1f5f9;"><td style="padding: 10px; font-weight: bold; color: #0b1f3a;">Monthly Budget:</td><td style="padding: 10px; color: #334155;">{lead.budget or 'Not specified'}</td></tr>
-                <tr style="border-bottom: 1px solid #f1f5f9;"><td style="padding: 10px; font-weight: bold; color: #0b1f3a;">Message / Goals:</td><td style="padding: 10px; color: #334155;">{lead.message or 'None'}</td></tr>
+                <tr style="border-bottom: 1px solid #f1f5f9;"><td style="padding: 10px; font-weight: bold; color: #0b1f3a;">Full Name:</td><td style="padding: 10px; color: #334155;">{e['name']}</td></tr>
+                <tr style="border-bottom: 1px solid #f1f5f9;"><td style="padding: 10px; font-weight: bold; color: #0b1f3a;">Mobile Number:</td><td style="padding: 10px; color: #334155;"><a href="tel:{tel}">{e['phone']}</a></td></tr>
+                <tr style="border-bottom: 1px solid #f1f5f9;"><td style="padding: 10px; font-weight: bold; color: #0b1f3a;">Email:</td><td style="padding: 10px; color: #334155;">{e['email'] or 'Not provided'}</td></tr>
+                <tr style="border-bottom: 1px solid #f1f5f9;"><td style="padding: 10px; font-weight: bold; color: #0b1f3a;">Selected Service:</td><td style="padding: 10px; color: #334155;">{e['service'] or 'General'}</td></tr>
+                <tr style="border-bottom: 1px solid #f1f5f9;"><td style="padding: 10px; font-weight: bold; color: #0b1f3a;">Monthly Budget:</td><td style="padding: 10px; color: #334155;">{e['budget'] or 'Not specified'}</td></tr>
+                <tr style="border-bottom: 1px solid #f1f5f9;"><td style="padding: 10px; font-weight: bold; color: #0b1f3a;">Message / Goals:</td><td style="padding: 10px; color: #334155;">{e['message'] or 'None'}</td></tr>
                 <tr><td style="padding: 10px; font-weight: bold; color: #0b1f3a;">Submitted At:</td><td style="padding: 10px; color: #64748b;">{lead_data["date"]}</td></tr>
               </table>
               <div style="margin-top: 25px; padding-top: 15px; border-top: 1px solid #e2e8f0; text-align: center;">
-                <a href="tel:{lead.phone}" style="background-color: #d89626; color: #ffffff; padding: 10px 20px; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 14px; display: inline-block;">Call Lead Now</a>
+                <a href="tel:{tel}" style="background-color: #d89626; color: #ffffff; padding: 10px 20px; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 14px; display: inline-block;">Call Lead Now</a>
               </div>
             </div>
             """
@@ -298,8 +411,18 @@ BLOG_COLLECTION = "blog_posts"
 
 def _blog_col():
     if fs is None:
-        raise HTTPException(status_code=500, detail=f"Database unavailable: {fb_init_error or 'Firestore not initialized'}")
+        raise HTTPException(status_code=503, detail="Database unavailable")
     return fs.collection(BLOG_COLLECTION)
+
+
+_DOC_ID = re.compile(r"^[A-Za-z0-9_-]{1,64}$")
+
+
+def _check_doc_id(post_id: str) -> str:
+    # Firestore treats "/" as a path separator; only accept plain ids.
+    if not _DOC_ID.match(post_id):
+        raise HTTPException(status_code=404, detail="Article not found")
+    return post_id
 
 
 def _slug_exists(slug: str) -> bool:
@@ -307,13 +430,24 @@ def _slug_exists(slug: str) -> bool:
     return len(docs) > 0
 
 
+MAX_UPLOAD_BYTES = 15 * 1024 * 1024
+
+
 @api_router.post("/blog/upload")
 async def upload_image(file: UploadFile = File(...), _: bool = Depends(require_admin)):
-    contents = await file.read()
+    contents = await file.read(MAX_UPLOAD_BYTES + 1)
+    if len(contents) > MAX_UPLOAD_BYTES:
+        raise HTTPException(status_code=413, detail="Image is too large (max 15MB)")
     # Compress/resize so the base64 image fits within Firestore's 1MB document limit.
+    # Re-encoding through Pillow also guarantees the result is a real JPEG.
     try:
+        import warnings
         from PIL import Image
-        img = Image.open(io.BytesIO(contents))
+        Image.MAX_IMAGE_PIXELS = 50_000_000
+        with warnings.catch_warnings():
+            warnings.simplefilter("error", Image.DecompressionBombWarning)
+            img = Image.open(io.BytesIO(contents))
+            img.load()
         if img.mode in ("RGBA", "P", "LA"):
             img = img.convert("RGB")
         max_w = 1280
@@ -331,10 +465,9 @@ async def upload_image(file: UploadFile = File(...), _: bool = Depends(require_a
             data = buf.getvalue()
         b64 = base64.b64encode(data).decode("utf-8")
         return {"url": f"data:image/jpeg;base64,{b64}"}
-    except Exception:
-        b64 = base64.b64encode(contents).decode("utf-8")
-        mime = file.content_type or "image/jpeg"
-        return {"url": f"data:{mime};base64,{b64}"}
+    except Exception as e:
+        logging.getLogger(__name__).warning("Rejected upload: %s", e)
+        raise HTTPException(status_code=400, detail="Please upload a valid image file")
 
 
 @api_router.get("/blog/categories")
@@ -344,7 +477,7 @@ def get_categories():
 
 
 @api_router.get("/blog", response_model=List[BlogPost])
-def list_blog(category: Optional[str] = Query(None), limit: int = Query(100)):
+def list_blog(category: Optional[str] = Query(None, max_length=80), limit: int = Query(100, ge=1, le=100)):
     posts = [d.to_dict() for d in _blog_col().stream()]
     posts = [p for p in posts if p.get("published", True)]
     if category and category != "All":
@@ -355,6 +488,8 @@ def list_blog(category: Optional[str] = Query(None), limit: int = Query(100)):
 
 @api_router.get("/blog/{slug}", response_model=BlogPost)
 def get_blog(slug: str):
+    if len(slug) > 200:
+        raise HTTPException(status_code=404, detail="Article not found")
     for d in _blog_col().where("slug", "==", slug).limit(1).stream():
         return d.to_dict()
     raise HTTPException(status_code=404, detail="Article not found")
@@ -376,13 +511,13 @@ def create_blog(data: BlogPostCreate, _: bool = Depends(require_admin)):
         raise
     except Exception as e:
         logging.getLogger(__name__).error("Failed creating blog: %s", e)
-        raise HTTPException(status_code=500, detail=f"Failed saving article: {str(e)}")
+        raise HTTPException(status_code=500, detail="Failed saving article")
 
 
 @api_router.put("/blog/{post_id}", response_model=BlogPost)
 def update_blog(post_id: str, data: BlogPostCreate, _: bool = Depends(require_admin)):
     try:
-        ref = _blog_col().document(post_id)
+        ref = _blog_col().document(_check_doc_id(post_id))
         snap = ref.get()
         if not snap.exists:
             raise HTTPException(status_code=404, detail="Article not found")
@@ -394,12 +529,12 @@ def update_blog(post_id: str, data: BlogPostCreate, _: bool = Depends(require_ad
         raise
     except Exception as e:
         logging.getLogger(__name__).error("Failed updating blog: %s", e)
-        raise HTTPException(status_code=500, detail=f"Failed updating article: {str(e)}")
+        raise HTTPException(status_code=500, detail="Failed updating article")
 
 
 @api_router.delete("/blog/{post_id}")
 def delete_blog(post_id: str, _: bool = Depends(require_admin)):
-    ref = _blog_col().document(post_id)
+    ref = _blog_col().document(_check_doc_id(post_id))
     if not ref.get().exists:
         raise HTTPException(status_code=404, detail="Article not found")
     ref.delete()
@@ -456,13 +591,36 @@ async def seed_blog():
 # Include the router in the main app
 app.include_router(api_router)
 
+# The site calls the API same-origin; cross-origin callers must be listed in
+# CORS_ORIGINS. Auth uses a header (not cookies), so credentials stay off.
 app.add_middleware(
     CORSMiddleware,
-    allow_credentials=True,
-    allow_origins=os.environ.get('CORS_ORIGINS', '*').split(','),
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_credentials=False,
+    allow_origins=[o.strip() for o in os.environ.get("CORS_ORIGINS", "").split(",") if o.strip()],
+    allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allow_headers=["Content-Type", "X-Admin-Token"],
 )
+
+_PUBLIC_CACHEABLE = re.compile(r"^/api/blog(/categories|/[^/]+)?$")
+
+
+@app.middleware("http")
+async def security_headers(request: Request, call_next):
+    response = await call_next(request)
+    h = response.headers
+    h.setdefault("X-Content-Type-Options", "nosniff")
+    h.setdefault("X-Frame-Options", "DENY")
+    h.setdefault("Referrer-Policy", "strict-origin-when-cross-origin")
+    h.setdefault("Content-Security-Policy", "default-src 'none'; frame-ancestors 'none'")
+    if (request.method == "GET" and response.status_code == 200
+            and _PUBLIC_CACHEABLE.match(request.url.path)
+            and "x-admin-token" not in request.headers):
+        # Let Vercel's edge serve public blog reads for a minute instead of
+        # re-reading Firestore on every page view.
+        h.setdefault("Cache-Control", "public, max-age=0, s-maxage=60, stale-while-revalidate=300")
+    else:
+        h.setdefault("Cache-Control", "no-store")
+    return response
 
 # Configure logging
 logging.basicConfig(
@@ -473,4 +631,5 @@ logger = logging.getLogger(__name__)
 
 @app.on_event("shutdown")
 async def shutdown_db_client():
-    client.close()
+    if client is not None:
+        client.close()

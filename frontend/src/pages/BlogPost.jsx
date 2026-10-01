@@ -3,6 +3,8 @@ import { useParams, Link } from "react-router-dom";
 import { ArrowLeft, Calendar, Clock, User } from "lucide-react";
 import Reveal from "../components/Reveal";
 import { blogApi } from "../lib/api";
+import { sanitizeHtml } from "../lib/sanitize";
+import { optimizeImageUrl } from "../lib/utils";
 
 const BlogPost = () => {
   const { slug } = useParams();
@@ -60,7 +62,7 @@ const BlogPost = () => {
         {/* Background image with multi-layer deep gradient overlays */}
         <div className="absolute inset-0 z-0">
           <img
-            src={post.image || "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=2000&q=80"}
+            src={optimizeImageUrl(post.image, 1600) || "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=2000&q=80"}
             alt={post.title}
             className="w-full h-full object-cover object-center opacity-25 scale-105"
           />
@@ -98,7 +100,7 @@ const BlogPost = () => {
       <div className="max-w-3xl mx-auto px-4 md:px-6 -mt-8 md:-mt-10">
         <Reveal className="rounded-2xl overflow-hidden shadow-[0_30px_60px_-24px_rgba(11,31,58,0.4)]">
           <img
-            src={post.image}
+            src={optimizeImageUrl(post.image, 1600)}
             alt={post.title}
             className="w-full h-64 md:h-96 object-cover"
           />
@@ -112,7 +114,7 @@ const BlogPost = () => {
           )}
           <div
             className="blog-content"
-            dangerouslySetInnerHTML={{ __html: post.content }}
+            dangerouslySetInnerHTML={{ __html: sanitizeHtml(post.content) }}
           />
         </div>
       </div>

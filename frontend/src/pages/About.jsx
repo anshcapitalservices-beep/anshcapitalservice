@@ -6,8 +6,8 @@ import SectionHeading from "../components/SectionHeading";
 import Reveal from "../components/Reveal";
 import { Icon } from "../components/iconMap";
 import { aboutPage } from "../mock/mock";
-import aboutUsImg from "../assets/about-us.png";
-import bannerOurMissionTeam from "../assets/banner_our_mission_team.png";
+import aboutUsImg from "../assets/about-us.webp";
+import bannerOurMissionTeam from "../assets/banner_our_mission_team.webp";
 
 const About = () => {
   return (
@@ -23,6 +23,7 @@ const About = () => {
         <div className="max-w-[1280px] mx-auto px-4 md:px-6">
           <Reveal className="rounded-2xl sm:rounded-3xl overflow-hidden shadow-[0_12px_40px_rgba(11,31,58,0.1)] border border-slate-100">
             <img
+              width={1024} height={409}
               src={bannerOurMissionTeam}
               alt="Our Mission. Your Future. ANSH Capital Services"
               className="w-full h-auto block"
@@ -36,6 +37,7 @@ const About = () => {
         <div className="max-w-[1280px] mx-auto px-4 md:px-6 grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
           <Reveal className="relative">
             <img
+              loading="lazy" decoding="async" width={688} height={445}
               src={aboutUsImg}
               alt="About ANSH Capital Services"
               className="rounded-2xl w-full h-[360px] md:h-[400px] object-cover shadow-[0_30px_60px_-24px_rgba(11,31,58,0.35)] border border-slate-100"
@@ -128,6 +130,7 @@ const About = () => {
               >
                 <div className="relative rounded-2xl overflow-hidden mb-4 shadow-sm border border-slate-100 bg-slate-50">
                   <img
+                    loading="lazy" decoding="async" width={600} height={750}
                     src={m.avatar}
                     alt={m.name}
                     className="w-full aspect-[4/5] object-cover object-center group-hover:scale-105 transition-transform duration-500"

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { Suspense, useEffect } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import TopBar from "./TopBar";
 import Navbar from "./Navbar";
@@ -42,7 +42,9 @@ const Layout = () => {
       <Navbar />
       <TickerBar />
       <main className="flex-1">
-        <Outlet />
+        <Suspense fallback={<div className="min-h-[60vh]" />}>
+          <Outlet />
+        </Suspense>
       </main>
       <Footer />
       <FloatingButtons />

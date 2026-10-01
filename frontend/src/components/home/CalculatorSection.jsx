@@ -130,6 +130,7 @@ const Slider = ({ icon: IconCmp, label, value, onChange, min, max, step, suffix,
           step={step}
           value={value}
           onChange={(e) => onChange(Number(e.target.value))}
+          aria-label={label}
           className="absolute inset-0 w-full h-2 opacity-0 cursor-pointer"
         />
         <div

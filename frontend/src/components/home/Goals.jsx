@@ -33,6 +33,7 @@ const Goals = () => {
               <Reveal key={g.id} delay={i * 70} className="group flex flex-col items-center">
                 <div className="relative rounded-xl overflow-hidden w-full aspect-[4/3]">
                   <img
+                    loading="lazy" decoding="async"
                     src={g.image}
                     alt={g.title}
                     className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"

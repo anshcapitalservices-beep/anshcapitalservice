@@ -1,25 +1,28 @@
+import { lazy, Suspense } from "react";
 import "./App.css";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Layout from "./components/Layout";
 import Home from "./pages/Home";
-import About from "./pages/About";
-import ServicesPage from "./pages/ServicesPage";
-import ServiceDetail from "./pages/ServiceDetail";
-import ProductDetail from "./pages/ProductDetail";
-import WhyChooseUs from "./pages/WhyChooseUs";
-import Faq from "./pages/Faq";
-import Contact from "./pages/Contact";
-import Blog from "./pages/Blog";
-import BlogPost from "./pages/BlogPost";
-import Admin from "./pages/Admin";
 import { Toaster } from "./components/ui/sonner";
+
+// Route-level code splitting: only the homepage ships in the initial bundle.
+const About = lazy(() => import("./pages/About"));
+const ServicesPage = lazy(() => import("./pages/ServicesPage"));
+const ServiceDetail = lazy(() => import("./pages/ServiceDetail"));
+const ProductDetail = lazy(() => import("./pages/ProductDetail"));
+const WhyChooseUs = lazy(() => import("./pages/WhyChooseUs"));
+const Faq = lazy(() => import("./pages/Faq"));
+const Contact = lazy(() => import("./pages/Contact"));
+const Blog = lazy(() => import("./pages/Blog"));
+const BlogPost = lazy(() => import("./pages/BlogPost"));
+const Admin = lazy(() => import("./pages/Admin"));
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/admin" element={<Admin />} />
+          <Route path="/admin" element={<Suspense fallback={<div className="min-h-screen" />}><Admin /></Suspense>} />
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
             <Route path="about" element={<About />} />

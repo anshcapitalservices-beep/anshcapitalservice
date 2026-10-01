@@ -5,14 +5,15 @@ Tests all blog endpoints against Firebase Firestore backend
 CRITICAL: Cleans up test data after testing (real Firestore database)
 """
 
+import os
 import requests
 import json
 import base64
 from io import BytesIO
 
 # Configuration
-BASE_URL = "https://mirror-build-43.preview.emergentagent.com/api"
-ADMIN_PASSWORD = "ansh@admin2025"
+BASE_URL = os.environ.get("API_BASE_URL", "http://localhost:8000/api")
+ADMIN_PASSWORD = os.environ.get("ADMIN_PASSWORD", "")
 
 # Test results tracking
 test_results = []

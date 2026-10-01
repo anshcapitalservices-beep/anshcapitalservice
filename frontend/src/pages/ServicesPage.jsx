@@ -7,7 +7,7 @@ import Reveal from "../components/Reveal";
 import { Icon } from "../components/iconMap";
 import { services, servicesIntro, products, productsIntro } from "../mock/mock";
 
-import bannerPlanToday from "../assets/banner_plan_today.png";
+import bannerPlanToday from "../assets/banner_plan_today.webp";
 
 const riskColor = {
   Low: "bg-emerald-50 text-emerald-700 border border-emerald-200/60",
@@ -58,6 +58,7 @@ const ServicesPage = () => {
         <div className="max-w-[1280px] mx-auto px-4 md:px-6">
           <Reveal className="rounded-2xl sm:rounded-3xl overflow-hidden shadow-[0_12px_40px_rgba(11,31,58,0.1)] border border-slate-100">
             <img
+              width={1024} height={409}
               src={bannerPlanToday}
               alt="Plan Today for a Brighter Tomorrow - ANSH Capital Services"
               className="w-full h-auto block"
@@ -200,6 +201,7 @@ const ServicesPage = () => {
                   <div>
                     <Link to={`/products/${p.id}`} className="block relative h-52 overflow-hidden">
                       <img
+                        loading="lazy" decoding="async"
                         src={p.image}
                         alt={p.title}
                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"

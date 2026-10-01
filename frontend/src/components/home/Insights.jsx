@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { ArrowRight, ChevronLeft, ChevronRight, BookOpen, Clock, Calendar, MoveHorizontal } from "lucide-react";
 import { insights as fallbackInsights, insightsIntro } from "../../mock/mock";
 import { blogApi } from "../../lib/api";
+import { optimizeImageUrl } from "../../lib/utils";
 import Reveal from "../Reveal";
 
 const Insights = () => {
@@ -235,7 +236,7 @@ const Insights = () => {
             msOverflowStyle: "none",
             WebkitOverflowScrolling: "touch",
           }}
-          className="flex gap-5 overflow-x-auto snap-x snap-mandatory py-2 pb-6 -mx-4 px-4 md:mx-0 md:px-0 cursor-grab active:cursor-grabbing select-none scroll-smooth [&::-webkit-scrollbar]:hidden"
+          className="flex gap-5 overflow-x-auto snap-x snap-mandatory scroll-px-4 md:scroll-px-0 py-2 pb-6 -mx-4 px-4 md:mx-0 md:px-0 cursor-grab active:cursor-grabbing select-none scroll-smooth [&::-webkit-scrollbar]:hidden"
         >
           {items.map((post, i) => (
             <div
@@ -254,7 +255,8 @@ const Insights = () => {
                 {/* Image header */}
                 <div className="relative overflow-hidden aspect-[16/10] bg-slate-100">
                   <img
-                    src={post.image}
+                    loading="lazy" decoding="async"
+                    src={optimizeImageUrl(post.image)}
                     alt={post.title}
                     draggable={false}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
