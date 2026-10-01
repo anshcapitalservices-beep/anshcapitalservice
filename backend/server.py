@@ -50,11 +50,22 @@ if firebase_admin is not None:
     try:
         cred = None
         # 1. Check environment variable
-        if os.environ.get("FIREBASE_SERVICE_ACCOUNT_JSON"):
+        cred_error = "FIREBASE_SERVICE_ACCOUNT_JSON is not set"
+        raw_cred = os.environ.get("FIREBASE_SERVICE_ACCOUNT_JSON", "").strip()
+        if raw_cred:
             try:
                 import json
-                cred = credentials.Certificate(json.loads(os.environ["FIREBASE_SERVICE_ACCOUNT_JSON"]))
+                # Tolerate the value being wrapped in quotes or base64-encoded
+                if raw_cred[0] in "'\"" and raw_cred[-1] == raw_cred[0]:
+                    raw_cred = raw_cred[1:-1]
+                if not raw_cred.startswith("{"):
+                    raw_cred = base64.b64decode(raw_cred).decode()
+                cred_info = json.loads(raw_cred)
+                if isinstance(cred_info, str):
+                    cred_info = json.loads(cred_info)
+                cred = credentials.Certificate(cred_info)
             except Exception as _e:
+                cred_error = f"FIREBASE_SERVICE_ACCOUNT_JSON is set but invalid ({type(_e).__name__}: {_e})"
                 logging.getLogger(__name__).warning("Failed parsing FIREBASE_SERVICE_ACCOUNT_JSON: %s", _e)
         
         # 2. Check file path if it exists
@@ -65,7 +76,7 @@ if firebase_admin is not None:
                 logging.getLogger(__name__).warning("Failed reading %s: %s", FIREBASE_CRED_PATH, _e)
 
         if cred is None:
-            raise RuntimeError("No Firebase credentials: set FIREBASE_SERVICE_ACCOUNT_JSON")
+            raise RuntimeError(f"No Firebase credentials: {cred_error}")
 
         if not firebase_admin._apps:
             firebase_admin.initialize_app(cred)
