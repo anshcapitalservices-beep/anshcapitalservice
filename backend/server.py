@@ -51,7 +51,7 @@ if firebase_admin is not None:
         cred = None
         # 1. Check environment variable
         cred_error = "FIREBASE_SERVICE_ACCOUNT_JSON is not set"
-        raw_cred = os.environ.get("FIREBASE_SERVICE_ACCOUNT_JSON", "").strip()
+        raw_cred = os.environ.get("FIREBASE_SERVICE_ACCOUNT_JSON", "").strip().lstrip("\ufeff")
         if raw_cred:
             try:
                 import json
@@ -65,7 +65,12 @@ if firebase_admin is not None:
                     cred_info = json.loads(cred_info)
                 cred = credentials.Certificate(cred_info)
             except Exception as _e:
-                cred_error = f"FIREBASE_SERVICE_ACCOUNT_JSON is set but invalid ({type(_e).__name__}: {_e})"
+                # Describe the value without revealing it, to help fix a bad paste
+                looks_like = ("a file name/path" if raw_cred.lower().endswith(".json") or "/" in raw_cred[:40]
+                              else "JSON" if "{" in raw_cred else "plain text")
+                cred_error = (f"FIREBASE_SERVICE_ACCOUNT_JSON is set but invalid ({type(_e).__name__}: {_e}; "
+                              f"value is {len(raw_cred)} chars, starts with {raw_cred[:1]!r}, looks like {looks_like}, "
+                              f"contains private_key: {'private_key' in raw_cred})")
                 logging.getLogger(__name__).warning("Failed parsing FIREBASE_SERVICE_ACCOUNT_JSON: %s", _e)
         
         # 2. Check file path if it exists
