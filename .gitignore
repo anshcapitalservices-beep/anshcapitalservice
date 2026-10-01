@@ -43,3 +43,5 @@ backend/firebase_service_account.json
 
 # Backend secrets (configure these as Vercel environment variables)
 backend/.env
+.vercel
+.env*
