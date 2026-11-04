@@ -13,12 +13,12 @@ import {
 import PageHeader from "../components/PageHeader";
 import Reveal from "../components/Reveal";
 import { Icon } from "../components/iconMap";
-import HealthInsuranceGuide from "../components/HealthInsuranceGuide";
-import MotorInsuranceGuide from "../components/MotorInsuranceGuide";
-import LifeInsuranceGuide from "../components/LifeInsuranceGuide";
-import MutualFundsGuide from "../components/MutualFundsGuide";
-import LoansGuide from "../components/LoansGuide";
 import { services } from "../mock/mock";
+import { servicePages } from "../content/servicePages";
+import { DISCLAIMERS } from "../seo/site";
+
+// Insurance types that have their own dedicated page.
+const insurancePages = servicePages.filter((p) => p.disclaimer === "insurance");
 
 const ServiceDetail = () => {
   const { serviceId } = useParams();
@@ -136,20 +136,39 @@ const ServiceDetail = () => {
         </div>
       </section>
 
-      {/* Comprehensive Mutual Funds Breakdown Section */}
-      {service.id === "mutual-funds" && <MutualFundsGuide />}
-
-      {/* Comprehensive Health Insurance Breakdown Section */}
-      {service.id === "insurance" && <HealthInsuranceGuide />}
-
-      {/* Comprehensive Motor & Vehicle Insurance Breakdown Section */}
-      {service.id === "insurance" && <MotorInsuranceGuide />}
-
-      {/* Comprehensive Life & Term Insurance Breakdown Section */}
-      {service.id === "insurance" && <LifeInsuranceGuide />}
-
-      {/* Comprehensive Loans & Credit Breakdown Section */}
-      {service.id === "loans" && <LoansGuide />}
+      {/* Dedicated insurance pages (full guides live there) */}
+      {service.id === "insurance" && (
+        <section className="bg-[#faf6ee] py-14 md:py-20 border-y border-[#d89626]/20">
+          <div className="max-w-[1280px] mx-auto px-4 md:px-6">
+            <div className="text-center max-w-2xl mx-auto mb-10">
+              <p className="text-[#d89626] font-bold tracking-[0.22em] text-xs uppercase mb-3">
+                DETAILED GUIDES
+              </p>
+              <h2 className="font-display text-3xl md:text-4xl font-bold text-[#0b1f3a] leading-tight">
+                Choose the cover you need
+              </h2>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+              {insurancePages.map((p) => (
+                <Link
+                  key={p.path}
+                  to={p.path}
+                  className="group block bg-white rounded-2xl border border-slate-100 p-6 hover:shadow-[0_20px_40px_-16px_rgba(11,31,58,0.3)] hover:-translate-y-1 transition-all duration-300"
+                >
+                  <div className="h-12 w-12 rounded-xl bg-[#faf6ee] flex items-center justify-center mb-4 group-hover:bg-[#d89626] transition-colors">
+                    <Icon name={p.icon} className="h-6 w-6 text-[#d89626] group-hover:text-white transition-colors" />
+                  </div>
+                  <h3 className="font-display text-xl font-bold text-[#0b1f3a]">{p.label}</h3>
+                  <p className="mt-2 text-sm text-slate-600 leading-relaxed">{p.lead}</p>
+                  <span className="inline-flex items-center gap-1 text-sm font-semibold text-[#d89626] mt-4">
+                    Read the guide <ArrowRight className="h-4 w-4" />
+                  </span>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Special Infographic Section for Mutual Funds */}
       {service.id === "mutual-funds" && detail.infographicImage && (
@@ -338,6 +357,12 @@ const ServiceDetail = () => {
         </div>
       </section>
 
+      {service.id === "insurance" && (
+        <p className="max-w-[1280px] mx-auto px-4 md:px-6 pt-6 text-xs text-slate-500">
+          {DISCLAIMERS.insurance}
+        </p>
+      )}
+
       {/* Other Services */}
       <section className="bg-white py-14 md:py-20">
         <div className="max-w-[1280px] mx-auto px-4 md:px-6">
@@ -356,7 +381,7 @@ const ServiceDetail = () => {
             {otherServices.map((s, i) => (
               <Reveal key={s.id} delay={i * 60}>
                 <Link
-                  to={`/services/${s.id}`}
+                  to={s.path}
                   className="group block bg-white rounded-xl border border-slate-100 p-5 hover:shadow-[0_20px_40px_-16px_rgba(11,31,58,0.3)] hover:-translate-y-1 transition-all duration-300 text-center"
                 >
                   <div className="h-12 w-12 rounded-xl bg-[#faf6ee] flex items-center justify-center mx-auto mb-3 group-hover:bg-[#d89626] transition-colors">

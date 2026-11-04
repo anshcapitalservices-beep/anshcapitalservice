@@ -16,6 +16,7 @@ import bannerPlanToday from "../assets/banner_plan_today.webp";
 import bannerOurMissionTeam from "../assets/banner_our_mission_team.webp";
 import bannerConnectContact from "../assets/banner_connect_contact.webp";
 import bannerLoans from "../assets/banner_loans.webp";
+import aboutUsImg from "../assets/about-us.webp";
 
 export const company = {
   name: "ANSH",
@@ -26,8 +27,10 @@ export const company = {
   phones: ["+91 70424 70200", "+91 99992 27531"],
   email: "Support@anshcapitalservices.com",
   whatsapp: "917042470200",
+  // Keep identical to BUSINESS.addressLine in src/seo/site.js and to every
+  // directory listing (Google Business Profile, JustDial, etc.).
   address:
-    "RPS 12 Avenue, Tower-4, Lower Ground Floor, Sec-27C, Mathura Road, Faridabad, Haryana, 121001",
+    "12 Avenue RPS, Tower-4, Lower Ground Floor, Sector 27C, New Mathura Road, Faridabad, Haryana 121001",
   timings: [
     { day: "Mon - Sat", hours: "10:00 AM - 7:00 PM" },
     { day: "Sunday", hours: "Closed" },
@@ -50,37 +53,38 @@ export const navLinks = [
     to: "/services",
     dropdown: [
       {
-        label: "Mutual Funds",
-        to: "/services/mutual-funds",
+        label: "Insurance",
+        to: "/services/insurance",
         subItems: [
-          { label: "Mutual Funds Guide", to: "/services/mutual-funds#mutual-funds-guide" },
+          { label: "Term & Life Insurance", to: "/life-insurance" },
+          { label: "Health Insurance", to: "/health-insurance" },
+          { label: "Car, Bike & Business Insurance", to: "/general-insurance" },
+          { label: "Child, Retirement & Savings Plans", to: "/services/insurance" },
+        ],
+      },
+      {
+        label: "Mutual Funds",
+        to: "/mutual-funds",
+        subItems: [
+          { label: "SIP & Tax-Saving (ELSS)", to: "/mutual-funds" },
+          { label: "Mutual Funds Guide", to: "/mutual-funds#mutual-funds-guide" },
           { label: "Equity Funds", to: "/products/equity" },
           { label: "Debt Funds", to: "/products/debt" },
           { label: "Hybrid Funds", to: "/products/hybrid" },
           { label: "Index Funds", to: "/products/index" },
-          { label: "SIP & Tax-Saving (ELSS)", to: "/services/mutual-funds" },
         ],
       },
       {
-        label: "Insurance Solutions",
-        to: "/services/insurance",
+        label: "Loans",
+        to: "/loans",
         subItems: [
-          { label: "Child Education / Marriage Plan", to: "/services/insurance" },
-          { label: "Retirement Solutions", to: "/services/insurance" },
-          { label: "Guaranteed Plans", to: "/services/insurance" },
-          { label: "Health & Life Insurance", to: "/services/insurance" },
+          { label: "Home Loan", to: "/loans" },
+          { label: "Personal Loan", to: "/loans" },
+          { label: "Car Loan", to: "/loans" },
+          { label: "Business Loan", to: "/loans" },
         ],
       },
-      {
-        label: "Loan Solutions",
-        to: "/services/loans",
-        subItems: [
-          { label: "Home Loan (from 7.15%)", to: "/services/loans" },
-          { label: "Personal Loan", to: "/services/loans" },
-          { label: "Car Loan", to: "/services/loans" },
-          { label: "Business Loan", to: "/services/loans" },
-        ],
-      },
+      { label: "Become an Associate", to: "/become-associate" },
       {
         label: "All Services & Products",
         to: "/services",
@@ -132,6 +136,7 @@ export const servicesIntro = {
 export const services = [
   {
     id: "mutual-funds",
+    path: "/mutual-funds",
     icon: "PieChart",
     title: "Mutual Funds",
     bannerImage: bannerMutualFunds,
@@ -175,6 +180,7 @@ export const services = [
   },
   {
     id: "insurance",
+    path: "/services/insurance",
     icon: "ShieldCheck",
     title: "Insurance Solutions",
     bannerImage: bannerInsurance,
@@ -223,6 +229,7 @@ export const services = [
   },
   {
     id: "loans",
+    path: "/loans",
     icon: "Wallet",
     title: "Loan Solutions",
     bannerImage: bannerLoans,
@@ -582,14 +589,15 @@ export const footer = {
     { label: "Blog", to: "/blog" },
     { label: "FAQ", to: "/faq" },
     { label: "Contact Us", to: "/contact" },
+    { label: "Privacy Policy", to: "/privacy-policy" },
   ],
   ourServices: [
-    { label: "Mutual Funds", to: "/services#mutual-funds" },
-    { label: "Insurance", to: "/services#insurance" },
-    { label: "Home Loans", to: "/services#loans" },
-    { label: "Personal Loans", to: "/services#loans" },
-    { label: "Business Loans", to: "/services#loans" },
-    { label: "Financial Planning", to: "/services#wealth" },
+    { label: "Life Insurance", to: "/life-insurance" },
+    { label: "Health Insurance", to: "/health-insurance" },
+    { label: "General Insurance", to: "/general-insurance" },
+    { label: "Mutual Funds", to: "/mutual-funds" },
+    { label: "Loans", to: "/loans" },
+    { label: "Become an Associate", to: "/become-associate" },
   ],
   socials: [
     {
@@ -611,7 +619,7 @@ export const footer = {
 export const aboutPage = {
   eyebrow: "ABOUT US",
   title: "Financial Guidance With a Human Touch",
-  image: "/images/about-us.png",
+  image: aboutUsImg,
   intro:
     "ANSH Capital Services is a Delhi/NCR-based financial advisory firm helping families and businesses make confident money decisions. We combine 19+ years of experience with honest, jargon-free advice.",
   mission:

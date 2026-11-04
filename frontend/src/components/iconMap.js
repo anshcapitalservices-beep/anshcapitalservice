@@ -43,6 +43,8 @@ import {
   CheckCircle2,
   Car,
   Banknote,
+  HeartPulse,
+  Briefcase,
 } from "lucide-react";
 import React from "react";
 
@@ -91,6 +93,8 @@ const icons = {
   CheckCircle2,
   Car,
   Banknote,
+  HeartPulse,
+  Briefcase,
 };
 
 export const Icon = ({ name, className = "", strokeWidth = 1.75, ...props }) => {

@@ -5,26 +5,18 @@ import Navbar from "./Navbar";
 import TickerBar from "./TickerBar";
 import Footer from "./Footer";
 import FloatingButtons from "./FloatingButtons";
+import { applyHead } from "../seo/head";
+import { trackPageView } from "../lib/analytics";
 
 const Layout = () => {
   const { pathname, hash } = useLocation();
 
   useEffect(() => {
-    const titles = {
-      "/": "ANSH Capital Services",
-      "/about": "About Us | ANSH Capital Services",
-      "/services": "Services & Products | ANSH Capital Services",
-      "/why-choose-us": "Why Choose Us | ANSH Capital Services",
-      "/blog": "Financial Insights & Blog | ANSH Capital Services",
-      "/faq": "FAQ | ANSH Capital Services",
-      "/contact": "Contact Us | ANSH Capital Services",
-    };
-    if (titles[pathname]) {
-      document.title = titles[pathname];
-    } else if (!pathname.startsWith("/blog/") && !pathname.startsWith("/services/") && !pathname.startsWith("/products/")) {
-      document.title = "ANSH Capital Services";
-    }
+    applyHead(pathname);
+    trackPageView(pathname);
+  }, [pathname]);
 
+  useEffect(() => {
     if (hash) {
       const id = hash.replace("#", "");
       const el = document.getElementById(id);
