@@ -45,3 +45,4 @@ backend/firebase_service_account.json
 backend/.env
 .vercel
 .env*
+build-ssr/

@@ -95,7 +95,7 @@ const Hero = () => {
             <div className="w-px h-16 sm:h-20 bg-white/30 shrink-0" />
 
             {/* Feature 2: Mutual Funds */}
-            <Link to="/services/mutual-funds" className="flex-1 text-center group">
+            <Link to="/mutual-funds" className="flex-1 text-center group">
               <div className="w-14 h-14 sm:w-16 sm:h-16 mx-auto mb-2 rounded-full bg-gradient-to-br from-[#f9c53e] to-[#df9b10] flex items-center justify-center text-[#06294a] shadow-md group-hover:scale-105 transition-transform">
                 <TrendingUp className="w-7 h-7 stroke-[2.2]" />
               </div>
@@ -111,7 +111,7 @@ const Hero = () => {
             <div className="w-px h-16 sm:h-20 bg-white/30 shrink-0" />
 
             {/* Feature 3: Loans */}
-            <Link to="/services/loans" className="flex-1 text-center group">
+            <Link to="/loans" className="flex-1 text-center group">
               <div className="w-14 h-14 sm:w-16 sm:h-16 mx-auto mb-2 rounded-full bg-gradient-to-br from-[#f9c53e] to-[#df9b10] flex items-center justify-center text-[#06294a] shadow-md group-hover:scale-105 transition-transform">
                 <IndianRupee className="w-7 h-7 stroke-[2.2]" />
               </div>

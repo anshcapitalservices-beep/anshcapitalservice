@@ -31,11 +31,7 @@ const ProductDetail = () => {
   const product = products.find((p) => p.id === productId);
   const [openFaq, setOpenFaq] = useState(0);
 
-  React.useEffect(() => {
-    if (product) {
-      document.title = `${product.title} | ANSH Capital Services`;
-    }
-  }, [product]);
+  // Title and description come from src/seo/site.js (set in Layout).
 
   if (!product || !product.detail) {
     return <Navigate to="/services#products" replace />;

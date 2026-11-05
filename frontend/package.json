@@ -63,7 +63,7 @@
   },
   "scripts": {
     "start": "craco start",
-    "build": "CI=false GENERATE_SOURCEMAP=false INLINE_RUNTIME_CHUNK=false craco build",
+    "build": "CI=false GENERATE_SOURCEMAP=false INLINE_RUNTIME_CHUNK=false craco build && node scripts/prerender.js",
     "test": "craco test"
   },
   "browserslist": {

@@ -4,6 +4,7 @@ import { Phone, Mail, MapPin, ArrowRight, Clock } from "lucide-react";
 import Logo from "./Logo";
 import { Icon } from "./iconMap";
 import { footer, company } from "../mock/mock";
+import { BUSINESS, DISCLAIMERS } from "../seo/site";
 
 const Footer = () => {
   return (
@@ -123,12 +124,36 @@ const Footer = () => {
       </div>
 
       <div className="border-t border-white/10">
+        <div className="max-w-[1280px] mx-auto px-4 md:px-6 py-6 space-y-2 text-xs text-white/55 leading-relaxed">
+          <p>
+            <span className="text-white/80 font-semibold">{BUSINESS.name}</span>, {BUSINESS.addressLine}. Phone{" "}
+            <a href={`tel:${BUSINESS.phoneE164}`} className="hover:text-gold-light">
+              {BUSINESS.phone}
+            </a>
+            .
+          </p>
+          {(BUSINESS.irdai || BUSINESS.amfiArn) && (
+            <p>
+              {BUSINESS.irdai}
+              {BUSINESS.irdai && BUSINESS.amfiArn && " · "}
+              {BUSINESS.amfiArn && <>AMFI-registered Mutual Fund Distributor, {BUSINESS.amfiArn}</>}
+            </p>
+          )}
+          <p>
+            {DISCLAIMERS.insurance} {DISCLAIMERS.mutualFunds}
+          </p>
+        </div>
+      </div>
+
+      <div className="border-t border-white/10">
         <div className="max-w-[1280px] mx-auto px-4 md:px-6 py-5 flex flex-col md:flex-row items-center justify-between gap-3">
           <p className="text-xs text-white/50">
-            © {new Date().getFullYear()} {company.fullName}. All rights reserved.
+            © {new Date().getFullYear()} {BUSINESS.name}. All rights reserved.
           </p>
           <p className="text-xs text-white/50">
-            Mutual fund investments are subject to market risks. Read all scheme related documents carefully.
+            <Link to="/privacy-policy" className="hover:text-gold-light">
+              Privacy Policy
+            </Link>
           </p>
         </div>
       </div>

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { ArrowRight, ShieldCheck, Lock, Clock, CheckCircle2, Loader2, MessageSquare } from "lucide-react";
+import { Link } from "react-router-dom";
 import { toast } from "sonner";
 import { contactApi } from "../lib/api";
 
@@ -7,11 +8,15 @@ const NOTIFICATION_EMAIL = "support@anshcapitalservices.com";
 
 const SERVICE_OPTIONS = [
   "Mutual Funds (SIP/Lump Sum)",
+  "Life / Term Insurance",
+  "Health Insurance",
+  "General Insurance (Motor / Home / Business)",
   "Insurance Solutions",
   "Wealth Management",
   "Retirement Planning",
   "Loan Solutions",
   "Tax Planning",
+  "Become an Associate / POSP",
   "Other",
 ];
 
@@ -24,12 +29,12 @@ const BUDGET_OPTIONS = [
   "Lump Sum Investment",
 ];
 
-const ConsultationForm = ({ compact = false }) => {
+const ConsultationForm = ({ compact = false, defaultService = "" }) => {
   const [form, setForm] = useState({
     name: "",
     phone: "",
     email: "",
-    service: "",
+    service: defaultService,
     budget: "",
     message: "",
   });
@@ -138,7 +143,7 @@ const ConsultationForm = ({ compact = false }) => {
           type="button"
           onClick={() => {
             setIsSubmitted(false);
-            setForm({ name: "", phone: "", email: "", service: "", budget: "", message: "" });
+            setForm({ name: "", phone: "", email: "", service: defaultService, budget: "", message: "" });
           }}
           className="text-xs font-semibold text-slate-500 hover:text-[#d89626] underline transition-colors"
         >
@@ -278,6 +283,13 @@ const ConsultationForm = ({ compact = false }) => {
           <Clock className="h-3.5 w-3.5 text-[#d89626]" /> Reply in 24 hrs
         </span>
       </div>
+      <p className="mt-3 text-center text-[11px] text-slate-400">
+        By submitting, you agree to be contacted about your enquiry. See our{" "}
+        <Link to="/privacy-policy" className="underline hover:text-[#d89626]">
+          privacy policy
+        </Link>
+        .
+      </p>
     </form>
   );
 };

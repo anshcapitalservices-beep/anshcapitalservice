@@ -162,7 +162,7 @@ const ServicesPage = () => {
 
                 <div className="pt-6 mt-6 border-t border-slate-100 flex items-center justify-between">
                   <Link
-                    to={`/services/${s.id}`}
+                    to={s.path}
                     className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#0b1f3a] group-hover:text-[#d89626] transition-colors"
                   >
                     View In-Depth Scope & Process <ArrowRight className="h-4 w-4" />

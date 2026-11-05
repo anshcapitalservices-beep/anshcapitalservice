@@ -66,7 +66,7 @@ const Services = () => {
                 </ul>
               </div>
               <Link
-                to={`/services/${s.id}`}
+                to={s.path}
                 className="inline-flex items-center justify-between w-full pt-4 border-t border-slate-100 text-sm font-semibold text-navy group-hover:text-gold transition-colors mt-auto"
               >
                 <span>Learn More & Scope</span> <ArrowRight className="h-4 w-4" />
