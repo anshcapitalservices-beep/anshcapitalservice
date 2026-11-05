@@ -32,7 +32,7 @@ export const BUSINESS = {
   // e.g. irdai: "IRDAI Corporate Agent (Composite), Reg. No. CA0000"
   irdai: "",
   // e.g. amfiArn: "ARN-000000"
-  amfiArn: "",
+  amfiArn: "ARN-348400",
   // Social profiles (also used in the schema "sameAs" list).
   socials: [
     "https://www.facebook.com/Anshcapitalservices/",
