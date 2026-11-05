@@ -30,13 +30,13 @@ export const company = {
   // Keep identical to BUSINESS.addressLine in src/seo/site.js and to every
   // directory listing (Google Business Profile, JustDial, etc.).
   address:
-    "12 Avenue RPS, Tower-4, Lower Ground Floor, Sector 27C, New Mathura Road, Faridabad, Haryana 121001",
+    "12 Avenue RPS, Tower-4, Lower Ground Floor, Sector 27C, New Mathura Road, Faridabad, Haryana 121003",
   timings: [
     { day: "Mon - Sat", hours: "10:00 AM - 7:00 PM" },
     { day: "Sunday", hours: "Closed" },
   ],
   mapUrl:
-    "https://www.google.com/maps/dir/?api=1&destination=RPS+12+Avenue+Tower-4+Lower+Ground+Floor+Sec-27C+Mathura+Road+Faridabad+Haryana+121001",
+    "https://www.google.com/maps/dir/?api=1&destination=RPS+12+Avenue+Tower-4+Lower+Ground+Floor+Sec-27C+Mathura+Road+Faridabad+Haryana+121003",
 };
 
 export const topBar = {
