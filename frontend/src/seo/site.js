@@ -17,13 +17,13 @@ export const BUSINESS = {
   streetAddress: "12 Avenue RPS, Tower-4, Lower Ground Floor, Sector 27C, New Mathura Road",
   locality: "Faridabad",
   region: "Haryana",
-  postalCode: "121001",
+  postalCode: "121003",
   country: "IN",
   // Shown as one line in the footer and on the contact page.
   addressLine:
-    "12 Avenue RPS, Tower-4, Lower Ground Floor, Sector 27C, New Mathura Road, Faridabad, Haryana 121001",
+    "12 Avenue RPS, Tower-4, Lower Ground Floor, Sector 27C, New Mathura Road, Faridabad, Haryana 121003",
   mapUrl:
-    "https://www.google.com/maps/dir/?api=1&destination=RPS+12+Avenue+Tower-4+Lower+Ground+Floor+Sec-27C+Mathura+Road+Faridabad+Haryana+121001",
+    "https://www.google.com/maps/dir/?api=1&destination=RPS+12+Avenue+Tower-4+Lower+Ground+Floor+Sec-27C+Mathura+Road+Faridabad+Haryana+121003",
   hours: [{ days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"], opens: "10:00", closes: "19:00" }],
   areaServed: ["Faridabad", "Palwal", "Ballabgarh", "Delhi NCR"],
   // ---- Regulatory registrations ----------------------------------------
