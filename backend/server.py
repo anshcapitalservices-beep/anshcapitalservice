@@ -112,8 +112,9 @@ api_router = APIRouter(prefix="/api")
 
 # ==================== ADMIN AUTH ====================
 # Both values must come from the environment; there are no built-in defaults.
-ADMIN_PASSWORD = os.environ.get("ADMIN_PASSWORD", "")
-ADMIN_TOKEN = os.environ.get("ADMIN_TOKEN", "")
+# Stray spaces or line breaks pasted into the Vercel settings are ignored.
+ADMIN_PASSWORD = os.environ.get("ADMIN_PASSWORD", "").strip()
+ADMIN_TOKEN = os.environ.get("ADMIN_TOKEN", "").strip()
 ADMIN_TOKEN_TTL = int(os.environ.get("ADMIN_TOKEN_TTL_SECONDS", str(8 * 3600)))
 
 # Session tokens are signed with a key derived from both secrets, so a token
@@ -203,7 +204,7 @@ async def root():
 
 @api_router.get("/health")
 async def health(x_admin_token: Optional[str] = Header(None)):
-    body = {"status": "ok", "firebase_connected": fs is not None}
+    body = {"status": "ok", "firebase_connected": fs is not None, "admin_login_configured": bool(_SIGNING_KEY)}
     # Credential diagnostics are only shown to a logged-in admin.
     if fb_init_error and _verify_token(x_admin_token):
         body["firebase_error"] = fb_init_error
@@ -289,7 +290,7 @@ async def admin_login(data: LoginInput, request: Request):
     ip = _client_ip(request)
     if _login_limiter.blocked(ip):
         raise HTTPException(status_code=429, detail="Too many login attempts. Try again later.")
-    if not hmac.compare_digest(data.password.encode(), ADMIN_PASSWORD.encode()):
+    if not hmac.compare_digest(data.password.strip().encode(), ADMIN_PASSWORD.encode()):
         _login_limiter.hit(ip)
         raise HTTPException(status_code=401, detail="Invalid password")
     return {"token": _issue_token()}

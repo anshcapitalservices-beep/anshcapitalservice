@@ -66,10 +66,15 @@ const Admin = () => {
       setAuthed(true);
       toast.success("Welcome back!");
     } catch (err) {
+      const status = err?.response?.status;
       toast.error(
-        err?.response?.status === 429
-          ? "Too many attempts. Please wait a few minutes and try again."
-          : "Invalid password. Please try again."
+        status === 429
+          ? "Too many attempts. Please wait 15 minutes and try again."
+          : status === 401
+          ? "Invalid password. Please try again."
+          : status === 503
+          ? "Admin login is not set up on this deployment: ADMIN_PASSWORD or ADMIN_TOKEN is missing in Vercel."
+          : `Login failed (${status ? `server error ${status}` : "could not reach the server"}). Please try again later.`
       );
     } finally {
       setLoggingIn(false);
