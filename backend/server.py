@@ -112,8 +112,9 @@ api_router = APIRouter(prefix="/api")
 
 # ==================== ADMIN AUTH ====================
 # Both values must come from the environment; there are no built-in defaults.
-ADMIN_PASSWORD = os.environ.get("ADMIN_PASSWORD", "")
-ADMIN_TOKEN = os.environ.get("ADMIN_TOKEN", "")
+# Stray spaces or line breaks pasted into the Vercel settings are ignored.
+ADMIN_PASSWORD = os.environ.get("ADMIN_PASSWORD", "").strip()
+ADMIN_TOKEN = os.environ.get("ADMIN_TOKEN", "").strip()
 ADMIN_TOKEN_TTL = int(os.environ.get("ADMIN_TOKEN_TTL_SECONDS", str(8 * 3600)))
 
 # Session tokens are signed with a key derived from both secrets, so a token
@@ -203,7 +204,7 @@ async def root():
 
 @api_router.get("/health")
 async def health(x_admin_token: Optional[str] = Header(None)):
-    body = {"status": "ok", "firebase_connected": fs is not None}
+    body = {"status": "ok", "firebase_connected": fs is not None, "admin_login_configured": bool(_SIGNING_KEY)}
     # Credential diagnostics are only shown to a logged-in admin.
     if fb_init_error and _verify_token(x_admin_token):
         body["firebase_error"] = fb_init_error
@@ -289,7 +290,7 @@ async def admin_login(data: LoginInput, request: Request):
     ip = _client_ip(request)
     if _login_limiter.blocked(ip):
         raise HTTPException(status_code=429, detail="Too many login attempts. Try again later.")
-    if not hmac.compare_digest(data.password.encode(), ADMIN_PASSWORD.encode()):
+    if not hmac.compare_digest(data.password.strip().encode(), ADMIN_PASSWORD.encode()):
         _login_limiter.hit(ip)
         raise HTTPException(status_code=401, detail="Invalid password")
     return {"token": _issue_token()}
@@ -541,6 +542,105 @@ def delete_blog(post_id: str, _: bool = Depends(require_admin)):
     return {"success": True}
 
 
+# ==================== FINANCE NEWS ====================
+# Short news items shown on the home page, managed from /admin.
+NEWS_COLLECTION = "news"
+
+
+def _news_col():
+    if fs is None:
+        raise HTTPException(status_code=503, detail="Database unavailable")
+    return fs.collection(NEWS_COLLECTION)
+
+
+class NewsItemBase(BaseModel):
+    title: str = Field(min_length=1, max_length=200)
+    summary: str = Field("", max_length=600)
+    category: str = Field("", max_length=60)
+    source: str = Field("", max_length=100)
+    url: str = Field("", max_length=1000)
+    # Date the news is from, YYYY-MM-DD; defaults to today.
+    news_date: str = Field("", max_length=10, validate_default=True)
+    published: bool = True
+
+    @field_validator("title", "summary", "category", "source", "url", "news_date", mode="before")
+    @classmethod
+    def _strip(cls, v):
+        return v.strip() if isinstance(v, str) else v
+
+    @field_validator("url")
+    @classmethod
+    def _url(cls, v):
+        if v and not re.match(r"^https?://[^\s]+$", v):
+            raise ValueError("Link must start with http:// or https://")
+        return v
+
+    @field_validator("news_date")
+    @classmethod
+    def _date(cls, v):
+        if not v:
+            return datetime.now(timezone.utc).strftime("%Y-%m-%d")
+        try:
+            datetime.strptime(v, "%Y-%m-%d")
+        except ValueError:
+            raise ValueError("Date must be YYYY-MM-DD")
+        return v
+
+
+class NewsItem(NewsItemBase):
+    model_config = ConfigDict(extra="ignore")
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    created_at: str = Field(default_factory=lambda: datetime.now(timezone.utc).isoformat())
+
+
+def _sort_news(items):
+    items.sort(key=lambda n: (n.get("news_date", ""), n.get("created_at", "")), reverse=True)
+    return items
+
+
+@api_router.get("/news", response_model=List[NewsItem])
+def list_news(limit: int = Query(12, ge=1, le=100)):
+    items = [d.to_dict() for d in _news_col().stream()]
+    items = [n for n in items if n.get("published", True)]
+    return _sort_news(items)[:limit]
+
+
+@api_router.get("/news/all", response_model=List[NewsItem])
+def list_all_news(_: bool = Depends(require_admin)):
+    return _sort_news([d.to_dict() for d in _news_col().stream()])
+
+
+@api_router.post("/news", response_model=NewsItem)
+def create_news(data: NewsItemBase, _: bool = Depends(require_admin)):
+    item = NewsItem(**data.model_dump())
+    try:
+        _news_col().document(item.id).set(item.model_dump())
+    except Exception as e:
+        logging.getLogger(__name__).error("Failed creating news: %s", e)
+        raise HTTPException(status_code=500, detail="Failed saving news item")
+    return item
+
+
+@api_router.put("/news/{item_id}", response_model=NewsItem)
+def update_news(item_id: str, data: NewsItemBase, _: bool = Depends(require_admin)):
+    ref = _news_col().document(_check_doc_id(item_id))
+    snap = ref.get()
+    if not snap.exists:
+        raise HTTPException(status_code=404, detail="News item not found")
+    update = data.model_dump()
+    ref.update(update)
+    return {**snap.to_dict(), **update}
+
+
+@api_router.delete("/news/{item_id}")
+def delete_news(item_id: str, _: bool = Depends(require_admin)):
+    ref = _news_col().document(_check_doc_id(item_id))
+    if not ref.get().exists:
+        raise HTTPException(status_code=404, detail="News item not found")
+    ref.delete()
+    return {"success": True}
+
+
 SEED_POSTS = [
     {
         "title": "SIP vs Lump Sum: Which is Better For You?",
@@ -601,7 +701,7 @@ app.add_middleware(
     allow_headers=["Content-Type", "X-Admin-Token"],
 )
 
-_PUBLIC_CACHEABLE = re.compile(r"^/api/blog(/categories|/[^/]+)?$")
+_PUBLIC_CACHEABLE = re.compile(r"^/api/(blog(/categories|/[^/]+)?|news)$")
 
 
 @app.middleware("http")
