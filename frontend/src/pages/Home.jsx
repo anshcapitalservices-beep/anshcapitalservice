@@ -8,6 +8,7 @@ import InvestmentOptions from "../components/home/InvestmentOptions";
 import Goals from "../components/home/Goals";
 import Testimonials from "../components/home/Testimonials";
 import Insights from "../components/home/Insights";
+import FinanceNews from "../components/home/FinanceNews";
 import CtaSection from "../components/CtaSection";
 
 const Home = () => {
@@ -21,6 +22,7 @@ const Home = () => {
       <InvestmentOptions />
       <Goals />
       <Testimonials />
+      <FinanceNews />
       <Insights />
       <CtaSection />
     </>

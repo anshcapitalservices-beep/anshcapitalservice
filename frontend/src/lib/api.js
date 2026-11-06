@@ -47,3 +47,11 @@ export const contactApi = {
   submit: (data) => axios.post(`${API}/contact`, data),
   getLeads: () => axios.get(`${API}/contact/leads`, authHeaders()),
 };
+
+export const newsApi = {
+  list: (limit = 12) => axios.get(`${API}/news`, { params: { limit } }),
+  listAll: () => axios.get(`${API}/news/all`, { params: fresh(true), ...authHeaders() }),
+  create: (data) => axios.post(`${API}/news`, data, authHeaders()),
+  update: (id, data) => axios.put(`${API}/news/${id}`, data, authHeaders()),
+  remove: (id) => axios.delete(`${API}/news/${id}`, authHeaders()),
+};

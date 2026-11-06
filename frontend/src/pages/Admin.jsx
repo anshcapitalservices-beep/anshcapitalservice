@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import Logo from "../components/Logo";
 import RichTextEditor from "../components/RichTextEditor";
+import AdminNews from "../components/AdminNews";
 import { blogApi, getToken, setToken, clearToken } from "../lib/api";
 import { Input } from "../components/ui/input";
 import { Label } from "../components/ui/label";
@@ -37,6 +38,7 @@ const Admin = () => {
   const [posts, setPosts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [mode, setMode] = useState("list"); // list | edit
+  const [tab, setTab] = useState("articles"); // articles | news
   const [editingId, setEditingId] = useState(null);
   const [form, setForm] = useState(emptyForm);
   const [saving, setSaving] = useState(false);
@@ -348,6 +350,29 @@ const Admin = () => {
       </div>
 
       <div className="max-w-5xl mx-auto px-4 md:px-6 py-8">
+        <div className="flex gap-1 mb-6 bg-white border border-slate-100 rounded-lg p-1 w-fit" role="tablist">
+          {[
+            ["articles", "Blog Articles"],
+            ["news", "Finance News"],
+          ].map(([key, label]) => (
+            <button
+              key={key}
+              role="tab"
+              aria-selected={tab === key}
+              onClick={() => setTab(key)}
+              className={`px-4 py-2 rounded-md text-sm font-semibold transition-colors ${
+                tab === key ? "bg-navy text-white" : "text-navy hover:bg-cream"
+              }`}
+            >
+              {label}
+            </button>
+          ))}
+        </div>
+
+        {tab === "news" ? (
+          <AdminNews onAuthError={handleAuthError} />
+        ) : (
+        <>
         <div className="flex items-center justify-between mb-6">
           <div>
             <h1 className="font-display text-2xl font-bold text-navy">Manage Articles</h1>
@@ -383,6 +408,8 @@ const Admin = () => {
             </div>
           ))}
         </div>
+        </>
+        )}
       </div>
     </div>
   );
